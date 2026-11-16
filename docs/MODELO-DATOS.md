@@ -2,7 +2,7 @@
 
 ## Alcance
 
-Dataset sintético de Argentina, Brasil, Chile y Uruguay para 2010–2024. Contiene 10.000 observaciones sintéticas distribuidas en cuatro países, cuatro indicadores y quince años. Cada observación tiene un `observation_id` único; cada combinación país-indicador cuenta con más de diez registros. Los valores fueron autogenerados para fines académicos; no deben citarse como estadísticas oficiales del Banco Mundial.
+Dataset sintético de Argentina, Brasil, Chile y Uruguay para 2010–2024. Contiene 240 observaciones sintéticas: cuatro países, cuatro indicadores y quince años. Cada combinación país-indicador-año tiene una única fila, identificada por `observation_id`. Los valores fueron autogenerados para fines académicos; no deben citarse como estadísticas oficiales del Banco Mundial.
 
 ## Indicadores
 
@@ -29,7 +29,7 @@ Dataset sintético de Argentina, Brasil, Chile y Uruguay para 2010–2024. Conti
 
 ## Modelo semántico
 
-- FactIndicadores: tabla de hechos con granularidad observación sintética individual, identificada por observation_id; cada país–indicador–año contiene 41 o 42 valoraciones.
+- FactIndicadores: tabla de hechos con granularidad país–indicador–año, identificada por observation_id.
 - Paises: dimensión con CodigoPais como clave.
 - Indicadores: dimensión con CodigoIndicador como clave y nombre/unidad como atributos.
 - Relaciones 1:N desde Paises e Indicadores hacia FactIndicadores.
@@ -42,7 +42,7 @@ Las tres particiones leen CSV UTF-8 con `QuoteStyle.Csv`, promueven encabezados 
 
 ## Medidas DAX
 
-FactIndicadores incluye medidas para valor del indicador, promedio regional, brecha, ranking, país líder, valor del líder, países, indicadores, observaciones y años analizados. Las comparaciones se calculan con un indicador único y usan promedio para no sumar observaciones.
+FactIndicadores incluye medidas para valor del indicador, promedio regional, brecha, ranking, país líder, valor del líder, países, indicadores, observaciones y años analizados. Las comparaciones se calculan con un indicador único y utilizan el valor de cada país y año, sin agregaciones de duplicados.
 
 ## Validación
 
