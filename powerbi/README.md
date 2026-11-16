@@ -1,24 +1,35 @@
 # Proyecto Power BI — Indicadores regionales
 
-El proyecto fuente está en formato PBIP + TMDL. Se conserva el nombre interno `Finanzas` por continuidad con el prototipo inicial; el modelo y el informe fueron adaptados al análisis de indicadores del Banco Mundial.
+El proyecto fuente PBIP/TMDL implementa un modelo semántico para analizar dos indicadores del Banco Mundial en Argentina, Brasil, Chile y Uruguay durante 2024.
 
 ## Abrir
 
-1. Descargar o clonar el repositorio completo.
-2. Abrir `powerbi/Finanzas.pbip` con Power BI Desktop actualizado.
+1. Descargar o clonar el repositorio.
+2. Abrir `Finanzas.pbip` con Power BI Desktop actualizado.
 3. Configurar el origen Web como anónimo si se solicita.
-4. Actualizar datos y revisar las consultas.
-5. Crear las visualizaciones detalladas en `docs/POWER-BI.md`.
-6. Guardar como `powerbi/informe-indicadores-regionales.pbix`.
+4. Actualizar datos y comprobar las consultas.
+5. Completar las visualizaciones según `docs/POWER-BI.md`.
+6. Guardar como `informe-indicadores-regionales.pbix`.
 
-## Dataset y modelo
+## Fuente y mapeo
 
 CSV: `public/data/indicadores-banco-mundial.csv`.
 
-- FactIndicadores: 8 observaciones.
-- Paises: 4 países.
-- Indicadores: 2 indicadores.
-- Relaciones: FactIndicadores hacia Paises e Indicadores.
+- `country_code` → FactIndicadores[CodigoPais] / Paises[CodigoPais]
+- `country` → FactIndicadores[Pais] / Paises[País]
+- `indicator_code` → FactIndicadores[CodigoIndicador] / Indicadores[CodigoIndicador]
+- `indicator_name` → FactIndicadores[Indicador] / Indicadores[NombreIndicador]
+- `year` → FactIndicadores[Año]
+- `value` → FactIndicadores[Valor]
+- `unit` → FactIndicadores[Unidad] / Indicadores[Unidad]
+- `source` → FactIndicadores[Fuente]
+
+## Modelo semántico
+
+- FactIndicadores: tabla de hechos, granularidad país-indicador-año.
+- Paises: dimensión de cuatro países.
+- Indicadores: dimensión de dos indicadores.
+- Dos relaciones uno-a-muchos unidireccionales hacia FactIndicadores.
 - Año de referencia: 2024.
 
 ## Medidas DAX
@@ -27,16 +38,18 @@ Valor del Indicador, Promedio Regional, Brecha vs. Promedio, Ranking País, Paí
 
 ## Power Query
 
-Las particiones M leen el CSV publicado en GitHub, promueven encabezados, asignan tipos y derivan las dimensiones con eliminación de duplicados.
+FactIndicadores tipa los datos, normaliza texto y filtra registros incompletos o valores fuera del rango 0–100. Las dimensiones seleccionan sus atributos, recortan espacios, eliminan duplicados y ordenan por clave.
 
 ## Validación
+
+Ejecutar:
 
 ```bash
 python scripts/validate_powerbi_project.py
 ```
 
-La validación es estática. No sustituye la actualización y comprobación en Power BI Desktop.
+La comprobación es estática y no reemplaza la actualización en Power BI Desktop.
 
 ## PBIP y PBIX
 
-PBIP/TMDL es el proyecto fuente textual versionable. No es un PBIX binario. El archivo PBIX final debe guardarse desde Power BI Desktop después de completar las visualizaciones.
+PBIP/TMDL es el proyecto fuente versionable, no un PBIX binario. El PBIX final debe guardarse desde Power BI Desktop después de completar y verificar las visualizaciones.

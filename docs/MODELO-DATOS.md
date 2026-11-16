@@ -2,71 +2,86 @@
 
 ## Tema y alcance
 
-El modelo compara Argentina, Brasil, Chile y Uruguay durante 2024 mediante dos indicadores públicos del Banco Mundial: uso de Internet y desempeño estadístico (SPI).
+El modelo compara Argentina, Brasil, Chile y Uruguay durante 2024 mediante dos indicadores públicos de World Bank Open Data: uso de Internet y desempeño estadístico (SPI).
 
-La unidad de análisis es una observación por país e indicador. El CSV contiene 8 filas.
+La granularidad de la tabla de hechos es una observación por país, indicador y año. El CSV contiene 8 observaciones.
 
 ## Fuente
 
-- World Bank Open Data: https://data.worldbank.org/
-- Uso de Internet: https://data.worldbank.org/indicator/IT.NET.USER.ZS
-- Puntaje general SPI: https://data.worldbank.org/indicator/IQ.SPI.OVRL
-- API de indicadores: https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures
+- Portal: https://data.worldbank.org/
+- Uso de Internet (IT.NET.USER.ZS): https://data.worldbank.org/indicator/IT.NET.USER.ZS
+- Desempeño estadístico (IQ.SPI.OVRL): https://data.worldbank.org/indicator/IQ.SPI.OVRL
+- API: https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures
 
-Los valores del CSV se expresan con un decimal. Los valores publicados por la fuente pueden tener mayor precisión; el redondeo se aplica únicamente para la presentación comparativa.
+## Traducción del CSV al modelo semántico
 
-## Diccionario de datos
+El archivo `public/data/indicadores-banco-mundial.csv` es la fuente única del dashboard y del modelo Power BI.
 
-| Campo | Tipo | Descripción |
-|---|---|---|
-| country_code | Texto | Código ISO3 del país |
-| country | Texto | Nombre del país |
-| indicator_code | Texto | Código oficial del indicador |
-| indicator_name | Texto | Nombre descriptivo |
-| year | Entero | Año de referencia (2024) |
-| value | Decimal | Valor observado |
-| unit | Texto | Unidad de medida |
-| source | Texto | Fuente de los datos |
+| Campo CSV | Tipo en Power Query | Tabla del modelo | Columna semántica |
+|---|---|---|---|
+| country_code | Texto | FactIndicadores / Paises | CodigoPais |
+| country | Texto | FactIndicadores / Paises | Pais / País |
+| indicator_code | Texto | FactIndicadores / Indicadores | CodigoIndicador |
+| indicator_name | Texto | FactIndicadores / Indicadores | Indicador / NombreIndicador |
+| year | Entero | FactIndicadores | Año |
+| value | Decimal | FactIndicadores | Valor |
+| unit | Texto | FactIndicadores / Indicadores | Unidad |
+| source | Texto | FactIndicadores | Fuente |
+
+Las columnas descriptivas repetidas en la tabla de hechos permiten conservar trazabilidad con el CSV. Las dimensiones se utilizan para filtrar y agrupar mediante claves.
 
 ## Modelo semántico
 
-### Tabla de hechos: FactIndicadores
+### FactIndicadores — tabla de hechos
 
-Granularidad: una fila por país, indicador y año. Contiene el valor observado y las claves de las dimensiones.
+Una fila por país, indicador y año. Incluye CodigoPais, CodigoIndicador, Año y Valor, además de Pais, Indicador, Unidad y Fuente para trazabilidad.
 
-### Dimensión Paises
+### Paises — dimensión de países
 
-Una fila por país. Clave: CodigoPais.
+Una fila por país, con CodigoPais como clave y País como atributo descriptivo.
 
-### Dimensión Indicadores
+### Indicadores — dimensión de indicadores
 
-Una fila por indicador y unidad. Clave: CodigoIndicador.
+Una fila por código de indicador, con CodigoIndicador como clave y NombreIndicador y Unidad como atributos.
 
 ### Relaciones
 
 - Paises[CodigoPais] (1) → FactIndicadores[CodigoPais] (*).
 - Indicadores[CodigoIndicador] (1) → FactIndicadores[CodigoIndicador] (*).
 
-Ambas relaciones usan filtrado unidireccional desde las dimensiones hacia la tabla de hechos.
+Las relaciones son uno-a-muchos y filtran en una sola dirección, desde las dimensiones hacia FactIndicadores.
 
-No se incorpora una dimensión calendario porque el alcance de esta versión es una fotografía comparativa de un único año (2024), no una serie temporal.
+No se crea una dimensión calendario: el análisis es una fotografía comparativa del año 2024. El año se conserva como entero en FactIndicadores.
 
-## Preparación y controles
+## Power Query (ETL)
 
-Power Query:
-1. Obtiene el CSV desde el repositorio mediante Web.Contents.
-2. Interpreta la primera fila como encabezados.
-3. Asigna texto a claves, nombres, unidad y fuente.
-4. Asigna entero a año y decimal a valor.
-5. Elimina espacios laterales en campos de texto.
-6. Las dimensiones se derivan mediante selección de columnas y eliminación de duplicados.
+Las tres particiones M consumen el mismo CSV publicado en GitHub.
 
-Controles:
-- 8 filas, 4 países y 2 indicadores.
-- No se admiten valores vacíos ni duplicados por combinación país-indicador-año.
-- Año de referencia único: 2024.
-- Valores dentro de los rangos esperados: Internet 0–100; SPI 0–100.
+1. Descargan el archivo con `Web.Contents` y lo interpretan como CSV UTF-8.
+2. Promueven la primera fila como encabezados.
+3. En FactIndicadores convierten año a entero y valor a decimal; los demás campos son texto.
+4. Normalizan los campos textuales con `Text.Trim`.
+5. FactIndicadores descarta registros incompletos y valores fuera del rango 0–100.
+6. Paises selecciona country_code y country, elimina duplicados y ordena por código.
+7. Indicadores selecciona indicator_code, indicator_name y unit, elimina duplicados y ordena por código.
 
-## Interpretación
+## Medidas DAX
 
-Los dos indicadores son escalas porcentuales o puntuaciones de 0 a 100, pero miden fenómenos distintos. No deben sumarse ni compararse directamente entre sí. Se comparan países dentro de cada indicador.
+- Valor del Indicador: suma el valor en el contexto de filtro actual.
+- Promedio Regional: promedio del indicador entre los países del conjunto comparado.
+- Brecha vs. Promedio: diferencia entre el valor del país y el promedio regional.
+- Ranking País: posición descendente del país dentro del indicador filtrado.
+- Países Analizados: cantidad distinta de países en el contexto actual.
+- Indicadores Analizados: cantidad distinta de indicadores en el contexto actual.
+
+El filtro de Indicadores mantiene separados el porcentaje de uso de Internet y el puntaje SPI. No se deben sumar ni comparar directamente sus unidades.
+
+## Integridad y validación
+
+- 8 observaciones, 4 países, 2 indicadores y año único 2024.
+- Clave lógica única por país, indicador y año.
+- Valores entre 0 y 100.
+- Claves de dimensiones únicas y relacionadas con la tabla de hechos.
+- Script estático: `python scripts/validate_powerbi_project.py`.
+
+La validación estática no sustituye abrir el PBIP, actualizar el origen y comprobar las medidas en Power BI Desktop.

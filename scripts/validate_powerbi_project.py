@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static validation for the World Bank dataset and PBIP/TMDL source."""
+"""Static validation of the World Bank dataset and semantic model."""
 from __future__ import annotations
 
 import csv
@@ -22,6 +22,16 @@ EXPECTED = {
     ("CHL", "IQ.SPI.OVRL"): Decimal("89.379"),
     ("URY", "IQ.SPI.OVRL"): Decimal("80.147"),
 }
+MAPPINGS = {
+    "country_code": "CodigoPais",
+    "country": "Pais",
+    "indicator_code": "CodigoIndicador",
+    "indicator_name": "Indicador",
+    "year": "Año",
+    "value": "Valor",
+    "unit": "Unidad",
+    "source": "Fuente",
+}
 
 
 def check(condition: bool, message: str) -> None:
@@ -33,46 +43,63 @@ def check(condition: bool, message: str) -> None:
 def main() -> None:
     check((POWERBI / "Finanzas.pbip").is_file(), "PBIP entrypoint exists")
     check((MODEL / "model.tmdl").is_file(), "semantic model definition exists")
-    check((MODEL / "relationships.tmdl").is_file(), "relationships definition exists")
-    check((MODEL / "tables/FactIndicadores.tmdl").is_file(), "fact table definition exists")
-    check((MODEL / "tables/Paises.tmdl").is_file(), "country dimension exists")
-    check((MODEL / "tables/Indicadores.tmdl").is_file(), "indicator dimension exists")
+    fact_path = MODEL / "tables/FactIndicadores.tmdl"
+    country_path = MODEL / "tables/Paises.tmdl"
+    indicator_path = MODEL / "tables/Indicadores.tmdl"
+    check(fact_path.is_file(), "fact table exists")
+    check(country_path.is_file(), "country dimension exists")
+    check(indicator_path.is_file(), "indicator dimension exists")
+    check((MODEL / "relationships.tmdl").is_file(), "relationships exist")
     check((REPORT / "pages/pages.json").is_file(), "report pages metadata exists")
-    check((REPORT / "pages/portada/page.json").is_file(), "cover page metadata exists")
-    check((REPORT / "pages/resumen/page.json").is_file(), "analysis page metadata exists")
+    check((REPORT / "pages/portada/page.json").is_file(), "cover page exists")
+    check((REPORT / "pages/resumen/page.json").is_file(), "analysis page exists")
 
-    fact = (MODEL / "tables/FactIndicadores.tmdl").read_text(encoding="utf-8")
-    for measure in (
-        "Valor del Indicador", "Promedio Regional", "Brecha vs. Promedio",
-        "Ranking País", "Países Analizados", "Indicadores Analizados",
-    ):
-        check(f"measure '{measure}'" in fact, f"DAX measure declared: {measure}")
+    fact = fact_path.read_text(encoding="utf-8")
+    countries = country_path.read_text(encoding="utf-8")
+    indicators = indicator_path.read_text(encoding="utf-8")
+    relationships = (MODEL / "relationships.tmdl").read_text(encoding="utf-8")
+
+    for measure in ("Valor del Indicador", "Promedio Regional", "Brecha vs. Promedio",
+                    "Ranking País", "Países Analizados", "Indicadores Analizados"):
+        check(f"measure '{measure}'" in fact, f"DAX measure: {measure}")
+
+    for source, target in MAPPINGS.items():
+        check(f"sourceColumn: {source}" in fact, f"fact mapping {source} -> {target}")
+    for source in ("country_code", "country"):
+        check(f"sourceColumn: {source}" in countries, f"country dimension mapping: {source}")
+    for source in ("indicator_code", "indicator_name", "unit"):
+        check(f"sourceColumn: {source}" in indicators, f"indicator dimension mapping: {source}")
+
+    check("FactIndicadores.CodigoPais" in relationships and "Paises.CodigoPais" in relationships,
+          "country relationship keys match")
+    check("FactIndicadores.CodigoIndicador" in relationships and "Indicadores.CodigoIndicador" in relationships,
+          "indicator relationship keys match")
+    check("ValidRows = Table.SelectRows" in fact and "[value] >= 0 and [value] <= 100" in fact,
+          "fact query filters invalid records")
+    check("Table.Distinct(CleanText)" in countries and "Table.Distinct(CleanText)" in indicators,
+          "dimension queries normalize and deduplicate rows")
 
     with CSV_PATH.open(encoding="utf-8-sig", newline="") as stream:
         reader = csv.DictReader(stream)
-        columns = [
-            "country_code", "country", "indicator_code", "indicator_name",
-            "year", "value", "unit", "source",
-        ]
-        check(reader.fieldnames == columns, "CSV schema matches the model")
+        check(reader.fieldnames == list(MAPPINGS), "CSV fields match the model mapping")
         rows = list(reader)
 
-    check(len(rows) == 8, "CSV contains 8 observations")
+    check(len(rows) == 8, "8 dataset observations")
     keys = [(r["country_code"], r["indicator_code"], r["year"]) for r in rows]
     check(len(keys) == len(set(keys)), "country-indicator-year keys are unique")
-    check({r["country_code"] for r in rows} == {"ARG", "BRA", "CHL", "URY"}, "four expected countries are present")
-    check({r["indicator_code"] for r in rows} == {"IT.NET.USER.ZS", "IQ.SPI.OVRL"}, "two expected indicators are present")
-    check({r["year"] for r in rows} == {"2024"}, "all observations refer to 2024")
+    check({r["country_code"] for r in rows} == {"ARG", "BRA", "CHL", "URY"}, "four countries present")
+    check({r["indicator_code"] for r in rows} == {"IT.NET.USER.ZS", "IQ.SPI.OVRL"}, "two indicators present")
+    check({r["year"] for r in rows} == {"2024"}, "reference year is 2024")
 
     observed = {}
     for row in rows:
         value = Decimal(row["value"])
-        check(Decimal("0") <= value <= Decimal("100"), f"value range valid for {row['country_code']} / {row['indicator_code']}")
+        check(Decimal("0") <= value <= Decimal("100"), f"value range valid: {row['country_code']} / {row['indicator_code']}")
         observed[(row["country_code"], row["indicator_code"])] = value
-    check(observed == EXPECTED, "all values match the documented World Bank 2024 snapshot")
+    check(observed == EXPECTED, "values match the documented 2024 snapshot")
 
     print("\nStatic validation passed.")
-    print("Power BI Desktop refresh, visual behavior and PBIX generation remain manual validation steps.")
+    print("Power BI Desktop refresh, report interaction and PBIX generation remain manual checks.")
 
 
 if __name__ == "__main__":

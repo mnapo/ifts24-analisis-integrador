@@ -25,6 +25,15 @@ table Indicadores
                 ),
                 Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
                 Selected = Table.SelectColumns(Headers, {"indicator_code", "indicator_name", "unit"}),
-                DistinctRows = Table.Distinct(Selected)
+                CleanText = Table.TransformColumns(
+                    Selected,
+                    {
+                        {"indicator_code", each if _ = null then null else Text.Trim(_), type text},
+                        {"indicator_name", each if _ = null then null else Text.Trim(_), type text},
+                        {"unit", each if _ = null then null else Text.Trim(_), type text}
+                    }
+                ),
+                DistinctRows = Table.Distinct(CleanText),
+                SortedRows = Table.Sort(DistinctRows, {{"indicator_code", Order.Ascending}})
             in
-                DistinctRows
+                SortedRows

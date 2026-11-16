@@ -91,11 +91,25 @@ table FactIndicadores
                 CleanText = Table.TransformColumns(
                     Types,
                     {
-                        {"country_code", Text.Trim, type text},
-                        {"country", Text.Trim, type text},
-                        {"indicator_code", Text.Trim, type text},
-                        {"indicator_name", Text.Trim, type text}
+                        {"country_code", each if _ = null then null else Text.Trim(_), type text},
+                        {"country", each if _ = null then null else Text.Trim(_), type text},
+                        {"indicator_code", each if _ = null then null else Text.Trim(_), type text},
+                        {"indicator_name", each if _ = null then null else Text.Trim(_), type text},
+                        {"unit", each if _ = null then null else Text.Trim(_), type text},
+                        {"source", each if _ = null then null else Text.Trim(_), type text}
                     }
+                ),
+                ValidRows = Table.SelectRows(
+                    CleanText,
+                    each
+                        [country_code] <> null and [country_code] <> "" and
+                        [country] <> null and [country] <> "" and
+                        [indicator_code] <> null and [indicator_code] <> "" and
+                        [indicator_name] <> null and [indicator_name] <> "" and
+                        [year] <> null and
+                        [value] <> null and [value] >= 0 and [value] <= 100 and
+                        [unit] <> null and [unit] <> "" and
+                        [source] <> null and [source] <> ""
                 )
             in
-                CleanText
+                ValidRows

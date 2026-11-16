@@ -20,6 +20,14 @@ table Paises
                 ),
                 Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
                 Selected = Table.SelectColumns(Headers, {"country_code", "country"}),
-                DistinctRows = Table.Distinct(Selected)
+                CleanText = Table.TransformColumns(
+                    Selected,
+                    {
+                        {"country_code", each if _ = null then null else Text.Trim(_), type text},
+                        {"country", each if _ = null then null else Text.Trim(_), type text}
+                    }
+                ),
+                DistinctRows = Table.Distinct(CleanText),
+                SortedRows = Table.Sort(DistinctRows, {{"country_code", Order.Ascending}})
             in
-                DistinctRows
+                SortedRows
