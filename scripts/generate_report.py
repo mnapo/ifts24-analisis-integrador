@@ -177,7 +177,7 @@ overlay_canvas.setFillColor(colors.white)
 fields=[
     (162,296,220,"Análisis y procesamiento de datos"),
     (119,272,90,"2026"),
-    (205,248,260,"Pasztetnik Martín"),
+    (199,248,266,"Pasztetnik Martín"),
     (160,224,260,"Matías Napoli"),
 ]
 for x,y,width,value in fields:
