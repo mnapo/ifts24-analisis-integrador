@@ -164,9 +164,11 @@ doc.build(story,onFirstPage=footer,onLaterPages=footer)
 
 cover=PdfReader(str(COVER))
 body=PdfReader(str(tmp))
+writer=PdfWriter()
+writer.append(cover)
 # Fill the editable placeholder fields in the official first-page template.
 from reportlab.pdfgen import canvas
-cover_page=cover.pages[0]
+cover_page=writer.pages[0]
 page_width=float(cover_page.mediabox.width)
 page_height=float(cover_page.mediabox.height)
 overlay_buffer=io.BytesIO()
@@ -187,8 +189,6 @@ overlay_canvas.save()
 overlay_buffer.seek(0)
 overlay_page=PdfReader(overlay_buffer).pages[0]
 cover_page.merge_page(overlay_page)
-writer=PdfWriter()
-writer.add_page(cover_page)
 for page in body.pages:
     writer.add_page(page)
 with OUT.open("wb") as f:
