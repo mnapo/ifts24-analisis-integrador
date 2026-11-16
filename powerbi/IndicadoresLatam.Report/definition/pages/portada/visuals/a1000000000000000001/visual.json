@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "a1000000000000000001",
+  "position": {
+    "x": 24,
+    "y": 220,
+    "z": 1000,
+    "height": 450,
+    "width": 600,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Paises"
+                    }
+                  },
+                  "Property": "País"
+                }
+              },
+              "queryRef": "Paises.País",
+              "nativeQueryRef": "País"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactIndicadores"
+                    }
+                  },
+                  "Property": "Valor del Indicador"
+                }
+              },
+              "queryRef": "FactIndicadores.Valor del Indicador",
+              "nativeQueryRef": "Valor del Indicador"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Comparación entre países · indicador seleccionado'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
