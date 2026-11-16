@@ -1,0 +1,501 @@
+id,fecha,tipo,categoria,descripcion,importe,medio_pago
+1,2025-08-15,Gasto,Transporte,Transporte y movilidad,23600,Transferencia
+2,2025-01-22,Ingreso,Freelance,Trabajo independiente,237900,Crédito
+3,2025-09-25,Gasto,Transporte,Transporte y movilidad,15800,Efectivo
+4,2025-03-24,Gasto,Indumentaria,Compras personales,17200,Billetera virtual
+5,2025-06-14,Ingreso,Freelance,Trabajo independiente,165500,Transferencia
+6,2025-08-26,Gasto,Servicios,Servicios del hogar,37900,Crédito
+7,2025-05-12,Gasto,Transporte,Transporte y movilidad,27500,Crédito
+8,2025-08-20,Gasto,Restaurantes,Comidas fuera de casa,15000,Billetera virtual
+9,2025-01-19,Gasto,Educación,Cursos y materiales,36100,Débito
+10,2025-12-12,Gasto,Vivienda,Alquiler mensual,241800,Transferencia
+11,2025-10-15,Gasto,Supermercado,Compra semanal,62800,Débito
+12,2025-06-20,Gasto,Transporte,Transporte y movilidad,19600,Débito
+13,2025-07-24,Gasto,Restaurantes,Comidas fuera de casa,24600,Débito
+14,2025-05-06,Gasto,Servicios,Servicios del hogar,30300,Débito
+15,2025-07-08,Gasto,Restaurantes,Comidas fuera de casa,25600,Billetera virtual
+16,2025-02-06,Gasto,Salud,Farmacia y consultas,20400,Efectivo
+17,2025-05-02,Gasto,Vivienda,Alquiler mensual,184600,Débito
+18,2025-05-18,Gasto,Educación,Cursos y materiales,43700,Billetera virtual
+19,2025-04-04,Gasto,Educación,Cursos y materiales,47200,Efectivo
+20,2025-01-18,Ingreso,Sueldo,Acreditación de sueldo,1086600,Billetera virtual
+21,2025-01-04,Ingreso,Sueldo,Acreditación de sueldo,1058300,Billetera virtual
+22,2025-12-24,Gasto,Indumentaria,Compras personales,20700,Transferencia
+23,2025-02-05,Gasto,Servicios,Servicios del hogar,16200,Débito
+24,2025-08-25,Gasto,Servicios,Servicios del hogar,22600,Crédito
+25,2025-05-05,Gasto,Indumentaria,Compras personales,45100,Transferencia
+26,2025-04-04,Gasto,Servicios,Servicios del hogar,32500,Débito
+27,2025-11-22,Gasto,Educación,Cursos y materiales,45900,Crédito
+28,2025-06-02,Gasto,Entretenimiento,Ocio y suscripciones,28100,Crédito
+29,2025-12-04,Ingreso,Sueldo,Acreditación de sueldo,991200,Crédito
+30,2025-02-07,Gasto,Educación,Cursos y materiales,10700,Efectivo
+31,2025-06-02,Gasto,Indumentaria,Compras personales,49700,Crédito
+32,2025-01-03,Ingreso,Freelance,Trabajo independiente,161300,Billetera virtual
+33,2025-11-12,Gasto,Restaurantes,Comidas fuera de casa,14300,Crédito
+34,2025-11-25,Gasto,Vivienda,Alquiler mensual,183100,Débito
+35,2025-03-23,Gasto,Educación,Cursos y materiales,40500,Crédito
+36,2025-01-15,Ingreso,Freelance,Trabajo independiente,242800,Débito
+37,2025-09-20,Gasto,Supermercado,Compra semanal,34600,Crédito
+38,2025-08-07,Gasto,Vivienda,Alquiler mensual,258000,Billetera virtual
+39,2025-09-24,Gasto,Transporte,Transporte y movilidad,11000,Transferencia
+40,2025-03-07,Gasto,Indumentaria,Compras personales,15000,Transferencia
+41,2025-05-12,Gasto,Entretenimiento,Ocio y suscripciones,12500,Débito
+42,2025-12-17,Gasto,Entretenimiento,Ocio y suscripciones,31300,Débito
+43,2025-11-05,Gasto,Transporte,Transporte y movilidad,26400,Efectivo
+44,2025-12-12,Gasto,Servicios,Servicios del hogar,46500,Débito
+45,2025-01-25,Gasto,Educación,Cursos y materiales,20600,Débito
+46,2025-08-25,Gasto,Indumentaria,Compras personales,22200,Efectivo
+47,2025-02-15,Gasto,Supermercado,Compra semanal,43900,Billetera virtual
+48,2025-12-12,Gasto,Salud,Farmacia y consultas,37600,Efectivo
+49,2025-02-28,Ingreso,Inversiones,Rendimientos,32700,Crédito
+50,2025-10-14,Gasto,Transporte,Transporte y movilidad,5000,Billetera virtual
+51,2025-04-15,Gasto,Entretenimiento,Ocio y suscripciones,5200,Transferencia
+52,2025-08-20,Ingreso,Inversiones,Rendimientos,50900,Débito
+53,2025-10-05,Gasto,Restaurantes,Comidas fuera de casa,33900,Billetera virtual
+54,2025-04-27,Gasto,Salud,Farmacia y consultas,19500,Crédito
+55,2025-08-13,Gasto,Vivienda,Alquiler mensual,221000,Billetera virtual
+56,2025-10-02,Ingreso,Inversiones,Rendimientos,8000,Transferencia
+57,2025-03-14,Gasto,Vivienda,Alquiler mensual,233600,Crédito
+58,2025-12-26,Ingreso,Freelance,Trabajo independiente,274200,Débito
+59,2025-09-13,Ingreso,Inversiones,Rendimientos,6000,Billetera virtual
+60,2025-05-16,Gasto,Restaurantes,Comidas fuera de casa,22400,Crédito
+61,2025-01-18,Gasto,Indumentaria,Compras personales,56000,Transferencia
+62,2025-12-25,Gasto,Vivienda,Alquiler mensual,221200,Billetera virtual
+63,2025-11-14,Gasto,Entretenimiento,Ocio y suscripciones,21700,Débito
+64,2025-04-21,Gasto,Vivienda,Alquiler mensual,199200,Débito
+65,2025-02-28,Gasto,Transporte,Transporte y movilidad,3900,Crédito
+66,2025-02-07,Gasto,Supermercado,Compra semanal,63100,Crédito
+67,2025-02-19,Gasto,Supermercado,Compra semanal,55300,Débito
+68,2025-11-01,Gasto,Restaurantes,Comidas fuera de casa,20100,Billetera virtual
+69,2025-11-02,Ingreso,Freelance,Trabajo independiente,108700,Crédito
+70,2025-10-07,Gasto,Indumentaria,Compras personales,57600,Débito
+71,2025-06-06,Gasto,Entretenimiento,Ocio y suscripciones,31400,Transferencia
+72,2025-07-22,Gasto,Transporte,Transporte y movilidad,13600,Transferencia
+73,2025-02-13,Gasto,Transporte,Transporte y movilidad,23100,Débito
+74,2025-06-05,Gasto,Transporte,Transporte y movilidad,6000,Transferencia
+75,2025-03-04,Gasto,Restaurantes,Comidas fuera de casa,27800,Efectivo
+76,2025-07-24,Gasto,Entretenimiento,Ocio y suscripciones,15200,Crédito
+77,2025-07-10,Ingreso,Freelance,Trabajo independiente,194900,Transferencia
+78,2025-12-13,Gasto,Indumentaria,Compras personales,48700,Transferencia
+79,2025-05-03,Gasto,Educación,Cursos y materiales,41500,Transferencia
+80,2025-06-26,Gasto,Vivienda,Alquiler mensual,254900,Efectivo
+81,2025-12-24,Gasto,Vivienda,Alquiler mensual,211300,Crédito
+82,2025-02-23,Ingreso,Inversiones,Rendimientos,18100,Transferencia
+83,2025-04-10,Gasto,Educación,Cursos y materiales,45600,Billetera virtual
+84,2025-08-28,Gasto,Vivienda,Alquiler mensual,215100,Billetera virtual
+85,2025-03-12,Ingreso,Sueldo,Acreditación de sueldo,1038000,Débito
+86,2025-07-18,Gasto,Salud,Farmacia y consultas,27800,Transferencia
+87,2025-05-19,Gasto,Restaurantes,Comidas fuera de casa,22600,Crédito
+88,2025-04-28,Ingreso,Sueldo,Acreditación de sueldo,776800,Billetera virtual
+89,2025-08-12,Gasto,Vivienda,Alquiler mensual,183200,Débito
+90,2025-05-05,Gasto,Transporte,Transporte y movilidad,17900,Efectivo
+91,2025-01-13,Gasto,Supermercado,Compra semanal,42100,Billetera virtual
+92,2025-04-11,Gasto,Restaurantes,Comidas fuera de casa,32200,Débito
+93,2025-01-18,Gasto,Servicios,Servicios del hogar,43300,Débito
+94,2025-05-03,Gasto,Entretenimiento,Ocio y suscripciones,12900,Transferencia
+95,2025-08-22,Gasto,Transporte,Transporte y movilidad,3800,Crédito
+96,2025-03-22,Gasto,Restaurantes,Comidas fuera de casa,12000,Crédito
+97,2025-10-24,Gasto,Servicios,Servicios del hogar,18600,Transferencia
+98,2025-06-24,Gasto,Transporte,Transporte y movilidad,5400,Crédito
+99,2025-12-14,Gasto,Educación,Cursos y materiales,49000,Crédito
+100,2025-07-19,Gasto,Educación,Cursos y materiales,52300,Transferencia
+101,2025-10-22,Ingreso,Freelance,Trabajo independiente,270800,Transferencia
+102,2025-02-05,Ingreso,Freelance,Trabajo independiente,142100,Billetera virtual
+103,2025-10-18,Gasto,Servicios,Servicios del hogar,25200,Transferencia
+104,2025-07-12,Gasto,Educación,Cursos y materiales,30600,Débito
+105,2025-02-14,Ingreso,Inversiones,Rendimientos,54200,Efectivo
+106,2025-10-21,Gasto,Educación,Cursos y materiales,13000,Transferencia
+107,2025-08-14,Gasto,Indumentaria,Compras personales,13000,Billetera virtual
+108,2025-11-24,Gasto,Entretenimiento,Ocio y suscripciones,12400,Transferencia
+109,2025-04-14,Gasto,Indumentaria,Compras personales,28200,Débito
+110,2025-02-22,Ingreso,Sueldo,Acreditación de sueldo,803500,Efectivo
+111,2025-01-05,Gasto,Vivienda,Alquiler mensual,208900,Efectivo
+112,2025-04-10,Ingreso,Sueldo,Acreditación de sueldo,670400,Transferencia
+113,2025-10-12,Gasto,Indumentaria,Compras personales,28800,Efectivo
+114,2025-06-22,Gasto,Educación,Cursos y materiales,24300,Transferencia
+115,2025-03-21,Gasto,Vivienda,Alquiler mensual,242000,Crédito
+116,2025-09-25,Gasto,Transporte,Transporte y movilidad,12600,Débito
+117,2025-12-06,Gasto,Restaurantes,Comidas fuera de casa,18100,Billetera virtual
+118,2025-02-07,Gasto,Entretenimiento,Ocio y suscripciones,22600,Billetera virtual
+119,2025-07-03,Gasto,Supermercado,Compra semanal,28000,Efectivo
+120,2025-07-25,Gasto,Indumentaria,Compras personales,54900,Transferencia
+121,2025-01-22,Gasto,Entretenimiento,Ocio y suscripciones,6800,Crédito
+122,2025-07-16,Gasto,Entretenimiento,Ocio y suscripciones,30300,Transferencia
+123,2025-02-28,Gasto,Transporte,Transporte y movilidad,22400,Débito
+124,2025-08-15,Gasto,Transporte,Transporte y movilidad,20400,Crédito
+125,2025-11-14,Gasto,Transporte,Transporte y movilidad,12200,Transferencia
+126,2025-10-24,Gasto,Salud,Farmacia y consultas,27100,Efectivo
+127,2025-02-05,Gasto,Entretenimiento,Ocio y suscripciones,26700,Crédito
+128,2025-12-24,Gasto,Educación,Cursos y materiales,26200,Transferencia
+129,2025-04-26,Ingreso,Freelance,Trabajo independiente,249500,Billetera virtual
+130,2025-09-28,Gasto,Salud,Farmacia y consultas,15400,Crédito
+131,2025-01-17,Gasto,Indumentaria,Compras personales,23400,Transferencia
+132,2025-03-27,Ingreso,Sueldo,Acreditación de sueldo,909100,Débito
+133,2025-09-07,Gasto,Indumentaria,Compras personales,51300,Transferencia
+134,2025-12-18,Gasto,Indumentaria,Compras personales,19400,Transferencia
+135,2025-08-11,Gasto,Entretenimiento,Ocio y suscripciones,9500,Efectivo
+136,2025-03-11,Gasto,Supermercado,Compra semanal,47300,Crédito
+137,2025-01-14,Gasto,Indumentaria,Compras personales,45500,Efectivo
+138,2025-08-04,Gasto,Educación,Cursos y materiales,54400,Billetera virtual
+139,2025-09-17,Gasto,Transporte,Transporte y movilidad,6200,Débito
+140,2025-02-13,Gasto,Supermercado,Compra semanal,28000,Billetera virtual
+141,2025-10-22,Ingreso,Sueldo,Acreditación de sueldo,774000,Crédito
+142,2025-02-28,Gasto,Servicios,Servicios del hogar,13700,Billetera virtual
+143,2025-01-02,Gasto,Restaurantes,Comidas fuera de casa,6400,Efectivo
+144,2025-04-17,Gasto,Vivienda,Alquiler mensual,253500,Billetera virtual
+145,2025-10-21,Ingreso,Freelance,Trabajo independiente,84800,Débito
+146,2025-04-21,Gasto,Supermercado,Compra semanal,57300,Billetera virtual
+147,2025-03-05,Gasto,Supermercado,Compra semanal,59800,Billetera virtual
+148,2025-07-28,Gasto,Transporte,Transporte y movilidad,17200,Débito
+149,2025-10-01,Gasto,Vivienda,Alquiler mensual,193200,Transferencia
+150,2025-12-13,Gasto,Servicios,Servicios del hogar,33800,Crédito
+151,2025-06-03,Gasto,Vivienda,Alquiler mensual,253600,Transferencia
+152,2025-03-04,Gasto,Educación,Cursos y materiales,30400,Billetera virtual
+153,2025-11-20,Gasto,Entretenimiento,Ocio y suscripciones,18200,Billetera virtual
+154,2025-09-28,Gasto,Vivienda,Alquiler mensual,236400,Efectivo
+155,2025-05-17,Gasto,Salud,Farmacia y consultas,25200,Transferencia
+156,2025-12-05,Gasto,Vivienda,Alquiler mensual,207600,Efectivo
+157,2025-09-25,Gasto,Restaurantes,Comidas fuera de casa,33600,Billetera virtual
+158,2025-10-10,Gasto,Educación,Cursos y materiales,42500,Débito
+159,2025-12-07,Gasto,Salud,Farmacia y consultas,6700,Débito
+160,2025-01-01,Gasto,Indumentaria,Compras personales,20400,Billetera virtual
+161,2025-08-09,Gasto,Indumentaria,Compras personales,43400,Transferencia
+162,2025-11-05,Gasto,Vivienda,Alquiler mensual,220600,Transferencia
+163,2025-03-14,Ingreso,Sueldo,Acreditación de sueldo,827200,Billetera virtual
+164,2025-04-19,Gasto,Entretenimiento,Ocio y suscripciones,27300,Crédito
+165,2025-03-05,Gasto,Vivienda,Alquiler mensual,242800,Transferencia
+166,2025-08-10,Gasto,Transporte,Transporte y movilidad,23900,Débito
+167,2025-09-03,Gasto,Indumentaria,Compras personales,35600,Billetera virtual
+168,2025-10-09,Gasto,Transporte,Transporte y movilidad,15400,Efectivo
+169,2025-03-18,Gasto,Restaurantes,Comidas fuera de casa,11800,Débito
+170,2025-10-12,Gasto,Educación,Cursos y materiales,14100,Billetera virtual
+171,2025-09-02,Gasto,Salud,Farmacia y consultas,17200,Billetera virtual
+172,2025-04-01,Gasto,Entretenimiento,Ocio y suscripciones,30400,Billetera virtual
+173,2025-11-27,Gasto,Educación,Cursos y materiales,41600,Crédito
+174,2025-04-11,Gasto,Supermercado,Compra semanal,54300,Débito
+175,2025-08-13,Ingreso,Freelance,Trabajo independiente,155300,Efectivo
+176,2025-08-21,Gasto,Supermercado,Compra semanal,42200,Transferencia
+177,2025-05-02,Ingreso,Freelance,Trabajo independiente,254100,Transferencia
+178,2025-05-09,Ingreso,Inversiones,Rendimientos,25400,Crédito
+179,2025-08-08,Gasto,Transporte,Transporte y movilidad,10500,Débito
+180,2025-03-08,Gasto,Vivienda,Alquiler mensual,187700,Billetera virtual
+181,2025-10-22,Gasto,Supermercado,Compra semanal,28600,Transferencia
+182,2025-03-06,Gasto,Entretenimiento,Ocio y suscripciones,25400,Crédito
+183,2025-07-12,Ingreso,Freelance,Trabajo independiente,108200,Efectivo
+184,2025-03-11,Gasto,Salud,Farmacia y consultas,32300,Billetera virtual
+185,2025-11-14,Gasto,Supermercado,Compra semanal,25700,Efectivo
+186,2025-05-19,Gasto,Educación,Cursos y materiales,49100,Débito
+187,2025-06-26,Gasto,Indumentaria,Compras personales,58000,Efectivo
+188,2025-02-23,Ingreso,Sueldo,Acreditación de sueldo,728600,Débito
+189,2025-01-18,Gasto,Servicios,Servicios del hogar,16400,Billetera virtual
+190,2025-04-02,Gasto,Salud,Farmacia y consultas,18300,Débito
+191,2025-01-19,Ingreso,Sueldo,Acreditación de sueldo,718500,Efectivo
+192,2025-03-14,Gasto,Supermercado,Compra semanal,24300,Transferencia
+193,2025-10-13,Gasto,Transporte,Transporte y movilidad,27600,Billetera virtual
+194,2025-04-04,Gasto,Supermercado,Compra semanal,21600,Billetera virtual
+195,2025-07-28,Gasto,Indumentaria,Compras personales,20700,Efectivo
+196,2025-05-23,Gasto,Indumentaria,Compras personales,37200,Billetera virtual
+197,2025-11-13,Gasto,Vivienda,Alquiler mensual,249800,Efectivo
+198,2025-12-11,Ingreso,Sueldo,Acreditación de sueldo,814100,Débito
+199,2025-04-15,Gasto,Vivienda,Alquiler mensual,200300,Efectivo
+200,2025-01-27,Ingreso,Freelance,Trabajo independiente,65900,Billetera virtual
+201,2025-11-13,Gasto,Salud,Farmacia y consultas,12200,Efectivo
+202,2025-05-25,Gasto,Vivienda,Alquiler mensual,190700,Débito
+203,2025-12-22,Ingreso,Freelance,Trabajo independiente,106400,Débito
+204,2025-12-04,Gasto,Entretenimiento,Ocio y suscripciones,19200,Débito
+205,2025-07-02,Gasto,Salud,Farmacia y consultas,7200,Efectivo
+206,2025-03-17,Gasto,Indumentaria,Compras personales,56300,Billetera virtual
+207,2025-05-06,Gasto,Entretenimiento,Ocio y suscripciones,21800,Débito
+208,2025-09-04,Gasto,Vivienda,Alquiler mensual,183700,Efectivo
+209,2025-05-27,Ingreso,Inversiones,Rendimientos,58000,Débito
+210,2025-08-12,Gasto,Entretenimiento,Ocio y suscripciones,28100,Débito
+211,2025-03-27,Gasto,Restaurantes,Comidas fuera de casa,21000,Crédito
+212,2025-01-24,Gasto,Restaurantes,Comidas fuera de casa,16200,Transferencia
+213,2025-05-12,Gasto,Salud,Farmacia y consultas,34900,Billetera virtual
+214,2025-03-17,Gasto,Servicios,Servicios del hogar,37400,Efectivo
+215,2025-09-01,Gasto,Indumentaria,Compras personales,66200,Billetera virtual
+216,2025-10-18,Gasto,Salud,Farmacia y consultas,7100,Efectivo
+217,2025-01-21,Gasto,Salud,Farmacia y consultas,13400,Crédito
+218,2025-04-02,Gasto,Indumentaria,Compras personales,50500,Crédito
+219,2025-05-28,Ingreso,Freelance,Trabajo independiente,229900,Crédito
+220,2025-04-03,Gasto,Educación,Cursos y materiales,48900,Débito
+221,2025-06-25,Gasto,Salud,Farmacia y consultas,13200,Crédito
+222,2025-06-20,Gasto,Entretenimiento,Ocio y suscripciones,14000,Billetera virtual
+223,2025-05-15,Gasto,Entretenimiento,Ocio y suscripciones,25500,Débito
+224,2025-07-21,Ingreso,Sueldo,Acreditación de sueldo,694800,Billetera virtual
+225,2025-01-01,Gasto,Educación,Cursos y materiales,13600,Transferencia
+226,2025-08-25,Gasto,Restaurantes,Comidas fuera de casa,22900,Billetera virtual
+227,2025-04-05,Gasto,Entretenimiento,Ocio y suscripciones,21400,Efectivo
+228,2025-06-19,Gasto,Transporte,Transporte y movilidad,13500,Efectivo
+229,2025-10-09,Gasto,Vivienda,Alquiler mensual,246000,Efectivo
+230,2025-12-01,Ingreso,Freelance,Trabajo independiente,264000,Transferencia
+231,2025-11-22,Gasto,Salud,Farmacia y consultas,9900,Crédito
+232,2025-08-10,Gasto,Entretenimiento,Ocio y suscripciones,13400,Crédito
+233,2025-08-17,Gasto,Educación,Cursos y materiales,27300,Billetera virtual
+234,2025-12-04,Gasto,Entretenimiento,Ocio y suscripciones,27800,Crédito
+235,2025-12-22,Gasto,Indumentaria,Compras personales,48800,Transferencia
+236,2025-10-17,Gasto,Salud,Farmacia y consultas,16700,Crédito
+237,2025-03-09,Gasto,Entretenimiento,Ocio y suscripciones,31900,Débito
+238,2025-07-12,Gasto,Educación,Cursos y materiales,33900,Débito
+239,2025-12-13,Ingreso,Freelance,Trabajo independiente,254300,Crédito
+240,2025-01-13,Gasto,Entretenimiento,Ocio y suscripciones,31100,Transferencia
+241,2025-08-05,Gasto,Transporte,Transporte y movilidad,26800,Efectivo
+242,2025-03-04,Ingreso,Sueldo,Acreditación de sueldo,862000,Transferencia
+243,2025-09-12,Gasto,Educación,Cursos y materiales,9300,Crédito
+244,2025-05-03,Gasto,Indumentaria,Compras personales,61600,Billetera virtual
+245,2025-02-10,Ingreso,Sueldo,Acreditación de sueldo,835500,Crédito
+246,2025-06-03,Gasto,Transporte,Transporte y movilidad,8900,Débito
+247,2025-01-01,Gasto,Entretenimiento,Ocio y suscripciones,8200,Débito
+248,2025-05-01,Ingreso,Freelance,Trabajo independiente,104500,Efectivo
+249,2025-09-09,Gasto,Transporte,Transporte y movilidad,5100,Débito
+250,2025-07-24,Gasto,Vivienda,Alquiler mensual,226500,Billetera virtual
+251,2025-05-01,Ingreso,Inversiones,Rendimientos,57100,Débito
+252,2025-08-01,Gasto,Transporte,Transporte y movilidad,11700,Crédito
+253,2025-11-01,Gasto,Supermercado,Compra semanal,40400,Transferencia
+254,2025-10-08,Gasto,Transporte,Transporte y movilidad,24400,Débito
+255,2025-06-02,Gasto,Transporte,Transporte y movilidad,22300,Débito
+256,2025-03-16,Gasto,Vivienda,Alquiler mensual,192700,Transferencia
+257,2025-01-25,Gasto,Indumentaria,Compras personales,20300,Transferencia
+258,2025-08-19,Gasto,Entretenimiento,Ocio y suscripciones,22200,Débito
+259,2025-12-07,Gasto,Educación,Cursos y materiales,9100,Transferencia
+260,2025-08-20,Gasto,Servicios,Servicios del hogar,12200,Billetera virtual
+261,2025-02-05,Gasto,Salud,Farmacia y consultas,33300,Débito
+262,2025-10-22,Gasto,Entretenimiento,Ocio y suscripciones,31200,Billetera virtual
+263,2025-12-06,Gasto,Supermercado,Compra semanal,53800,Billetera virtual
+264,2025-07-23,Gasto,Supermercado,Compra semanal,56800,Transferencia
+265,2025-07-03,Gasto,Entretenimiento,Ocio y suscripciones,28100,Efectivo
+266,2025-01-26,Gasto,Entretenimiento,Ocio y suscripciones,14600,Débito
+267,2025-07-13,Gasto,Entretenimiento,Ocio y suscripciones,24800,Transferencia
+268,2025-11-15,Gasto,Entretenimiento,Ocio y suscripciones,26900,Transferencia
+269,2025-03-06,Ingreso,Sueldo,Acreditación de sueldo,857200,Transferencia
+270,2025-07-01,Gasto,Supermercado,Compra semanal,58900,Crédito
+271,2025-05-18,Ingreso,Freelance,Trabajo independiente,212500,Crédito
+272,2025-08-14,Gasto,Servicios,Servicios del hogar,47900,Crédito
+273,2025-04-20,Gasto,Supermercado,Compra semanal,50300,Transferencia
+274,2025-08-24,Gasto,Indumentaria,Compras personales,46900,Débito
+275,2025-05-01,Gasto,Restaurantes,Comidas fuera de casa,35000,Transferencia
+276,2025-03-19,Gasto,Transporte,Transporte y movilidad,17500,Efectivo
+277,2025-11-02,Gasto,Vivienda,Alquiler mensual,242800,Billetera virtual
+278,2025-01-10,Gasto,Servicios,Servicios del hogar,28800,Efectivo
+279,2025-09-28,Gasto,Indumentaria,Compras personales,21200,Débito
+280,2025-07-27,Gasto,Vivienda,Alquiler mensual,196000,Billetera virtual
+281,2025-05-07,Gasto,Transporte,Transporte y movilidad,13800,Efectivo
+282,2025-05-27,Ingreso,Inversiones,Rendimientos,22600,Crédito
+283,2025-11-15,Gasto,Transporte,Transporte y movilidad,4000,Débito
+284,2025-11-23,Gasto,Entretenimiento,Ocio y suscripciones,27100,Efectivo
+285,2025-06-17,Gasto,Salud,Farmacia y consultas,21500,Crédito
+286,2025-12-27,Gasto,Servicios,Servicios del hogar,20900,Billetera virtual
+287,2025-10-21,Gasto,Supermercado,Compra semanal,33400,Transferencia
+288,2025-09-25,Ingreso,Sueldo,Acreditación de sueldo,939800,Crédito
+289,2025-07-05,Ingreso,Inversiones,Rendimientos,38800,Efectivo
+290,2025-06-27,Ingreso,Sueldo,Acreditación de sueldo,867000,Billetera virtual
+291,2025-04-23,Gasto,Educación,Cursos y materiales,51600,Crédito
+292,2025-05-22,Gasto,Vivienda,Alquiler mensual,233300,Transferencia
+293,2025-05-20,Gasto,Supermercado,Compra semanal,21300,Efectivo
+294,2025-01-14,Gasto,Salud,Farmacia y consultas,12100,Débito
+295,2025-08-10,Ingreso,Inversiones,Rendimientos,10400,Billetera virtual
+296,2025-04-25,Gasto,Supermercado,Compra semanal,25000,Billetera virtual
+297,2025-07-03,Gasto,Indumentaria,Compras personales,59300,Billetera virtual
+298,2025-06-11,Gasto,Supermercado,Compra semanal,21200,Transferencia
+299,2025-11-12,Gasto,Indumentaria,Compras personales,61900,Crédito
+300,2025-03-07,Ingreso,Sueldo,Acreditación de sueldo,1031900,Débito
+301,2025-06-14,Gasto,Supermercado,Compra semanal,48000,Transferencia
+302,2025-04-20,Gasto,Restaurantes,Comidas fuera de casa,29500,Crédito
+303,2025-12-09,Ingreso,Freelance,Trabajo independiente,242300,Efectivo
+304,2025-07-11,Gasto,Salud,Farmacia y consultas,8200,Débito
+305,2025-11-25,Ingreso,Sueldo,Acreditación de sueldo,769300,Billetera virtual
+306,2025-08-06,Gasto,Salud,Farmacia y consultas,40300,Crédito
+307,2025-08-14,Gasto,Educación,Cursos y materiales,21300,Billetera virtual
+308,2025-06-13,Gasto,Educación,Cursos y materiales,37100,Crédito
+309,2025-10-11,Gasto,Entretenimiento,Ocio y suscripciones,29900,Efectivo
+310,2025-10-07,Ingreso,Sueldo,Acreditación de sueldo,954700,Efectivo
+311,2025-05-15,Ingreso,Freelance,Trabajo independiente,197100,Transferencia
+312,2025-06-04,Gasto,Supermercado,Compra semanal,33100,Transferencia
+313,2025-08-26,Gasto,Entretenimiento,Ocio y suscripciones,8400,Débito
+314,2025-04-17,Gasto,Supermercado,Compra semanal,58600,Crédito
+315,2025-08-05,Gasto,Entretenimiento,Ocio y suscripciones,6500,Crédito
+316,2025-10-25,Gasto,Supermercado,Compra semanal,50400,Efectivo
+317,2025-08-16,Gasto,Restaurantes,Comidas fuera de casa,36200,Billetera virtual
+318,2025-10-08,Gasto,Servicios,Servicios del hogar,17400,Débito
+319,2025-05-11,Gasto,Vivienda,Alquiler mensual,244200,Transferencia
+320,2025-11-27,Gasto,Indumentaria,Compras personales,18500,Transferencia
+321,2025-08-10,Gasto,Educación,Cursos y materiales,15600,Crédito
+322,2025-04-17,Gasto,Entretenimiento,Ocio y suscripciones,12700,Transferencia
+323,2025-05-19,Gasto,Transporte,Transporte y movilidad,5800,Billetera virtual
+324,2025-03-24,Gasto,Salud,Farmacia y consultas,10900,Crédito
+325,2025-03-24,Gasto,Restaurantes,Comidas fuera de casa,17600,Efectivo
+326,2025-04-04,Gasto,Transporte,Transporte y movilidad,16100,Transferencia
+327,2025-12-01,Ingreso,Inversiones,Rendimientos,23800,Crédito
+328,2025-04-11,Ingreso,Sueldo,Acreditación de sueldo,740000,Billetera virtual
+329,2025-03-03,Gasto,Servicios,Servicios del hogar,41700,Crédito
+330,2025-07-23,Gasto,Entretenimiento,Ocio y suscripciones,18700,Billetera virtual
+331,2025-03-15,Gasto,Salud,Farmacia y consultas,27700,Efectivo
+332,2025-06-09,Gasto,Transporte,Transporte y movilidad,14400,Transferencia
+333,2025-12-04,Gasto,Supermercado,Compra semanal,63500,Transferencia
+334,2025-07-02,Gasto,Transporte,Transporte y movilidad,12600,Débito
+335,2025-01-11,Gasto,Restaurantes,Comidas fuera de casa,15800,Billetera virtual
+336,2025-02-15,Ingreso,Freelance,Trabajo independiente,159300,Débito
+337,2025-02-06,Ingreso,Inversiones,Rendimientos,6400,Débito
+338,2025-01-02,Gasto,Servicios,Servicios del hogar,26500,Billetera virtual
+339,2025-02-21,Gasto,Educación,Cursos y materiales,34900,Billetera virtual
+340,2025-06-17,Gasto,Servicios,Servicios del hogar,23500,Efectivo
+341,2025-02-11,Gasto,Transporte,Transporte y movilidad,4700,Billetera virtual
+342,2025-04-27,Gasto,Transporte,Transporte y movilidad,13900,Billetera virtual
+343,2025-10-17,Gasto,Entretenimiento,Ocio y suscripciones,12000,Transferencia
+344,2025-01-14,Gasto,Indumentaria,Compras personales,15400,Efectivo
+345,2025-09-26,Gasto,Restaurantes,Comidas fuera de casa,18800,Crédito
+346,2025-02-05,Gasto,Supermercado,Compra semanal,38800,Débito
+347,2025-06-28,Gasto,Servicios,Servicios del hogar,21800,Efectivo
+348,2025-07-26,Ingreso,Inversiones,Rendimientos,39900,Débito
+349,2025-01-28,Gasto,Entretenimiento,Ocio y suscripciones,4700,Crédito
+350,2025-07-25,Gasto,Restaurantes,Comidas fuera de casa,20500,Efectivo
+351,2025-03-28,Ingreso,Inversiones,Rendimientos,51500,Débito
+352,2025-08-08,Gasto,Transporte,Transporte y movilidad,14900,Débito
+353,2025-09-01,Gasto,Educación,Cursos y materiales,44800,Crédito
+354,2025-10-14,Gasto,Indumentaria,Compras personales,50200,Transferencia
+355,2025-05-23,Gasto,Transporte,Transporte y movilidad,19700,Débito
+356,2025-03-05,Ingreso,Inversiones,Rendimientos,30900,Crédito
+357,2025-09-22,Gasto,Entretenimiento,Ocio y suscripciones,18400,Transferencia
+358,2025-08-28,Ingreso,Freelance,Trabajo independiente,101400,Crédito
+359,2025-07-09,Gasto,Educación,Cursos y materiales,52400,Transferencia
+360,2025-06-11,Ingreso,Freelance,Trabajo independiente,88100,Crédito
+361,2025-12-23,Gasto,Salud,Farmacia y consultas,29200,Crédito
+362,2025-07-21,Ingreso,Sueldo,Acreditación de sueldo,916900,Transferencia
+363,2025-03-24,Gasto,Educación,Cursos y materiales,48000,Crédito
+364,2025-04-17,Ingreso,Sueldo,Acreditación de sueldo,1087500,Billetera virtual
+365,2025-12-12,Gasto,Vivienda,Alquiler mensual,190700,Transferencia
+366,2025-12-27,Gasto,Supermercado,Compra semanal,35500,Débito
+367,2025-06-02,Gasto,Servicios,Servicios del hogar,25900,Efectivo
+368,2025-01-14,Gasto,Restaurantes,Comidas fuera de casa,23600,Crédito
+369,2025-11-13,Gasto,Supermercado,Compra semanal,44500,Crédito
+370,2025-02-16,Gasto,Servicios,Servicios del hogar,16500,Transferencia
+371,2025-08-25,Ingreso,Freelance,Trabajo independiente,158200,Débito
+372,2025-08-15,Gasto,Restaurantes,Comidas fuera de casa,15700,Billetera virtual
+373,2025-07-11,Gasto,Indumentaria,Compras personales,55700,Transferencia
+374,2025-01-25,Gasto,Servicios,Servicios del hogar,33600,Billetera virtual
+375,2025-01-13,Ingreso,Sueldo,Acreditación de sueldo,764500,Crédito
+376,2025-12-05,Gasto,Supermercado,Compra semanal,31000,Transferencia
+377,2025-09-03,Gasto,Transporte,Transporte y movilidad,17100,Transferencia
+378,2025-09-11,Gasto,Indumentaria,Compras personales,41700,Efectivo
+379,2025-10-05,Gasto,Educación,Cursos y materiales,12300,Efectivo
+380,2025-05-26,Gasto,Indumentaria,Compras personales,45300,Efectivo
+381,2025-07-07,Gasto,Transporte,Transporte y movilidad,2700,Billetera virtual
+382,2025-08-24,Gasto,Restaurantes,Comidas fuera de casa,15200,Transferencia
+383,2025-09-22,Gasto,Entretenimiento,Ocio y suscripciones,13700,Crédito
+384,2025-02-16,Gasto,Vivienda,Alquiler mensual,241100,Efectivo
+385,2025-03-03,Gasto,Entretenimiento,Ocio y suscripciones,23500,Débito
+386,2025-11-27,Gasto,Restaurantes,Comidas fuera de casa,17400,Efectivo
+387,2025-12-17,Gasto,Salud,Farmacia y consultas,36800,Transferencia
+388,2025-05-09,Gasto,Indumentaria,Compras personales,60700,Efectivo
+389,2025-12-27,Gasto,Servicios,Servicios del hogar,35400,Billetera virtual
+390,2025-04-18,Gasto,Educación,Cursos y materiales,36300,Crédito
+391,2025-11-16,Gasto,Entretenimiento,Ocio y suscripciones,21000,Débito
+392,2025-09-03,Gasto,Educación,Cursos y materiales,23400,Débito
+393,2025-11-06,Gasto,Supermercado,Compra semanal,33900,Débito
+394,2025-01-28,Gasto,Supermercado,Compra semanal,35800,Billetera virtual
+395,2025-08-22,Gasto,Restaurantes,Comidas fuera de casa,28000,Efectivo
+396,2025-08-04,Ingreso,Inversiones,Rendimientos,55600,Crédito
+397,2025-02-23,Gasto,Educación,Cursos y materiales,11500,Débito
+398,2025-07-14,Gasto,Educación,Cursos y materiales,27300,Crédito
+399,2025-03-18,Ingreso,Freelance,Trabajo independiente,189500,Efectivo
+400,2025-02-04,Ingreso,Sueldo,Acreditación de sueldo,690200,Billetera virtual
+401,2025-05-18,Gasto,Restaurantes,Comidas fuera de casa,29100,Efectivo
+402,2025-05-03,Ingreso,Freelance,Trabajo independiente,176900,Billetera virtual
+403,2025-05-11,Gasto,Educación,Cursos y materiales,46900,Crédito
+404,2025-11-23,Gasto,Restaurantes,Comidas fuera de casa,20100,Efectivo
+405,2025-11-25,Gasto,Salud,Farmacia y consultas,31000,Crédito
+406,2025-12-19,Gasto,Restaurantes,Comidas fuera de casa,12400,Crédito
+407,2025-06-14,Gasto,Vivienda,Alquiler mensual,248300,Débito
+408,2025-09-17,Gasto,Transporte,Transporte y movilidad,25600,Débito
+409,2025-03-14,Gasto,Restaurantes,Comidas fuera de casa,16700,Transferencia
+410,2025-06-07,Gasto,Entretenimiento,Ocio y suscripciones,27800,Crédito
+411,2025-11-07,Gasto,Indumentaria,Compras personales,26900,Transferencia
+412,2025-12-03,Gasto,Educación,Cursos y materiales,42400,Billetera virtual
+413,2025-06-28,Ingreso,Freelance,Trabajo independiente,159500,Efectivo
+414,2025-08-08,Gasto,Salud,Farmacia y consultas,6200,Transferencia
+415,2025-06-09,Gasto,Indumentaria,Compras personales,36400,Débito
+416,2025-01-24,Gasto,Restaurantes,Comidas fuera de casa,15900,Débito
+417,2025-01-21,Ingreso,Freelance,Trabajo independiente,141600,Débito
+418,2025-06-13,Gasto,Salud,Farmacia y consultas,19800,Transferencia
+419,2025-10-14,Gasto,Supermercado,Compra semanal,28800,Efectivo
+420,2025-03-28,Ingreso,Freelance,Trabajo independiente,229700,Billetera virtual
+421,2025-08-01,Gasto,Salud,Farmacia y consultas,10500,Efectivo
+422,2025-09-24,Ingreso,Freelance,Trabajo independiente,163500,Crédito
+423,2025-12-09,Gasto,Transporte,Transporte y movilidad,9800,Transferencia
+424,2025-07-05,Gasto,Servicios,Servicios del hogar,28200,Débito
+425,2025-12-13,Ingreso,Sueldo,Acreditación de sueldo,719800,Efectivo
+426,2025-02-19,Ingreso,Sueldo,Acreditación de sueldo,752500,Débito
+427,2025-08-26,Gasto,Restaurantes,Comidas fuera de casa,21200,Crédito
+428,2025-09-09,Gasto,Educación,Cursos y materiales,13400,Billetera virtual
+429,2025-02-03,Gasto,Servicios,Servicios del hogar,47100,Efectivo
+430,2025-09-28,Gasto,Restaurantes,Comidas fuera de casa,22700,Crédito
+431,2025-06-22,Gasto,Servicios,Servicios del hogar,36300,Transferencia
+432,2025-08-17,Gasto,Transporte,Transporte y movilidad,3300,Débito
+433,2025-01-02,Gasto,Supermercado,Compra semanal,45700,Billetera virtual
+434,2025-05-08,Gasto,Servicios,Servicios del hogar,22300,Crédito
+435,2025-10-26,Gasto,Indumentaria,Compras personales,63200,Débito
+436,2025-03-12,Gasto,Transporte,Transporte y movilidad,24000,Transferencia
+437,2025-03-21,Gasto,Educación,Cursos y materiales,50800,Transferencia
+438,2025-02-08,Gasto,Entretenimiento,Ocio y suscripciones,20000,Billetera virtual
+439,2025-07-12,Gasto,Indumentaria,Compras personales,49700,Débito
+440,2025-05-14,Gasto,Educación,Cursos y materiales,19500,Débito
+441,2025-12-14,Gasto,Entretenimiento,Ocio y suscripciones,20500,Efectivo
+442,2025-11-23,Gasto,Entretenimiento,Ocio y suscripciones,14600,Billetera virtual
+443,2025-07-25,Ingreso,Freelance,Trabajo independiente,241100,Efectivo
+444,2025-03-25,Gasto,Restaurantes,Comidas fuera de casa,21700,Billetera virtual
+445,2025-02-02,Gasto,Salud,Farmacia y consultas,11200,Transferencia
+446,2025-07-21,Gasto,Transporte,Transporte y movilidad,10700,Crédito
+447,2025-05-09,Gasto,Servicios,Servicios del hogar,30800,Billetera virtual
+448,2025-02-09,Gasto,Vivienda,Alquiler mensual,236300,Billetera virtual
+449,2025-03-10,Gasto,Salud,Farmacia y consultas,24300,Débito
+450,2025-12-22,Gasto,Salud,Farmacia y consultas,8500,Crédito
+451,2025-12-10,Gasto,Educación,Cursos y materiales,35300,Transferencia
+452,2025-04-08,Gasto,Servicios,Servicios del hogar,47700,Crédito
+453,2025-03-26,Gasto,Restaurantes,Comidas fuera de casa,26100,Billetera virtual
+454,2025-08-17,Gasto,Educación,Cursos y materiales,42600,Efectivo
+455,2025-12-11,Gasto,Servicios,Servicios del hogar,18500,Crédito
+456,2025-05-10,Gasto,Supermercado,Compra semanal,36400,Billetera virtual
+457,2025-08-02,Ingreso,Inversiones,Rendimientos,40000,Débito
+458,2025-10-02,Gasto,Vivienda,Alquiler mensual,239500,Débito
+459,2025-06-02,Gasto,Educación,Cursos y materiales,47000,Débito
+460,2025-01-19,Gasto,Supermercado,Compra semanal,46700,Débito
+461,2025-01-07,Gasto,Educación,Cursos y materiales,20700,Efectivo
+462,2025-12-02,Gasto,Servicios,Servicios del hogar,46600,Débito
+463,2025-10-11,Gasto,Supermercado,Compra semanal,49000,Efectivo
+464,2025-09-06,Gasto,Educación,Cursos y materiales,35700,Transferencia
+465,2025-07-07,Gasto,Restaurantes,Comidas fuera de casa,22400,Billetera virtual
+466,2025-04-28,Gasto,Transporte,Transporte y movilidad,10200,Débito
+467,2025-06-10,Ingreso,Sueldo,Acreditación de sueldo,669900,Efectivo
+468,2025-11-13,Gasto,Servicios,Servicios del hogar,43700,Débito
+469,2025-11-28,Gasto,Servicios,Servicios del hogar,34700,Transferencia
+470,2025-10-23,Ingreso,Inversiones,Rendimientos,20400,Efectivo
+471,2025-01-05,Gasto,Salud,Farmacia y consultas,23700,Billetera virtual
+472,2025-01-20,Gasto,Indumentaria,Compras personales,59300,Débito
+473,2025-12-19,Gasto,Supermercado,Compra semanal,41200,Crédito
+474,2025-08-18,Gasto,Educación,Cursos y materiales,24200,Débito
+475,2025-10-03,Gasto,Restaurantes,Comidas fuera de casa,36500,Billetera virtual
+476,2025-01-28,Gasto,Entretenimiento,Ocio y suscripciones,19300,Billetera virtual
+477,2025-02-16,Ingreso,Sueldo,Acreditación de sueldo,748300,Crédito
+478,2025-07-25,Gasto,Entretenimiento,Ocio y suscripciones,5100,Transferencia
+479,2025-07-23,Gasto,Entretenimiento,Ocio y suscripciones,10400,Crédito
+480,2025-03-14,Gasto,Salud,Farmacia y consultas,34100,Transferencia
+481,2025-02-16,Gasto,Entretenimiento,Ocio y suscripciones,7300,Crédito
+482,2025-12-25,Gasto,Salud,Farmacia y consultas,41000,Crédito
+483,2025-08-05,Gasto,Educación,Cursos y materiales,53200,Crédito
+484,2025-08-12,Ingreso,Sueldo,Acreditación de sueldo,874600,Efectivo
+485,2025-11-24,Gasto,Restaurantes,Comidas fuera de casa,36800,Débito
+486,2025-01-08,Gasto,Restaurantes,Comidas fuera de casa,25000,Billetera virtual
+487,2025-04-25,Ingreso,Freelance,Trabajo independiente,223500,Billetera virtual
+488,2025-01-20,Ingreso,Sueldo,Acreditación de sueldo,784200,Transferencia
+489,2025-06-21,Gasto,Restaurantes,Comidas fuera de casa,24000,Efectivo
+490,2025-06-21,Gasto,Vivienda,Alquiler mensual,242100,Billetera virtual
+491,2025-10-12,Gasto,Servicios,Servicios del hogar,33700,Efectivo
+492,2025-04-01,Gasto,Educación,Cursos y materiales,41300,Transferencia
+493,2025-02-14,Gasto,Supermercado,Compra semanal,48600,Efectivo
+494,2025-01-16,Gasto,Supermercado,Compra semanal,29200,Billetera virtual
+495,2025-11-17,Gasto,Entretenimiento,Ocio y suscripciones,26700,Débito
+496,2025-02-18,Gasto,Supermercado,Compra semanal,28400,Efectivo
+497,2025-12-27,Gasto,Vivienda,Alquiler mensual,186900,Billetera virtual
+498,2025-02-09,Gasto,Vivienda,Alquiler mensual,239600,Efectivo
+499,2025-05-25,Gasto,Vivienda,Alquiler mensual,257700,Billetera virtual
+500,2025-05-09,Gasto,Educación,Cursos y materiales,15900,Transferencia
