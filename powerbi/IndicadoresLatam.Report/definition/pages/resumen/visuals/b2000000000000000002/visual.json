@@ -1,0 +1,129 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "b2000000000000000002",
+  "position": {
+    "x": 24,
+    "y": 465,
+    "z": 1000,
+    "height": 220,
+    "width": 1232,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Paises"
+                    }
+                  },
+                  "Property": "País"
+                }
+              },
+              "queryRef": "Paises.País",
+              "nativeQueryRef": "País"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactIndicadores"
+                    }
+                  },
+                  "Property": "Año"
+                }
+              },
+              "queryRef": "FactIndicadores.Año",
+              "nativeQueryRef": "Año"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Indicadores"
+                    }
+                  },
+                  "Property": "NombreIndicador"
+                }
+              },
+              "queryRef": "Indicadores.NombreIndicador",
+              "nativeQueryRef": "NombreIndicador"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactIndicadores"
+                    }
+                  },
+                  "Property": "Valor del Indicador"
+                }
+              },
+              "queryRef": "FactIndicadores.Valor del Indicador",
+              "nativeQueryRef": "Valor del Indicador"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Indicadores"
+                    }
+                  },
+                  "Property": "Unidad"
+                }
+              },
+              "queryRef": "Indicadores.Unidad",
+              "nativeQueryRef": "Unidad"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactIndicadores"
+                    }
+                  },
+                  "Property": "Fuente"
+                }
+              },
+              "queryRef": "FactIndicadores.Fuente",
+              "nativeQueryRef": "Fuente"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
