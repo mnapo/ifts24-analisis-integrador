@@ -1,0 +1,33 @@
+name: Generate academic PDF report
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate_report.py"
+      - "public/data/indicadores-banco-mundial.csv"
+      - ".github/workflows/generate-report.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  build-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: mnapo/ifts24-caratula
+          path: caratula
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install report dependencies
+        run: pip install reportlab pypdf matplotlib
+      - name: Generate PDF
+        run: python scripts/generate_report.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tp-integrador-indicadores-latam
+          path: reporte-integrador.pdf
+          retention-days: 30
