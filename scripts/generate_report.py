@@ -179,8 +179,8 @@ fields=[
     (119,272,90,"2026"),
     (199,248,266,"PASZTETNIK MARTÍN"),
     (160,224,260,"MATÍAS NAPOLI"),
-    (162,200,220,"01/09/2026"),
-    (162,176,220,"16/11/2026"),
+    (175,200,220,"01/09/2026"),
+    (235,176,220,"16/11/2026"),
 ]
 for x,y,width,value in fields:
     overlay_canvas.setFillColor(colors.white)
