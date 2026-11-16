@@ -10,7 +10,7 @@ Las particiones leen el CSV UTF-8 publicado en GitHub con `QuoteStyle.Csv`. Fact
 
 ## Modelo semántico
 
-FactIndicadores es la tabla de hechos. Paises e Indicadores son dimensiones relacionadas 1:N con filtrado unidireccional. La granularidad es país–indicador–año.
+FactIndicadores es la tabla de hechos. Paises e Indicadores son dimensiones relacionadas 1:N con filtrado unidireccional. La granularidad de cada fila es una observación sintética individual; `observation_id` es único. Los análisis temporales deben promediar las observaciones dentro de cada país–indicador–año.
 
 ## Medidas DAX
 
