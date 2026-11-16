@@ -61,7 +61,7 @@ Abrir [http://localhost:3000](http://localhost:3000).
 6. Construir visualizaciones y validar que los totales coincidan con el dataset.
 7. Guardar el informe de Power BI (`.pbix`) y documentar los resultados.
 
-Ver [Guía de Power BI](docs/POWER-BI.md).
+Ver [Guía de Power BI](docs/POWER-BI.md), [Modelo de datos](docs/MODELO-DATOS.md) y [Estado de entrega](docs/ESTADO-ENTREGA.md).
 
 ## Estructura prevista
 
@@ -80,13 +80,15 @@ Ver [Guía de Power BI](docs/POWER-BI.md).
 
 La estructura es orientativa: debe ajustarse a las rutas reales del código y del CSV al incorporar los archivos del proyecto.
 
-## Entregables
+## Estado de los entregables
 
-- [ ] Aplicación Next.js y dashboard funcional.
-- [ ] Dataset CSV de 500 movimientos.
-- [ ] Informe de Power BI (`.pbix`).
-- [ ] Documentación del modelo y del proceso de transformación.
+- [ ] Aplicación Next.js y dashboard incorporados al repositorio remoto (preparados localmente).
+- [ ] Dataset CSV de 500 movimientos incorporado al repositorio remoto (preparado localmente).
+- [ ] Informe de Power BI (`.pbix`) generado y validado.
+- [x] Documentación del modelo y del proceso de transformación publicada.
 - [ ] Capturas o exportación del informe final.
+
+El estado detallado y los próximos pasos están en [docs/ESTADO-ENTREGA.md](docs/ESTADO-ENTREGA.md).
 
 ## Alcance y limitaciones
 
