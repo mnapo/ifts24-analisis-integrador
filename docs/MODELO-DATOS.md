@@ -17,6 +17,7 @@ Dataset sintético de Argentina, Brasil, Chile y Uruguay para 2010–2024. Conti
 
 | Campo | Tabla/columna |
 |---|---|
+| observation_id | FactIndicadores[IdObservacion] (clave única) |
 | country_code | FactIndicadores[CodigoPais] / Paises[CodigoPais] |
 | country | FactIndicadores[Pais] / Paises[País] |
 | indicator_code | FactIndicadores[CodigoIndicador] / Indicadores[CodigoIndicador] |
