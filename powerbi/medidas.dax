@@ -46,3 +46,13 @@ IF(
     MAXX(ALL(Paises), CALCULATE([Valor del Indicador])),
     BLANK()
 )
+
+
+Observaciones = COUNTROWS(FactIndicadores)
+
+Años Analizados = DISTINCTCOUNT(FactIndicadores[Año])
+
+Periodo Analizado =
+FORMAT(MIN(FactIndicadores[Año]), "0")
+    & " – "
+    & FORMAT(MAX(FactIndicadores[Año]), "0")
