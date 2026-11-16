@@ -156,21 +156,7 @@ dict_rows=[["Campo","Descripción"]]+[
 ["country_code","Código ISO de país"],["country","Nombre del país"],["indicator_code","Código temático del indicador"],["indicator_name","Nombre descriptivo del indicador"],["year","Año de observación"],["value","Valor numérico sintético"],["unit","Unidad de medida"],["source","Identificación explícita del origen sintético"]]
 dt=Table(dict_rows,colWidths=[48*mm,133*mm],repeatRows=1)
 dt.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),NAVY),("TEXTCOLOR",(0,0),(-1,0),colors.white),("FONTNAME",(0,0),(-1,0),"Helvetica-Bold"),("FONTSIZE",(0,0),(-1,-1),8),("GRID",(0,0),(-1,-1),.35,colors.HexColor("#DCE3EA")),("ROWBACKGROUNDS",(0,1),(-1,-1),[colors.white,PALE]),("VALIGN",(0,0),(-1,-1),"MIDDLE"),("LEFTPADDING",(0,0),(-1,-1),7),("TOPPADDING",(0,0),(-1,-1),6),("BOTTOMPADDING",(0,0),(-1,-1),6)]))
-story += [dt,Spacer(1,5*mm),Paragraph("Anexo · Datos del conjunto",styles["H2x"])]
-# Complete 240-row appendix in compact tabular pages.
-appendix=[["País","Año","Indicador","Promedio","Unidad","N"]]
-aggregated={}
-for r in rows:
-    key=(r["country"],r["year"],r["indicator_code"],r["unit"])
-    aggregated.setdefault(key,[]).append(r["value"])
-for (country,year,indicator,unit),values in sorted(aggregated.items()):
-    appendix.append([country,str(year),indicator,f"{sum(values)/len(values):.3f}",unit,str(len(values))])
-for start in range(1,len(appendix),43):
-    chunk=[appendix[0]]+appendix[start:start+43]
-    tab=Table(chunk,colWidths=[28*mm,14*mm,61*mm,29*mm,17*mm,12*mm],repeatRows=1)
-    tab.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),NAVY),("TEXTCOLOR",(0,0),(-1,0),colors.white),("FONTNAME",(0,0),(-1,0),"Helvetica-Bold"),("FONTSIZE",(0,0),(-1,-1),6.5),("GRID",(0,0),(-1,-1),.25,colors.HexColor("#DCE3EA")),("ROWBACKGROUNDS",(0,1),(-1,-1),[colors.white,PALE]),("VALIGN",(0,0),(-1,-1),"MIDDLE"),("LEFTPADDING",(0,0),(-1,-1),4),("TOPPADDING",(0,0),(-1,-1),3),("BOTTOMPADDING",(0,0),(-1,-1),3)]))
-    story.append(tab)
-    if start+43<len(appendix): story.append(PageBreak())
+story.append(dt)
 
 tmp=ROOT/"reporte-contenido.pdf"
 doc=SimpleDocTemplate(str(tmp),pagesize=A4,rightMargin=15*mm,leftMargin=15*mm,topMargin=15*mm,bottomMargin=21*mm,title="Indicadores de desarrollo en América Latina",author="Matías Napoli")
@@ -189,16 +175,18 @@ overlay_buffer=io.BytesIO()
 overlay_canvas=canvas.Canvas(overlay_buffer,pagesize=(page_width,page_height))
 overlay_canvas.setFillColor(colors.white)
 fields=[
-    (162,296,220,"Análisis y procesamiento de datos"),
+    (162,296,220,"ANÁLISIS Y EXPLORACIÓN DE DATOS"),
     (119,272,90,"2026"),
-    (199,248,266,"Pasztetnik Martín"),
-    (160,224,260,"Matías Napoli"),
+    (199,248,266,"PASZTETNIK MARTÍN"),
+    (160,224,260,"MATÍAS NAPOLI"),
+    (162,200,220,"01/09/2026"),
+    (162,176,220,"16/11/2026"),
 ]
 for x,y,width,value in fields:
     overlay_canvas.setFillColor(colors.white)
     overlay_canvas.rect(x,y-3,width,19,fill=1,stroke=0)
     overlay_canvas.setFillColor(colors.black)
-    overlay_canvas.setFont("Helvetica",14.2)
+    overlay_canvas.setFont("Helvetica-Bold",11.5)
     overlay_canvas.drawString(x,y,value)
 overlay_canvas.save()
 overlay_buffer.seek(0)
@@ -208,4 +196,4 @@ for page in body.pages:
     writer.add_page(page)
 with OUT.open("wb") as f:
     writer.write(f)
-print(f"Created {OUT} with official cover filled (Matías Napoli / 2026 / Análisis y procesamiento de datos / Pasztetnik Martín), plus {len(body.pages)} report pages; rows={len(rows)}")
+print(f"Created {OUT} with official cover filled in uppercase (Matías Napoli / 2026 / Análisis y exploración de datos / Pasztetnik Martín; TP 01/09/2026; delivery 16/11/2026), plus {len(body.pages)} report pages; rows={len(rows)}")
