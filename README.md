@@ -16,7 +16,7 @@ Archivo central: `public/data/indicadores-banco-mundial.csv`.
 
 ## Proyecto Power BI
 
-Abrir `powerbi/IndicadoresLatam.pbip` en Power BI Desktop. Incluye modelo semántico, dos páginas de informe, tarjetas KPI, segmentadores, comparación por país, evolución temporal y tabla de detalle. Actualizar el modelo y comprobar los visuales en Desktop antes de guardar/exportar el PBIX.
+Abrir `powerbi/IndicadoresLatam.pbip` en Power BI Desktop. Incluye modelo semántico y visualizaciones de comparación por país y evolución temporal. El dashboard web se simplificó a filtros y gráficos, sin buscador ni tabla de detalle. Actualizar el modelo y comprobar los visuales en Desktop antes de guardar/exportar el PBIX.
 
 ## Validación
 
