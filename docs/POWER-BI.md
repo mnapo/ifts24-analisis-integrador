@@ -1,34 +1,40 @@
 # Procesamiento y visualización en Power BI
 
-## Origen y traducción
-Fuente: `public/data/indicadores-banco-mundial.csv`, datos 2024 de Argentina, Brasil, Chile y Uruguay.
+## Origen
 
-| CSV | Modelo |
-|---|---|
-| country_code | FactIndicadores[CodigoPais], Paises[CodigoPais] |
-| country | FactIndicadores[Pais], Paises[País] |
-| indicator_code | FactIndicadores[CodigoIndicador], Indicadores[CodigoIndicador] |
-| indicator_name | FactIndicadores[Indicador], Indicadores[NombreIndicador] |
-| year | FactIndicadores[Año] |
-| value | FactIndicadores[Valor] |
-| unit | FactIndicadores[Unidad], Indicadores[Unidad] |
-| source | FactIndicadores[Fuente] |
+`public/data/indicadores-banco-mundial.csv`: 240 observaciones sintéticas (4 países × 4 indicadores × 15 años, 2010–2024). Los valores son autogenerados con fines académicos y no representan datos oficiales del Banco Mundial. El campo `source` deja constancia de ello.
 
 ## Power Query
-Las tres consultas leen el CSV UTF-8 desde GitHub. FactIndicadores promueve encabezados, tipa columnas, recorta texto y excluye registros incompletos o valores fuera de 0–100. Las dimensiones seleccionan sus campos, recortan espacios y eliminan duplicados.
+
+Las particiones leen el CSV UTF-8 publicado en GitHub con `QuoteStyle.Csv`. FactIndicadores promueve encabezados, tipa columnas, recorta textos y descarta filas incompletas o valores negativos. No se usa un filtro universal de 0 a 100 porque el PIB per cápita se expresa en dólares y puede superar ese rango.
 
 ## Modelo semántico
-FactIndicadores es la tabla de hechos. Paises e Indicadores son dimensiones relacionadas 1:N con filtrado unidireccional. No se usa Calendario: todos los datos son de 2024.
+
+FactIndicadores es la tabla de hechos. Paises e Indicadores son dimensiones relacionadas 1:N con filtrado unidireccional. La granularidad es país–indicador–año.
 
 ## Medidas DAX
-Ver `powerbi/medidas.dax`. Las ocho medidas evitan agregar indicadores heterogéneos: Valor del Indicador usa promedio y las medidas comparativas requieren un único indicador. Promedio Regional y Ranking País quitan el filtro de país, pero conservan el filtro de indicador. También se incluyen País Líder y Valor del Líder.
 
-## Diseño sugerido
-- Página 1: portada, título, integrantes, institución y fuente.
-- Página 2: tarjetas KPI, dos gráficos de barras separados (Internet y SPI), tabla de observaciones y segmentadores de país e indicador.
-- Mantener ambos indicadores separados porque tienen interpretaciones distintas aunque sus escalas sean 0–100.
+Las medidas calculan valor promedio, promedio regional, brecha, ranking, país líder, valor del líder, países, indicadores, observaciones y años analizados. Los indicadores heterogéneos no se suman entre sí.
+
+## Visualizaciones incluidas
+
+### Portada · Panorama regional
+- Cuatro tarjetas: países analizados, indicadores, observaciones y años.
+- Segmentadores desplegables para indicador, país y año.
+- Gráfico de barras agrupadas para comparar países según el indicador seleccionado.
+- Gráfico de líneas para evolución temporal por país.
+- Aviso visible sobre el carácter sintético del dataset.
+
+### Evolución y detalle
+- Segmentadores por indicador y país.
+- Serie temporal 2010–2024 por país.
+- Tabla de detalle con país, año, indicador, valor, unidad y fuente.
+- Aviso visible sobre el carácter sintético del dataset.
+
+Los valores de distintos indicadores se analizan de forma separada para no mezclar unidades o escalas.
 
 ## Apertura y entrega
-Abrir `powerbi/IndicadoresLatam.pbip`, actualizar datos, validar relaciones y medidas, completar visuales y guardar `powerbi/informe-indicadores-regionales.pbix`. Exportar documentación y resumen ejecutivo a PDF.
 
-PBIP/TMDL es el proyecto fuente versionable; no equivale al PBIX final. La actualización del motor, visuales y guardado PBIX requieren Power BI Desktop.
+Abrir `powerbi/IndicadoresLatam.pbip` en Power BI Desktop, permitir la actualización del origen si se solicita, revisar credenciales/permisos de Web, actualizar datos y comprobar que todas las visualizaciones rendericen. Después guardar una copia PBIX desde Desktop y exportar a PDF.
+
+El PBIP versiona la definición del informe y el modelo; la validación estática no garantiza por sí sola la apertura correcta del motor ni la representación final de cada visual.
