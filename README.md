@@ -29,7 +29,7 @@ El conjunto permite analizar, entre otras dimensiones:
 - Importe.
 - Medio o cuenta asociada, cuando esté disponible en el archivo.
 
-Consultar [Modelo de datos](docs/MODELO-DATOS.md) para conocer las recomendaciones de validación y preparación.
+Consultar [Modelo de datos](docs/MODELO-DATOS.md) y [validación simulada](docs/VALIDACION-SIMULADA.md).
 
 ## Tecnologías
 
@@ -49,7 +49,7 @@ npm run dev
 
 Abrir [http://localhost:3000](http://localhost:3000).
 
-> Los comandos anteriores aplican cuando el código fuente de Next.js esté incorporado en este repositorio. La documentación puede publicarse de forma independiente.
+El dashboard está implementado en `app/` y consume el CSV publicado en `public/data/movimientos.csv`.
 
 ## Flujo de trabajo
 
@@ -61,7 +61,7 @@ Abrir [http://localhost:3000](http://localhost:3000).
 6. Construir visualizaciones y validar que los totales coincidan con el dataset.
 7. Guardar el informe de Power BI (`.pbix`) y documentar los resultados.
 
-Ver [Guía de Power BI](docs/POWER-BI.md), [Modelo de datos](docs/MODELO-DATOS.md) y [Estado de entrega](docs/ESTADO-ENTREGA.md).
+Ver [Guía de Power BI](docs/POWER-BI.md), [Modelo de datos](docs/MODELO-DATOS.md), [medidas DAX](powerbi/medidas.dax), [validación simulada](docs/VALIDACION-SIMULADA.md) y [Estado de entrega](docs/ESTADO-ENTREGA.md).
 
 ## Estructura prevista
 
@@ -82,10 +82,10 @@ La estructura es orientativa: debe ajustarse a las rutas reales del código y de
 
 ## Estado de los entregables
 
-- [ ] Aplicación Next.js y dashboard incorporados al repositorio remoto (preparados localmente).
-- [ ] Dataset CSV de 500 movimientos incorporado al repositorio remoto (preparado localmente).
-- [ ] Informe de Power BI (`.pbix`) generado y validado.
-- [x] Documentación del modelo y del proceso de transformación publicada.
+- [x] Aplicación Next.js y dashboard incorporados al repositorio remoto (pendiente ejecutar build y probar despliegue).
+- [x] Dataset CSV de 500 movimientos incorporado al repositorio remoto.
+- [ ] Informe de Power BI (`.pbix`) generado y validado (pendiente Power BI Desktop).
+- [x] Documentación, medidas DAX y validación lógica simulada publicadas.
 - [ ] Capturas o exportación del informe final.
 
 El estado detallado y los próximos pasos están en [docs/ESTADO-ENTREGA.md](docs/ESTADO-ENTREGA.md).
