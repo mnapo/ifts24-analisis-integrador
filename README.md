@@ -12,7 +12,7 @@ Archivo central: `public/data/indicadores-banco-mundial.csv`.
 - Desempleo total: `SL.UEM.TOTL.ZS`.
 - Uso de Internet: `IT.NET.USER.ZS`.
 
-**Importante:** los 240 registros son sintéticos y autogenerados para practicar procesamiento, modelado y visualización. No son datos oficiales ni estimaciones publicadas por el Banco Mundial. El campo `source` identifica esta condición en cada fila.
+**Importante:** los 10.000 registros son sintéticos y autogenerados para practicar procesamiento, modelado y visualización. No son datos oficiales ni estimaciones publicadas por el Banco Mundial. El campo `source` identifica esta condición en cada fila.
 
 ## Proyecto Power BI
 
