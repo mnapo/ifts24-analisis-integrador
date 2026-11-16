@@ -1,0 +1,30 @@
+table Indicadores
+    column CodigoIndicador
+        dataType: string
+        isKey
+        summarizeBy: none
+        sourceColumn: indicator_code
+
+    column NombreIndicador
+        dataType: string
+        summarizeBy: none
+        sourceColumn: indicator_name
+
+    column Unidad
+        dataType: string
+        summarizeBy: none
+        sourceColumn: unit
+
+    partition Indicadores = m
+        mode: import
+        source =
+            let
+                Source = Csv.Document(
+                    Web.Contents("https://raw.githubusercontent.com/mnapo/ifts24-analisis-integrador/main/public/data/indicadores-banco-mundial.csv"),
+                    [Delimiter = ",", Columns = 8, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+                ),
+                Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+                Selected = Table.SelectColumns(Headers, {"indicator_code", "indicator_name", "unit"}),
+                DistinctRows = Table.Distinct(Selected)
+            in
+                DistinctRows

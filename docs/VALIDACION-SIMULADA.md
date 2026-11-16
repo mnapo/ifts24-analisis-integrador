@@ -1,117 +1,49 @@
-# Validación simulada del modelo Power BI
+# Validación del dataset y del proyecto Power BI
 
-**Fecha:** 16/11/2026  
-**Dataset:** `public/data/movimientos.csv`  
-**Tipo de prueba:** validación lógica y de consistencia sobre el CSV; simulación de resultados esperados en Power BI.
+**Dataset:** `public/data/indicadores-banco-mundial.csv`  
+**Fuente:** World Bank Open Data  
+**Cobertura:** 4 países × 2 indicadores × año 2024.
 
-> Esta prueba no abre ni ejecuta Power BI Desktop y no valida un archivo PBIX. No existe todavía un PBIX generado. Los resultados siguientes se calcularon directamente sobre el CSV para anticipar los valores que deberían devolver las medidas DAX una vez importado el archivo.
+## 1. Integridad esperada
 
-## 1. Integridad del dataset
-
-| Control | Resultado | Estado |
-|---|---:|---|
-| Filas de datos | 500 | OK |
-| Columnas | 7 | OK |
-| IDs únicos | 500 | OK |
-| IDs faltantes | 0 | OK |
-| Fechas vacías | 0 | OK |
-| Importes vacíos o no numéricos | 0 | OK |
-| Importes no positivos | 0 | OK |
-| Tipos distintos de Ingreso/Gasto | 0 | OK |
-| Registros fuera de 2025 | 0 | OK |
-
-Columnas: `id`, `fecha`, `tipo`, `categoria`, `descripcion`, `importe`, `medio_pago`.
-
-## 2. Distribución por tipo
-
-| Tipo | Movimientos |
+| Control | Resultado esperado |
 |---|---:|
-| Ingreso | 88 |
-| Gasto | 412 |
-| **Total** | **500** |
+| Filas | 8 |
+| Países | 4 |
+| Indicadores | 2 |
+| Años | 2024 |
+| Valores nulos | 0 |
+| Claves país-indicador-año duplicadas | 0 |
 
-## 3. Valores de referencia para las medidas
+## 2. Valores de referencia
 
-Importes expresados en pesos argentinos (ARS).
+| País | Internet (%) | SPI (0–100) |
+|---|---:|---:|
+| Argentina | 89,7 | 80,4 |
+| Brasil | 84,5 | 82,3 |
+| Chile | 95,6 | 89,4 |
+| Uruguay | 92,0 | 80,1 |
 
-| Indicador | Valor esperado |
-|---|---:|
-| Total Ingresos | $34.766.900 |
-| Total Gastos | $19.607.200 |
-| Balance Neto | $15.159.700 |
-| Cantidad de Movimientos | 500 |
-| Promedio por Movimiento | $108.748,20 |
+Los valores se redondearon a un decimal para el dataset de presentación. Las fichas oficiales son las referencias para la precisión y futuras revisiones.
 
-Comprobación aritmética: $34.766.900 - $19.607.200 = $15.159.700.
+## 3. Validación automatizada
 
-## 4. Gastos por categoría
+Ejecutar desde la raíz:
 
-| Categoría | Total |
-|---|---:|
-| Vivienda | $9.341.500 |
-| Supermercado | $1.907.100 |
-| Indumentaria | $1.828.000 |
-| Educación | $1.806.800 |
-| Servicios | $1.116.100 |
-| Entretenimiento | $1.106.400 |
-| Restaurantes | $984.400 |
-| Salud | $792.400 |
-| Transporte | $724.500 |
-| **Total gastos** | **$19.607.200** |
-
-La suma de categorías coincide con el total de gastos.
-
-## 5. Pruebas funcionales previstas en Power BI
-
-| Prueba | Resultado esperado |
-|---|---|
-| Filtrar Tipo = Ingreso | $34.766.900 y 88 filas |
-| Filtrar Tipo = Gasto | $19.607.200 y 412 filas |
-| Sin filtros | Balance de $15.159.700 |
-| Filtrar una categoría de gasto | El total de gastos se limita a esa categoría |
-| Filtrar un mes | Las tarjetas y gráficos reflejan únicamente ese mes |
-| Seleccionar período completo | 500 movimientos en el año 2025 |
-
-## 6. Modelo y medidas
-
-La tabla de hechos se denomina `Movimientos`. La tabla calendario debe relacionarse en una relación uno-a-muchos desde `Calendario[Date]` hacia `Movimientos[fecha]`.
-
-Medidas de referencia:
-
-```dax
-Total Ingresos =
-CALCULATE(
-    SUM(Movimientos[importe]),
-    Movimientos[tipo] = "Ingreso"
-)
-
-Total Gastos =
-CALCULATE(
-    SUM(Movimientos[importe]),
-    Movimientos[tipo] = "Gasto"
-)
-
-Balance Neto =
-[Total Ingresos] - [Total Gastos]
-
-Cantidad de Movimientos =
-COUNTROWS(Movimientos)
-
-Promedio por Movimiento =
-AVERAGE(Movimientos[importe])
+```bash
+python scripts/validate_powerbi_project.py
 ```
 
-## 7. Resultado de la simulación
+El script verifica archivos PBIP/TMDL, estructura del CSV, unicidad de claves, tipos, rangos y valores de referencia.
 
-**Resultado lógico: APROBADO.** El CSV presenta 500 registros consistentes y los totales de referencia cierran aritméticamente. Las medidas propuestas son compatibles con el esquema y la codificación de importes positivos junto con una columna de tipo.
+## 4. Validación pendiente en Power BI Desktop
 
-**Resultado Power BI Desktop: PENDIENTE.** Para convertir esta simulación en una validación real todavía se debe:
+La validación estática no ejecuta el motor de Power BI. Antes de entregar:
+1. Abrir el PBIP.
+2. Actualizar Power Query.
+3. Confirmar las dimensiones y relaciones.
+4. Revisar las seis medidas DAX.
+5. Construir y probar las dos páginas.
+6. Guardar el PBIX y comprobar que vuelve a abrir correctamente.
 
-1. Importar el CSV en Power BI Desktop.
-2. Crear la tabla calendario y su relación.
-3. Crear las medidas DAX.
-4. Construir las visualizaciones y aplicar los filtros de prueba.
-5. Comparar los resultados con esta hoja.
-6. Guardar el informe como `powerbi/informe-financiero.pbix` y comprobar que abre correctamente.
-
-No interpretar el estado lógico aprobado como una certificación del archivo PBIX.
+No se considera generado ni validado un PBIX hasta completar estos pasos.

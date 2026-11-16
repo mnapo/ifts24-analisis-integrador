@@ -1,97 +1,72 @@
-# Análisis Integrador — Dashboard financiero
+# Análisis Integrador — Indicadores de desarrollo en América Latina
 
-Proyecto académico de análisis y visualización de datos que combina un dashboard web desarrollado con **Next.js** y un flujo de análisis en **Power BI**.
+Proyecto académico individual para el Trabajo Final de Desarrollo de un Reporte en Power BI. El análisis compara a Argentina, Brasil, Chile y Uruguay mediante indicadores públicos del Banco Mundial correspondientes a 2024.
 
-El caso de estudio utiliza movimientos financieros personales ficticios para explorar ingresos, gastos, categorías de consumo y evolución del saldo. El objetivo es convertir datos transaccionales en información clara y útil para la toma de decisiones cotidianas.
+## Pregunta de análisis
 
-## Objetivos
+¿Cómo se posicionan estos cuatro países en acceso a Internet y desempeño de sus sistemas estadísticos?
 
-- Construir un dataset tabular, consistente y reproducible.
-- Explorar indicadores financieros mediante una interfaz web.
-- Importar y transformar los datos en Power BI.
-- Diseñar medidas e informes que permitan analizar hábitos de ingresos y gastos.
-- Documentar el proceso, desde los datos originales hasta las visualizaciones.
+## Fuente y dataset
 
-## Diseño
+Fuente primaria: [World Bank Open Data](https://data.worldbank.org/), con licencia de datos CC BY 4.0 según las fichas de los indicadores.
 
-La interfaz sigue una estética fintech clara: fondo blanco y grises suaves, azul petróleo como color principal, acentos verdes y tarjetas limpias con gráficos modernos. El dashboard es responsive y prioriza la lectura rápida de los indicadores.
+Dataset Power BI: `public/data/indicadores-banco-mundial.csv` (8 observaciones: 4 países × 2 indicadores).
 
-## Dataset
+Indicadores:
+- `IT.NET.USER.ZS`: personas que utilizan Internet (% de la población).
+- `IQ.SPI.OVRL`: Statistical Performance Indicators (SPI), puntaje general de 0 a 100.
 
-El proyecto utiliza un archivo CSV con **500 movimientos ficticios**. Los registros son sintéticos y se utilizan exclusivamente con fines educativos; no representan cuentas, personas ni operaciones reales.
+El CSV contiene valores publicados para 2024, redondeados a un decimal para facilitar la comparación. No es una serie temporal: las conclusiones se limitan a una comparación transversal de ese año.
 
-El conjunto permite analizar, entre otras dimensiones:
+El archivo anterior `public/data/movimientos.csv` se conserva únicamente para no romper el dashboard Next.js financiero preexistente. No forma parte del análisis final de Power BI.
 
-- Fecha del movimiento.
-- Tipo de operación (ingreso o gasto).
-- Categoría.
-- Descripción.
-- Importe.
-- Medio o cuenta asociada, cuando esté disponible en el archivo.
+## Proyecto web complementario
 
-Consultar [Modelo de datos](docs/MODELO-DATOS.md) y [validación simulada](docs/VALIDACION-SIMULADA.md).
+El dashboard Next.js existente continúa siendo una demostración independiente del dataset financiero sintético anterior. El trabajo final de Power BI utiliza exclusivamente el nuevo CSV del Banco Mundial.
 
-## Tecnologías
+## Power BI
 
-- Next.js y React para el dashboard web.
-- CSV como formato de intercambio del dataset.
-- Power BI Desktop para la importación, transformación, modelado y visualización.
-- DAX para las medidas del informe.
+Abrir `powerbi/Finanzas.pbip` con Power BI Desktop. El nombre interno Finanzas se conserva del prototipo inicial; el contenido del modelo fue adaptado a indicadores regionales.
 
-## Puesta en marcha
+El modelo PBIP/TMDL incluye:
+- Tabla de hechos `FactIndicadores`.
+- Dimensión `Paises`.
+- Dimensión `Indicadores`.
+- Relaciones muchos-a-uno desde la tabla de hechos.
+- Medidas DAX para valor, promedio regional, brecha y ranking.
 
-Requisitos: Node.js y npm.
+Power Query carga el CSV publicado en GitHub, promueve encabezados, asigna tipos y limpia textos.
+
+## Páginas del reporte
+
+1. Portada: tema, autor e institución (completar datos personales).
+2. Comparación regional: tarjetas de indicadores, barras por país, tabla comparativa y segmentadores.
+
+Al ser un trabajo individual, se requiere una página informativa de análisis, además de la portada. Las visualizaciones deben completarse y probarse en Power BI Desktop.
+
+## Validación
+
+Ejecutar:
 
 ```bash
-npm install
-npm run dev
+python scripts/validate_powerbi_project.py
 ```
 
-Abrir [http://localhost:3000](http://localhost:3000).
+La validación comprueba estructura, esquema, integridad y valores del CSV. No ejecuta el motor de Power BI.
 
-El dashboard está implementado en `app/` y consume el CSV publicado en `public/data/movimientos.csv`.
+## Entrega
 
-## Flujo de trabajo
+- `powerbi/informe-indicadores-regionales.pbix`: pendiente de guardar desde Power BI Desktop.
+- Documentación y resumen ejecutivo en PDF: exportar los Markdown de `docs/` a PDF.
+- Completar el nombre del autor en la portada antes de exportar.
 
-1. Generar y revisar el dataset CSV.
-2. Explorar los datos en el dashboard de Next.js.
-3. Importar el CSV en Power BI Desktop.
-4. Revisar tipos de datos, valores nulos, duplicados y consistencia de categorías.
-5. Abrir el proyecto `powerbi/Finanzas.pbip`: el modelo semántico, la relación calendario y las medidas DAX se generan desde archivos TMDL.
-6. Actualizar los datos y validar los totales con `python scripts/validate_powerbi_project.py`.
-7. Completar las visualizaciones en Power BI Desktop y guardar como `powerbi/informe-financiero.pbix`.
-
-Ver [Guía de Power BI](docs/POWER-BI.md), [Modelo de datos](docs/MODELO-DATOS.md), [proyecto PBIP/TMDL](powerbi/README.md), [medidas DAX](powerbi/Finanzas.SemanticModel/definition/tables/Movimientos.tmdl), [validación simulada](docs/VALIDACION-SIMULADA.md) y [Estado de entrega](docs/ESTADO-ENTREGA.md).
-
-## Estructura principal
+## Estructura
 
 ```text
-.
-├── app/                         # Dashboard Next.js
-├── docs/                        # Documentación y validación
-├── powerbi/
-│   ├── Finanzas.pbip             # Proyecto Power BI
-│   ├── Finanzas.Report/          # Definición del informe
-│   └── Finanzas.SemanticModel/   # Modelo TMDL y medidas DAX
-├── public/data/movimientos.csv
-└── scripts/validate_powerbi_project.py
+public/data/indicadores-banco-mundial.csv
+powerbi/Finanzas.pbip
+powerbi/Finanzas.SemanticModel/definition/
+powerbi/Finanzas.Report/definition/
+docs/
+scripts/validate_powerbi_project.py
 ```
-
-## Estado de los entregables
-
-- [x] Aplicación Next.js y dashboard incorporados al repositorio remoto (pendiente ejecutar build y probar despliegue).
-- [x] Dataset CSV de 500 movimientos incorporado al repositorio remoto.
-- [x] Proyecto fuente Power BI (`.pbip`) y medidas DAX automatizadas.
-- [ ] Informe binario de Power BI (`.pbix`) guardado desde Power BI Desktop.
-- [x] Documentación, medidas DAX y script de validación estática publicados.
-- [ ] Capturas o exportación del informe final.
-
-El estado detallado y los próximos pasos están en [docs/ESTADO-ENTREGA.md](docs/ESTADO-ENTREGA.md).
-
-## Alcance y limitaciones
-
-Los datos son sintéticos. Los resultados sirven para demostrar técnicas de análisis y visualización, no para brindar asesoramiento financiero ni describir patrones de consumo reales. Las conclusiones deben interpretarse dentro de las reglas de generación del dataset.
-
-## Autoría
-
-Trabajo práctico integrador — IFTS 24.

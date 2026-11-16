@@ -1,6 +1,13 @@
-relationship Fecha_Movimientos
-    fromColumn: Movimientos.fecha
-    toColumn: Calendario.Fecha
+relationship Pais_FactIndicadores
+    fromColumn: FactIndicadores.CodigoPais
+    toColumn: Paises.CodigoPais
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
+
+relationship Indicador_FactIndicadores
+    fromColumn: FactIndicadores.CodigoIndicador
+    toColumn: Indicadores.CodigoIndicador
     fromCardinality: many
     toCardinality: one
     crossFilteringBehavior: oneDirection

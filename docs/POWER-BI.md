@@ -1,119 +1,110 @@
 # Procesamiento y visualización en Power BI
 
-Esta guía documenta el flujo recomendado para importar el dataset de movimientos financieros y construir un informe reproducible en Power BI Desktop.
+## 1. Origen de datos
 
-## 1. Importar el CSV
+El proyecto utiliza `public/data/indicadores-banco-mundial.csv`, una extracción de World Bank Open Data para Argentina, Brasil, Chile y Uruguay en 2024.
 
-1. Abrir Power BI Desktop.
-2. Seleccionar **Obtener datos → Texto/CSV**.
-3. Elegir el archivo `public/data/movimientos.csv` (o la ubicación real del CSV en el proyecto).
-4. Revisar delimitador, codificación y vista previa.
-5. Seleccionar **Transformar datos** para abrir Power Query.
+El PBIP utiliza Power Query (M) y `Web.Contents` para importar el CSV publicado en GitHub.
 
-## 2. Transformar con Power Query
+## 2. Power Query
 
-- Asignar tipos de datos correctos a fecha, importe, tipo y categoría.
-- Aplicar limpieza de espacios en campos de texto.
-- Normalizar categorías y valores de tipo.
-- Revisar nulos, errores de conversión y duplicados.
-- Confirmar que no se altere accidentalmente el signo o valor de los importes.
-- Cerrar y aplicar.
+La consulta principal:
+- Lee CSV con codificación UTF-8 y delimitador coma.
+- Promueve encabezados.
+- Convierte claves y descripciones a texto.
+- Convierte año a entero y valor a decimal.
+- Recorta espacios de los campos de texto.
 
-Los nombres de columnas de los ejemplos siguientes son nombres lógicos. Reemplazarlos por los nombres exactos que tenga el CSV si difieren.
+Las consultas `Paises` e `Indicadores` derivan dimensiones a partir del mismo origen, seleccionando sus columnas y quitando duplicados.
 
-## 3. Crear tabla calendario
+## 3. Modelo semántico
 
-En **Modelado → Nueva tabla**, crear una tabla calendario que cubra el rango de fechas del dataset:
+- FactIndicadores: tabla de hechos con 8 observaciones.
+- Paises: dimensión de cuatro países.
+- Indicadores: dimensión de dos indicadores.
 
-```dax
-Calendario =
-CALENDAR(
-    MIN(Movimientos[Fecha]),
-    MAX(Movimientos[Fecha])
-)
-```
+Relaciones uno-a-muchos desde Paises e Indicadores hacia FactIndicadores. El filtrado es unidireccional.
 
-Agregar columnas útiles para segmentar:
-
-```dax
-Año = YEAR(Calendario[Date])
-Mes = FORMAT(Calendario[Date], "MMMM")
-NúmeroMes = MONTH(Calendario[Date])
-AñoMes = FORMAT(Calendario[Date], "YYYY-MM")
-```
-
-Ordenar `Calendario[Mes]` por `Calendario[NúmeroMes]` y marcar Calendario como tabla de fechas. Si la columna generada por CALENDAR se llama `Date`, usar ese nombre en la relación o renombrarla a `Fecha`.
-
-Crear la relación uno-a-muchos entre la fecha del calendario y la fecha de los movimientos.
+No se utiliza calendario porque todos los registros pertenecen a 2024.
 
 ## 4. Medidas DAX
 
-Las siguientes medidas suponen que la tabla se llama `Movimientos`, que el importe está en `Importe` y que el campo `Tipo` contiene exactamente los valores `Ingreso` y `Gasto`. Adaptar los nombres y etiquetas a los valores reales del CSV.
-
 ```dax
-Total Ingresos =
-CALCULATE(
-    SUM(Movimientos[Importe]),
-    Movimientos[Tipo] = "Ingreso"
+Valor del Indicador =
+SUM(FactIndicadores[Valor])
+
+Promedio Regional =
+AVERAGEX(ALL(Paises), [Valor del Indicador])
+
+Brecha vs. Promedio =
+[Valor del Indicador] - [Promedio Regional]
+
+Ranking País =
+RANKX(
+    ALL(Paises[País]),
+    [Valor del Indicador],
+    ,
+    DESC,
+    DENSE
 )
 
-Total Gastos =
-CALCULATE(
-    SUM(Movimientos[Importe]),
-    Movimientos[Tipo] = "Gasto"
-)
+Países Analizados =
+DISTINCTCOUNT(FactIndicadores[CodigoPais])
 
-Balance Neto =
-[Total Ingresos] - [Total Gastos]
-
-Cantidad de Movimientos =
-COUNTROWS(Movimientos)
-
-Promedio por Movimiento =
-AVERAGE(Movimientos[Importe])
+Indicadores Analizados =
+DISTINCTCOUNT(FactIndicadores[CodigoIndicador])
 ```
 
-Formatear ingresos, gastos, balance y promedio como moneda. La medida de promedio considera el importe almacenado; si el informe requiere promedio exclusivo de gastos, crear una medida filtrada por tipo.
+El contexto de filtro de Indicadores permite evaluar cada medida para Internet o SPI por separado.
 
-## 5. Diseño del informe
+## 5. Diseño del reporte (trabajo individual)
 
-Propuesta de páginas y visualizaciones:
+### Página 1 — Portada
 
-### Resumen
+- Título: Indicadores de desarrollo en América Latina.
+- Subtítulo: Acceso a Internet y desempeño estadístico (2024).
+- Autor: completar nombre y apellido.
+- Institución: IFTS 24.
+- Fuente: World Bank Open Data.
 
-- Tarjetas: Total Ingresos, Total Gastos, Balance Neto y Cantidad de Movimientos.
-- Gráfico de líneas: evolución mensual de ingresos y gastos.
-- Gráfico de dona: distribución de gastos por categoría.
-- Segmentadores: período y categoría.
+### Página 2 — Comparación regional
 
-### Análisis de gastos
+- Tarjetas: países analizados, indicadores y año.
+- Gráfico de barras: porcentaje de población usuaria de Internet por país.
+- Gráfico de barras: puntaje SPI por país.
+- Tabla comparativa con país, indicador y valor.
+- Segmentadores: indicador y país.
 
-- Barras: gastos por categoría.
-- Columnas: gastos por mes.
-- Tabla: detalle de movimientos.
-- Segmentadores: categoría, período y tipo.
+La página debe facilitar una comparación sin mezclar unidades. Se recomienda separar los gráficos por indicador.
 
-### Análisis temporal
+## 6. Narrativa
 
-- Evolución del balance neto.
-- Comparación de ingresos y gastos por mes.
-- Identificación de períodos con mayor gasto.
+1. Chile presenta el mayor valor en ambos indicadores dentro del grupo seleccionado.
+2. En uso de Internet, Brasil registra el menor valor del grupo.
+3. En SPI, Uruguay y Argentina muestran valores cercanos, por debajo de Brasil y Chile.
+4. Los resultados describen diferencias observadas en 2024; no prueban causalidad ni permiten inferir tendencias históricas.
 
-## 6. Validación cruzada
+## 7. Abrir y completar el proyecto
 
-1. Comparar el número de filas importadas con el CSV.
-2. Comparar ingresos, gastos y balance con los valores calculados desde el archivo fuente.
-3. Repetir la comparación aplicando los mismos filtros de fecha y categoría en Power BI y en el dashboard Next.js.
-4. Verificar que los segmentadores afecten a las visualizaciones esperadas.
+1. Clonar o descargar el repositorio.
+2. Abrir `powerbi/Finanzas.pbip` en Power BI Desktop actualizado.
+3. Configurar las credenciales de origen como anónimo si Power BI las solicita para raw.githubusercontent.com.
+4. Actualizar datos y revisar las consultas.
+5. Verificar las dos relaciones y las seis medidas.
+6. Crear las visualizaciones indicadas en las dos páginas.
+7. Probar los segmentadores y los rankings para ambos indicadores.
+8. Guardar como `powerbi/informe-indicadores-regionales.pbix`.
 
-## 7. Entrega
+## 8. Alcance de PBIP/TMDL
 
-Guardar el informe como `powerbi/informe-financiero.pbix`. Incluir en la entrega:
+PBIP/TMDL permite versionar en texto las definiciones del informe y del modelo semántico. Las tablas, columnas, particiones M, relaciones y medidas DAX están declaradas en archivos TMDL.
 
-- Archivo PBIX.
-- Capturas de las páginas del informe.
-- Descripción breve de las transformaciones aplicadas.
-- Medidas DAX utilizadas.
-- Conclusiones basadas en los indicadores.
+La estructura del proyecto se genera y mantiene de forma procedural/versionable, pero eso no equivale a un PBIX terminado. La apertura, actualización, creación final de visualizaciones y guardado del PBIX deben realizarse en Power BI Desktop.
 
-El archivo PBIX y las capturas deben agregarse una vez que el informe se haya construido y validado en Power BI Desktop. Esta documentación no implica que ese entregable ya esté generado.
+## 9. Entrega
+
+- Archivo PBIX validado.
+- Documentación técnica en PDF.
+- Resumen ejecutivo en PDF.
+
+El PBIX y los PDF se consideran pendientes hasta que se generen y se compruebe su apertura.

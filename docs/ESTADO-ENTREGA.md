@@ -2,29 +2,38 @@
 
 Actualizado: 16 de noviembre de 2026.
 
-## Estado conocido
+## Estado
 
 | Componente | Estado | Observación |
 |---|---|---|
-| Proyecto Next.js | Incorporado | Código en `app/`, configuración y dependencias; falta ejecutar build y probar despliegue |
-| Dataset CSV | Incorporado | `public/data/movimientos.csv`, 500 movimientos sintéticos |
-| Dashboard fintech | Implementado | KPIs, filtros, gráficos, búsqueda y exportación CSV; falta prueba de ejecución |
-| Guía y documentación | Publicada | README, modelo de datos y guía de Power BI |
-| Medidas DAX | Integradas en TMDL | Definidas en el modelo semántico PBIP; falta validación dentro de Desktop |
-| Proyecto Power BI (.pbip) | Generado | Modelo semántico TMDL, calendario, relación y página inicial del informe |\n| Informe Power BI (.pbix) | Pendiente | Debe abrirse el PBIP en Desktop, completar visualizaciones y guardar como PBIX |
+| Tema | Definido | Indicadores de desarrollo en América Latina |
+| Fuente pública | Definida | World Bank Open Data |
+| Dataset CSV | Incorporado | 8 observaciones, 4 países, 2 indicadores, año 2024 |
+| Power Query | Declarado en TMDL | Importación CSV, tipado, limpieza y dimensiones derivadas |
+| Modelo semántico | Declarado en TMDL | Hechos + dimensiones Países e Indicadores |
+| Relaciones | Declaradas | Dos relaciones uno-a-muchos |
+| Medidas DAX | Declaradas | 6 medidas |
+| Páginas del reporte | Estructura definida | Portada + comparación regional |
+| Visualizaciones | Pendientes en Desktop | Crear gráficos, tarjetas, tabla y segmentadores |
+| Resumen ejecutivo | Documentado | `docs/RESUMEN-EJECUTIVO.md` |
+| PBIP | Incorporado | Proyecto fuente versionable |
+| PBIX | Pendiente | Requiere abrir, actualizar y guardar desde Power BI Desktop |
+| PDF documentación | Pendiente de exportar | Exportar documentación y resumen a PDF |
 
-## Historial del proyecto
+## Hallazgos de referencia
 
-El proyecto descargable se generó inicialmente en un repositorio Git local, rama `main`, con commit `c476f05` y 15 archivos. Ese commit local no equivale a un push a GitHub.
+- Internet: Chile 95,6%, Uruguay 92,0%, Argentina 89,7%, Brasil 84,5%.
+- SPI: Chile 89,4, Brasil 82,3, Argentina 80,4, Uruguay 80,1.
 
-El repositorio remoto se encontraba inicialmente vacío. Se incorporaron el dataset CSV, la aplicación Next.js y documentación. Luego se agregó el proyecto PBIP/TMDL con medidas DAX, calendario y relación de fechas.
+Los valores están redondeados a un decimal y corresponden a 2024.
 
-## Próximos pasos para completar la entrega
+## Próximos pasos
 
-1. Incorporar al repositorio remoto los archivos del proyecto local (15 archivos, commit local `c476f05`), revisando que no se sobrescriban los documentos publicados.
-2. Confirmar que el CSV esté en la ruta utilizada por la aplicación y documentar sus columnas reales.
-3. Abrir el CSV en Power BI Desktop y aplicar las transformaciones descritas en [POWER-BI.md](POWER-BI.md).
-4. Validar las medidas y visualizaciones contra el dataset.
-5. Guardar y agregar el archivo `.pbix`, junto con capturas y conclusiones.
+1. Abrir `powerbi/Finanzas.pbip` en Power BI Desktop.
+2. Actualizar las consultas y comprobar relaciones y medidas.
+3. Completar la portada y la página de comparación.
+4. Guardar `powerbi/informe-indicadores-regionales.pbix`.
+5. Exportar documentación y resumen ejecutivo a PDF.
+6. Reabrir el PBIX y verificar el funcionamiento antes de entregar.
 
-No marcar como finalizado ningún entregable hasta que esté presente en el repositorio y haya sido comprobado.
+El dashboard Next.js original conserva su dataset financiero sintético como demostración independiente; no es parte del análisis final de Power BI.

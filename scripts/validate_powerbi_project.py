@@ -1,29 +1,28 @@
 #!/usr/bin/env python3
-"""Validate the CSV and the checked-in PBIP/TMDL model without Power BI Desktop."""
+"""Static validation for the World Bank dataset and PBIP/TMDL source."""
 from __future__ import annotations
 
 import csv
-import json
-from collections import Counter, defaultdict
-from datetime import date
+from collections import defaultdict
 from decimal import Decimal
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CSV_PATH = ROOT / "public/data/movimientos.csv"
+CSV_PATH = ROOT / "public/data/indicadores-banco-mundial.csv"
 POWERBI = ROOT / "powerbi"
 MODEL = POWERBI / "Finanzas.SemanticModel/definition"
 REPORT = POWERBI / "Finanzas.Report/definition"
 
-EXPECTED_MEASURES = [
-    "Total Ingresos",
-    "Total Gastos",
-    "Balance Neto",
-    "Cantidad de Movimientos",
-    "Promedio por Movimiento",
-    "Cantidad de Ingresos",
-    "Cantidad de Gastos",
-]
+EXPECTED = {
+    ("ARG", "IT.NET.USER.ZS"): Decimal("89.7"),
+    ("BRA", "IT.NET.USER.ZS"): Decimal("84.5"),
+    ("CHL", "IT.NET.USER.ZS"): Decimal("95.6"),
+    ("URY", "IT.NET.USER.ZS"): Decimal("92.0"),
+    ("ARG", "IQ.SPI.OVRL"): Decimal("80.4"),
+    ("BRA", "IQ.SPI.OVRL"): Decimal("82.3"),
+    ("CHL", "IQ.SPI.OVRL"): Decimal("89.4"),
+    ("URY", "IQ.SPI.OVRL"): Decimal("80.1"),
+}
 
 
 def check(condition: bool, message: str) -> None:
@@ -35,56 +34,46 @@ def check(condition: bool, message: str) -> None:
 def main() -> None:
     check((POWERBI / "Finanzas.pbip").is_file(), "PBIP entrypoint exists")
     check((MODEL / "model.tmdl").is_file(), "semantic model definition exists")
-    check((MODEL / "relationships.tmdl").is_file(), "date relationship definition exists")
-    check((REPORT / "pages/pages.json").is_file(), "report page metadata exists")
-    check((REPORT / "pages/resumen/page.json").is_file(), "summary page definition exists")
+    check((MODEL / "relationships.tmdl").is_file(), "relationships definition exists")
+    check((MODEL / "tables/FactIndicadores.tmdl").is_file(), "fact table definition exists")
+    check((MODEL / "tables/Paises.tmdl").is_file(), "country dimension exists")
+    check((MODEL / "tables/Indicadores.tmdl").is_file(), "indicator dimension exists")
+    check((REPORT / "pages/pages.json").is_file(), "report pages metadata exists")
+    check((REPORT / "pages/portada/page.json").is_file(), "cover page metadata exists")
+    check((REPORT / "pages/resumen/page.json").is_file(), "analysis page metadata exists")
 
-    model = (MODEL / "tables/Movimientos.tmdl").read_text(encoding="utf-8")
-    for measure in EXPECTED_MEASURES:
-        check(f"measure '{measure}'" in model, f"DAX measure declared: {measure}")
+    fact = (MODEL / "tables/FactIndicadores.tmdl").read_text(encoding="utf-8")
+    for measure in (
+        "Valor del Indicador", "Promedio Regional", "Brecha vs. Promedio",
+        "Ranking País", "Países Analizados", "Indicadores Analizados",
+    ):
+        check(f"measure '{measure}'" in fact, f"DAX measure declared: {measure}")
 
-    with CSV_PATH.open(encoding="utf-8-sig", newline="") as f:
-        reader = csv.DictReader(f)
-        expected_columns = ["id", "fecha", "tipo", "categoria", "descripcion", "importe", "medio_pago"]
-        check(reader.fieldnames == expected_columns, "CSV columns match the semantic model")
+    with CSV_PATH.open(encoding="utf-8-sig", newline="") as stream:
+        reader = csv.DictReader(stream)
+        columns = [
+            "country_code", "country", "indicator_code", "indicator_name",
+            "year", "value", "unit", "source",
+        ]
+        check(reader.fieldnames == columns, "CSV schema matches the model")
         rows = list(reader)
 
-    ids = [int(row["id"]) for row in rows]
-    check(len(rows) == 500, "CSV contains 500 rows")
-    check(len(set(ids)) == len(ids), "movement IDs are unique")
+    check(len(rows) == 8, "CSV contains 8 observations")
+    keys = [(r["country_code"], r["indicator_code"], r["year"]) for r in rows]
+    check(len(keys) == len(set(keys)), "country-indicator-year keys are unique")
+    check({r["country_code"] for r in rows} == {"ARG", "BRA", "CHL", "URY"}, "four expected countries are present")
+    check({r["indicator_code"] for r in rows} == {"IT.NET.USER.ZS", "IQ.SPI.OVRL"}, "two expected indicators are present")
+    check({r["year"] for r in rows} == {"2024"}, "all observations refer to 2024")
 
-    counts = Counter()
-    totals = defaultdict(Decimal)
-    category_totals = defaultdict(Decimal)
+    observed = {}
     for row in rows:
-        date.fromisoformat(row["fecha"])
-        check_type = row["tipo"]
-        if check_type not in {"Ingreso", "Gasto"}:
-            raise SystemExit(f"FAIL: unexpected transaction type {check_type!r}")
-        amount = Decimal(row["importe"])
-        if amount <= 0:
-            raise SystemExit(f"FAIL: non-positive amount in movement {row['id']}")
-        counts[check_type] += 1
-        totals[check_type] += amount
-        if check_type == "Gasto":
-            category_totals[row["categoria"]] += amount
+        value = Decimal(row["value"])
+        check(Decimal("0") <= value <= Decimal("100"), f"value range valid for {row['country_code']} / {row['indicator_code']}")
+        observed[(row["country_code"], row["indicator_code"])] = value
+    check(observed == EXPECTED, "all values match the documented reference snapshot")
 
-    check(counts["Ingreso"] == 88 and counts["Gasto"] == 412, "transaction type distribution matches expected")
-    check(totals["Ingreso"] == Decimal("34766900"), "Total Ingresos matches CSV")
-    check(totals["Gasto"] == Decimal("19607200"), "Total Gastos matches CSV")
-    balance = totals["Ingreso"] - totals["Gasto"]
-    check(balance == Decimal("15159700"), "Balance Neto matches CSV")
-    average = (totals["Ingreso"] + totals["Gasto"]) / Decimal(len(rows))
-    check(average == Decimal("108748.2"), "Promedio por Movimiento matches CSV")
-
-    print("\nReference values for Power BI")
-    print(f"Rows: {len(rows)}")
-    print(f"Ingresos: ARS {totals['Ingreso']:,.2f}")
-    print(f"Gastos: ARS {totals['Gasto']:,.2f}")
-    print(f"Balance: ARS {balance:,.2f}")
-    print(f"Promedio: ARS {average:,.2f}")
-    print(f"Expense categories: {len(category_totals)}")
-    print("\nStatic validation passed. Open and refresh the PBIP in Power BI Desktop to validate the engine and save a PBIX.")
+    print("\nStatic validation passed.")
+    print("Power BI Desktop refresh, visual behavior and PBIX generation remain manual validation steps.")
 
 
 if __name__ == "__main__":

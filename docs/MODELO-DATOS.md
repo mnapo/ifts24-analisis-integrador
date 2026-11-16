@@ -1,51 +1,72 @@
 # Modelo de datos
 
-## Caso de estudio
+## Tema y alcance
 
-El dataset representa movimientos financieros personales ficticios. Cada fila corresponde a una operación individual y permite estudiar ingresos, gastos, distribución por categorías y evolución temporal.
+El modelo compara Argentina, Brasil, Chile y Uruguay durante 2024 mediante dos indicadores públicos del Banco Mundial: uso de Internet y desempeño estadístico (SPI).
 
-Los 500 registros son sintéticos y fueron preparados para el trabajo práctico. No contienen información bancaria ni datos personales reales.
+La unidad de análisis es una observación por país e indicador. El CSV contiene 8 filas.
 
-## Granularidad
+## Fuente
 
-**Una fila = un movimiento financiero.**
+- World Bank Open Data: https://data.worldbank.org/
+- Uso de Internet: https://data.worldbank.org/indicator/IT.NET.USER.ZS
+- Puntaje general SPI: https://data.worldbank.org/indicator/IQ.SPI.OVRL
+- API de indicadores: https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures
 
-El modelo debe conservar el detalle de cada operación. Los indicadores agregados se calculan en Power BI y no deben reemplazar el CSV de origen.
+Los valores del CSV se expresan con un decimal. Los valores publicados por la fuente pueden tener mayor precisión; el redondeo se aplica únicamente para la presentación comparativa.
+
+## Diccionario de datos
+
+| Campo | Tipo | Descripción |
+|---|---|---|
+| country_code | Texto | Código ISO3 del país |
+| country | Texto | Nombre del país |
+| indicator_code | Texto | Código oficial del indicador |
+| indicator_name | Texto | Nombre descriptivo |
+| year | Entero | Año de referencia (2024) |
+| value | Decimal | Valor observado |
+| unit | Texto | Unidad de medida |
+| source | Texto | Fuente de los datos |
+
+## Modelo semántico
+
+### Tabla de hechos: FactIndicadores
+
+Granularidad: una fila por país, indicador y año. Contiene el valor observado y las claves de las dimensiones.
+
+### Dimensión Paises
+
+Una fila por país. Clave: CodigoPais.
+
+### Dimensión Indicadores
+
+Una fila por indicador y unidad. Clave: CodigoIndicador.
+
+### Relaciones
+
+- Paises[CodigoPais] (1) → FactIndicadores[CodigoPais] (*).
+- Indicadores[CodigoIndicador] (1) → FactIndicadores[CodigoIndicador] (*).
+
+Ambas relaciones usan filtrado unidireccional desde las dimensiones hacia la tabla de hechos.
+
+No se incorpora una dimensión calendario porque el alcance de esta versión es una fotografía comparativa de un único año (2024), no una serie temporal.
 
 ## Preparación y controles
 
-Al importar el CSV:
+Power Query:
+1. Obtiene el CSV desde el repositorio mediante Web.Contents.
+2. Interpreta la primera fila como encabezados.
+3. Asigna texto a claves, nombres, unidad y fuente.
+4. Asigna entero a año y decimal a valor.
+5. Elimina espacios laterales en campos de texto.
+6. Las dimensiones se derivan mediante selección de columnas y eliminación de duplicados.
 
-1. Verificar que cada movimiento tenga un identificador único, si el archivo incluye ese campo.
-2. Convertir la fecha al tipo **Fecha**.
-3. Convertir el importe a tipo **Número decimal fijo** o **Moneda**, según la configuración regional.
-4. Comprobar que los importes sean positivos y que el sentido económico esté expresado por el campo de tipo (ingreso/gasto), si así está definido en el archivo.
-5. Normalizar nombres de categorías y tipos para evitar duplicados por diferencias de mayúsculas o espacios.
-6. Revisar valores nulos, filas duplicadas y registros fuera del período esperado.
-7. Comparar el total de filas importadas con el archivo CSV original.
+Controles:
+- 8 filas, 4 países y 2 indicadores.
+- No se admiten valores vacíos ni duplicados por combinación país-indicador-año.
+- Año de referencia único: 2024.
+- Valores dentro de los rangos esperados: Internet 0–100; SPI 0–100.
 
-> Importante: conservar los nombres y valores reales de las columnas del CSV. Los pasos describen controles de calidad, no una modificación del dataset.
+## Interpretación
 
-## Modelo recomendado
-
-Para el alcance actual alcanza con una tabla de movimientos y una tabla calendario relacionada por fecha. La tabla calendario permite analizar tendencias por año, trimestre, mes y día.
-
-Relación recomendada:
-
-- `Calendario[Fecha]` (uno) → `Movimientos[Fecha]` (muchos).
-- Dirección de filtro simple desde Calendario hacia Movimientos.
-
-Si el CSV no contiene una columna de fecha con ese nombre, adaptar la relación al nombre real de la columna.
-
-## Validación
-
-Antes de diseñar el informe, comprobar:
-
-- Cantidad total de movimientos.
-- Total de ingresos.
-- Total de gastos.
-- Balance neto (ingresos menos gastos).
-- Totales por categoría.
-- Evolución mensual.
-
-Los resultados de Power BI y del dashboard web deben coincidir para los mismos filtros y período.
+Los dos indicadores son escalas porcentuales o puntuaciones de 0 a 100, pero miden fenómenos distintos. No deben sumarse ni compararse directamente entre sí. Se comparan países dentro de cada indicador.

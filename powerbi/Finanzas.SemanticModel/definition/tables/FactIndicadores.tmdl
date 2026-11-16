@@ -1,0 +1,101 @@
+table FactIndicadores
+    measure 'Valor del Indicador' =
+        SUM(FactIndicadores[Valor])
+        formatString: #,##0.0
+
+    measure 'Promedio Regional' =
+        AVERAGEX(ALL(Paises), [Valor del Indicador])
+        formatString: #,##0.0
+
+    measure 'Brecha vs. Promedio' =
+        [Valor del Indicador] - [Promedio Regional]
+        formatString: +#,##0.0;-#,##0.0;0.0
+
+    measure 'Ranking País' =
+        RANKX(ALL(Paises[País]), [Valor del Indicador], , DESC, DENSE)
+        formatString: 0
+
+    measure 'Países Analizados' =
+        DISTINCTCOUNT(FactIndicadores[CodigoPais])
+        formatString: 0
+
+    measure 'Indicadores Analizados' =
+        DISTINCTCOUNT(FactIndicadores[CodigoIndicador])
+        formatString: 0
+
+    column CodigoPais
+        dataType: string
+        summarizeBy: none
+        sourceColumn: country_code
+
+    column Pais
+        dataType: string
+        summarizeBy: none
+        sourceColumn: country
+
+    column CodigoIndicador
+        dataType: string
+        summarizeBy: none
+        sourceColumn: indicator_code
+
+    column Indicador
+        dataType: string
+        summarizeBy: none
+        sourceColumn: indicator_name
+
+    column Año
+        dataType: int64
+        formatString: 0
+        summarizeBy: none
+        sourceColumn: year
+
+    column Valor
+        dataType: double
+        formatString: #,##0.0
+        summarizeBy: sum
+        sourceColumn: value
+
+    column Unidad
+        dataType: string
+        summarizeBy: none
+        sourceColumn: unit
+
+    column Fuente
+        dataType: string
+        summarizeBy: none
+        sourceColumn: source
+
+    partition FactIndicadores = m
+        mode: import
+        source =
+            let
+                Source = Csv.Document(
+                    Web.Contents("https://raw.githubusercontent.com/mnapo/ifts24-analisis-integrador/main/public/data/indicadores-banco-mundial.csv"),
+                    [Delimiter = ",", Columns = 8, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+                ),
+                Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+                Types = Table.TransformColumnTypes(
+                    Headers,
+                    {
+                        {"country_code", type text},
+                        {"country", type text},
+                        {"indicator_code", type text},
+                        {"indicator_name", type text},
+                        {"year", Int64.Type},
+                        {"value", type number},
+                        {"unit", type text},
+                        {"source", type text}
+                    },
+                    "es-AR"
+                ),
+                CleanText = Table.TransformColumns(
+                    Types,
+                    {
+                        {"country_code", Text.Trim, type text},
+                        {"country", Text.Trim, type text},
+                        {"indicator_code", Text.Trim, type text},
+                        {"indicator_name", Text.Trim, type text}
+                    }
+                )
+            in
+                CleanText

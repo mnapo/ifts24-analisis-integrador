@@ -1,0 +1,25 @@
+table Paises
+    column CodigoPais
+        dataType: string
+        isKey
+        summarizeBy: none
+        sourceColumn: country_code
+
+    column País
+        dataType: string
+        summarizeBy: none
+        sourceColumn: country
+
+    partition Paises = m
+        mode: import
+        source =
+            let
+                Source = Csv.Document(
+                    Web.Contents("https://raw.githubusercontent.com/mnapo/ifts24-analisis-integrador/main/public/data/indicadores-banco-mundial.csv"),
+                    [Delimiter = ",", Columns = 8, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+                ),
+                Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+                Selected = Table.SelectColumns(Headers, {"country_code", "country"}),
+                DistinctRows = Table.Distinct(Selected)
+            in
+                DistinctRows
