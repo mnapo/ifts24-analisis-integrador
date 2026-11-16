@@ -2,7 +2,7 @@
 
 ## Origen
 
-`public/data/indicadores-banco-mundial.csv`: 10.000 observaciones sintéticas (4 países × 4 indicadores × 15 años, 2010–2024), identificadas por `observation_id`. Los valores son autogenerados con fines académicos y no representan datos oficiales del Banco Mundial. El campo `source` deja constancia de ello.
+`public/data/indicadores-banco-mundial.csv`: 240 observaciones sintéticas (4 países × 4 indicadores × 15 años, 2010–2024), identificadas por `observation_id`. Los valores son autogenerados con fines académicos y no representan datos oficiales del Banco Mundial. El campo `source` deja constancia de ello.
 
 ## Power Query
 
@@ -10,7 +10,7 @@ Las particiones leen el CSV UTF-8 publicado en GitHub con `QuoteStyle.Csv`. Fact
 
 ## Modelo semántico
 
-FactIndicadores es la tabla de hechos. Paises e Indicadores son dimensiones relacionadas 1:N con filtrado unidireccional. La granularidad de cada fila es una observación sintética individual; `observation_id` es único. Los análisis temporales deben promediar las observaciones dentro de cada país–indicador–año.
+FactIndicadores es la tabla de hechos. Paises e Indicadores son dimensiones relacionadas 1:N con filtrado unidireccional. La granularidad es país–indicador–año: una observación por combinación. `observation_id` identifica cada fila de forma única.
 
 ## Medidas DAX
 
