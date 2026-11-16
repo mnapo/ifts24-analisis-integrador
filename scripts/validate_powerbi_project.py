@@ -45,13 +45,13 @@ def main():
         reader = csv.DictReader(file)
         rows = list(reader)
         check(reader.fieldnames == ["observation_id", "country_code", "country", "indicator_code", "indicator_name", "year", "value", "unit", "source"], "CSV schema")
-    check(len(rows) == 10000, "10,000 synthetic observations")
+    check(len(rows) == 240, "240 synthetic observations")
     check({row["country_code"] for row in rows} == COUNTRIES, "four target countries")
     check({row["indicator_code"] for row in rows} == INDICATORS, "four target indicators")
     check({int(row["year"]) for row in rows} == set(range(2010, 2025)), "complete 2010-2024 year range")
     keys = [(row["country_code"], row["indicator_code"], row["year"]) for row in rows]
     check(len(keys) == len(set(keys)), "unique country-indicator-year keys")
-    check(all("sintéticos" in row["source"].lower() for row in rows), "synthetic origin disclosed in every row")
+    check(all("sintéticos" in row["source"].lower() for row in rows), "synthetic origin disclosed in every row")\n    check(all(sum(1 for row in rows if row["country_code"] == country and row["indicator_code"] == indicator) == 15 for country in COUNTRIES for indicator in INDICATORS), "15 yearly observations per country-indicator pair")
     check(all(Decimal(row["value"]) >= 0 for row in rows), "non-negative values")
     check(any(Decimal(row["value"]) > 100 for row in rows), "dataset supports values above 100")
     page1 = REPORT / "pages/portada/visuals"
