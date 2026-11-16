@@ -179,15 +179,16 @@ fields=[
     (119,272,90,"2026"),
     (199,248,266,"PASZTETNIK MARTÍN"),
     (160,224,260,"MATÍAS NAPOLI"),
-    (175,200,220,"01/09/2026"),
-    (235,176,220,"16/11/2026"),
+    (160,200,220,"01/09/2026",179),
+    (235,176,220,"16/11/2026",235),
 ]
-for x,y,width,value in fields:
+for field in fields:
+    x,y,width,value,*text_x = field
     overlay_canvas.setFillColor(colors.white)
     overlay_canvas.rect(x,y-3,width,19,fill=1,stroke=0)
     overlay_canvas.setFillColor(colors.black)
     overlay_canvas.setFont("Helvetica-Bold",11.5)
-    overlay_canvas.drawString(x,y,value)
+    overlay_canvas.drawString(text_x[0] if text_x else x,y,value)
 overlay_canvas.save()
 overlay_buffer.seek(0)
 overlay_page=PdfReader(overlay_buffer).pages[0]
