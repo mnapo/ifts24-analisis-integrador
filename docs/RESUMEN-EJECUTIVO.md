@@ -1,46 +1,37 @@
 # Resumen ejecutivo
 
-## Indicadores de desarrollo en América Latina: comparación 2024
+## Indicadores de desarrollo en América Latina
 
 ### Objetivo
 
-Comparar Argentina, Brasil, Chile y Uruguay mediante dos indicadores del Banco Mundial: porcentaje de población que utiliza Internet y puntaje general de los Statistical Performance Indicators (SPI).
+Construir un análisis comparativo de Argentina, Brasil, Chile y Uruguay mediante cuatro indicadores económicos y sociales durante 2010–2024.
 
-### Hallazgos principales
+### Dataset y metodología
 
-**Acceso a Internet**
-- Chile: 95,6%.
-- Uruguay: 92,0%.
-- Argentina: 89,7%.
-- Brasil: 84,5%.
+El conjunto contiene 240 observaciones (4 países × 4 indicadores × 15 años). Los valores fueron autogenerados con patrones plausibles y variaciones anuales para permitir practicar limpieza, modelado, medidas DAX, segmentación y visualización temporal.
 
-Chile presenta el mayor nivel de uso de Internet del grupo, mientras que Brasil registra el menor. La diferencia entre ambos es de 11,1 puntos porcentuales.
+**Advertencia metodológica:** los registros son sintéticos, no observaciones oficiales del Banco Mundial. No deben utilizarse para conclusiones económicas reales, pronósticos ni citas estadísticas. Se conservó la referencia de los códigos de indicadores como identificadores temáticos, no como certificación de procedencia.
 
-**Desempeño estadístico (SPI)**
-- Chile: 89,4 puntos.
-- Brasil: 82,3 puntos.
-- Argentina: 80,4 puntos.
-- Uruguay: 80,1 puntos.
+### Indicadores
 
-Chile también encabeza este indicador. Argentina y Uruguay presentan resultados cercanos, con una diferencia de 0,3 puntos.
+- PIB per cápita (US$ corrientes), código NY.GDP.PCAP.CD.
+- Inflación anual al consumidor, código FP.CPI.TOTL.ZG.
+- Desempleo total, código SL.UEM.TOTL.ZS.
+- Uso de Internet (% de la población), código IT.NET.USER.ZS.
 
-### Conclusiones
+### Diseño del análisis
 
-En la comparación seleccionada para 2024, Chile obtiene el mayor valor en ambos indicadores. Brasil muestra la menor proporción de usuarios de Internet, aunque supera levemente a Argentina y Uruguay en el puntaje SPI.
+El reporte permite filtrar por país, indicador y año; comparar países en un período y explorar la evolución temporal. La tabla de detalle permite inspeccionar valores, unidades y fuente declarada.
 
-Los indicadores describen dimensiones diferentes: conectividad de la población y capacidad del sistema estadístico. No deben combinarse en un único puntaje ni interpretarse como evidencia de causalidad.
+Los indicadores se analizan por separado porque utilizan escalas y unidades distintas. El PIB per cápita no debe compararse directamente con porcentajes.
 
 ### Limitaciones
 
-- Se analizan cuatro países y dos indicadores.
-- La extracción es una fotografía del año 2024; no permite describir evolución temporal.
-- Los valores se presentan redondeados a un decimal.
-- La disponibilidad y revisión de datos corresponden a las publicaciones del Banco Mundial.
+- Los datos son sintéticos y no reflejan necesariamente series reales.
+- Los patrones fueron diseñados para demostración y pueden no reproducir shocks o revisiones históricas reales.
+- El análisis cubre cuatro países y no representa a toda América Latina.
+- La validez de las visualizaciones debe verificarse al abrir y actualizar el PBIP en Power BI Desktop.
 
-### Fuente
+### Referencias metodológicas
 
-World Bank Open Data:
-- https://data.worldbank.org/indicator/IT.NET.USER.ZS
-- https://data.worldbank.org/indicator/IQ.SPI.OVRL
-
-Licencia indicada por el Banco Mundial: CC BY 4.0.
+Los códigos y nombres de indicadores se corresponden con el catálogo temático de World Bank Open Data. La fuente de los valores de este proyecto, sin embargo, es la generación sintética local y no el Banco Mundial.
