@@ -1,0 +1,6 @@
+relationship Fecha_Movimientos
+    fromColumn: Movimientos.fecha
+    toColumn: Calendario.Fecha
+    fromCardinality: many
+    toCardinality: one
+    crossFilteringBehavior: oneDirection
