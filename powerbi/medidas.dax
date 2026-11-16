@@ -1,0 +1,29 @@
+-- Tabla de hechos: Movimientos
+-- Columnas reales: importe, tipo, fecha, categoria
+Total Ingresos =
+CALCULATE(
+    SUM(Movimientos[importe]),
+    Movimientos[tipo] = "Ingreso"
+)
+
+Total Gastos =
+CALCULATE(
+    SUM(Movimientos[importe]),
+    Movimientos[tipo] = "Gasto"
+)
+
+Balance Neto =
+[Total Ingresos] - [Total Gastos]
+
+Cantidad de Movimientos =
+COUNTROWS(Movimientos)
+
+Promedio por Movimiento =
+AVERAGE(Movimientos[importe])
+
+-- Tabla calendario
+Calendario =
+CALENDAR(
+    MIN(Movimientos[fecha]),
+    MAX(Movimientos[fecha])
+)
