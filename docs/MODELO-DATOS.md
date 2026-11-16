@@ -2,7 +2,7 @@
 
 ## Alcance
 
-Dataset sintético de Argentina, Brasil, Chile y Uruguay para 2010–2024. Contiene 240 registros: cuatro países, cuatro indicadores y quince años. Los valores fueron autogenerados para fines académicos; no deben citarse como estadísticas oficiales del Banco Mundial.
+Dataset sintético de Argentina, Brasil, Chile y Uruguay para 2010–2024. Contiene 10.000 observaciones sintéticas distribuidas en cuatro países, cuatro indicadores y quince años. Cada observación tiene un `observation_id` único; cada combinación país-indicador cuenta con más de diez registros. Los valores fueron autogenerados para fines académicos; no deben citarse como estadísticas oficiales del Banco Mundial.
 
 ## Indicadores
 
