@@ -6,13 +6,13 @@ Proyecto académico para el Trabajo Final de Análisis y procesamiento de datos.
 
 Archivo central: `public/data/indicadores-banco-mundial.csv`.
 
-- 4 países × 4 indicadores × 15 años × 41/42 observaciones por combinación = 10.000 registros. El campo `observation_id` identifica cada observación sintética.
+- 4 países × 4 indicadores × 15 años = 240 registros. El campo `observation_id` identifica cada fila de forma única.
 - PIB per cápita (US$ corrientes): `NY.GDP.PCAP.CD`.
 - Inflación anual: `FP.CPI.TOTL.ZG`.
 - Desempleo total: `SL.UEM.TOTL.ZS`.
 - Uso de Internet: `IT.NET.USER.ZS`.
 
-**Importante:** los 10.000 registros son sintéticos y autogenerados para practicar procesamiento, modelado y visualización. No son datos oficiales ni estimaciones publicadas por el Banco Mundial. El campo `source` identifica esta condición en cada fila.
+**Importante:** los 240 registros son sintéticos y autogenerados para practicar procesamiento, modelado y visualización. No son datos oficiales ni estimaciones publicadas por el Banco Mundial. El campo `source` identifica esta condición en cada fila.
 
 ## Proyecto Power BI
 
