@@ -5,7 +5,7 @@ Actualizado: 16 de noviembre de 2026.
 | Componente | Estado | Observación |
 |---|---|---|
 | Tema | Definido | Indicadores económicos y sociales de cuatro países |
-| Dataset | Generado | 10.000 registros sintéticos, 2010–2024 |
+| Dataset | Generado | 240 registros sintéticos, 2010–2024 |
 | Indicadores | Incorporados | PIB per cápita, inflación, desempleo, uso de Internet |
 | Fuente declarada | Explícita | Cada fila identifica datos sintéticos autogenerados |
 | Power Query | Actualizado | CSV con comillas; sin límite universal 0–100 |
@@ -16,7 +16,7 @@ Actualizado: 16 de noviembre de 2026.
 | Validación estática | Actualizada | `python scripts/validate_powerbi_project.py` |
 | Apertura/refresh Desktop | Pendiente de verificación | Requiere Power BI Desktop |
 | PBIX final | Pendiente | Guardar desde Power BI Desktop |
-| PDF académico | Generado | Carátula oficial IFTS 24 + informe y anexo resumido por país, indicador y año; artefacto de GitHub Actions |
+| PDF académico | Generado | Carátula oficial IFTS 24 + informe y sin anexo redundante de datos; artefacto de GitHub Actions |
 
 ## Próximos pasos
 
