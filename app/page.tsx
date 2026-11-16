@@ -1,17 +1,210 @@
 "use client";
-import {useEffect,useMemo,useState} from "react";
-import {Area,AreaChart,CartesianGrid,Legend,ResponsiveContainer,Tooltip,XAxis,YAxis,Bar,BarChart,PieChart,Pie,Cell} from "recharts";
-import {ArrowDownRight,ArrowUpRight,Wallet,Search,Download} from "lucide-react";
-type Row={id:number;fecha:string;tipo:string;categoria:string;descripcion:string;importe:number;medio_pago:string};
-const fmt=(n:number)=>new Intl.NumberFormat("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0}).format(n);
-const palette=["#316be8","#12a889","#f0ae52","#8a7cf6","#df8196","#6ba6a1","#9aa8b8","#d08b48"];
-export default function Page(){
- const [rows,setRows]=useState<Row[]>([]),[month,setMonth]=useState("all"),[term,setTerm]=useState("");
- useEffect(()=>{fetch("/data/movimientos.csv").then(r=>r.text()).then(t=>setRows(t.trim().split(/\r?\n/).slice(1).map(l=>{const [id,fecha,tipo,categoria,descripcion,importe,medio_pago]=l.split(",");return {id:+id,fecha,tipo,categoria,descripcion,importe:+importe,medio_pago};})));},[]);
- const data=useMemo(()=>rows.filter(r=>(month==="all"||r.fecha.startsWith(month))&&(r.categoria+" "+r.descripcion+" "+r.tipo).toLowerCase().includes(term.toLowerCase())),[rows,month,term]);
- const income=data.filter(r=>r.tipo==="Ingreso").reduce((s,r)=>s+r.importe,0),expense=data.filter(r=>r.tipo==="Gasto").reduce((s,r)=>s+r.importe,0);
- const monthly=useMemo(()=>{const m=new Map<string,{mes:string,Ingresos:number,Gastos:number}>();data.forEach(r=>{const k=r.fecha.slice(0,7);if(!m.has(k))m.set(k,{mes:new Date(k+"-02").toLocaleDateString("es-AR",{month:"short"}),Ingresos:0,Gastos:0});const v=m.get(k)!;if(r.tipo==="Ingreso")v.Ingresos+=r.importe;else v.Gastos+=r.importe;});return [...m.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(x=>x[1]);},[data]);
- const byCat=useMemo(()=>{const m=new Map<string,number>();data.filter(r=>r.tipo==="Gasto").forEach(r=>m.set(r.categoria,(m.get(r.categoria)||0)+r.importe));return [...m].map(([name,value])=>({name,value})).sort((a,b)=>b.value-a.value);},[data]);
- const exportCsv=()=>{const content=["id,fecha,tipo,categoria,descripcion,importe,medio_pago",...data.map(r=>[r.id,r.fecha,r.tipo,r.categoria,r.descripcion,r.importe,r.medio_pago].join(","))].join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+content],{type:"text/csv;charset=utf-8"}));a.download="movimientos-filtrados.csv";a.click();};
- return <main className="layout"><aside className="sidebar"><div className="brand"><b>f.</b><span>finanzas<small>PERSONAL ANALYTICS</small></span></div><p className="sidecap">ESPACIO DE TRABAJO</p><div className="nav active">▦　 Resumen</div><div className="nav">◷　 Movimientos</div><div className="nav">◉　 Categorías</div><div className="profile"><b>IF</b><span>IFTS 24<small>Proyecto integrador</small></span></div></aside><section className="main"><header><div><small className="overline">ANÁLISIS FINANCIERO / 2025</small><h1>Resumen general</h1><p>Una mirada clara sobre tus ingresos y gastos.</p></div><button onClick={exportCsv}><Download size={16}/> Exportar CSV</button></header><div className="toolbar"><label>Período <select value={month} onChange={e=>setMonth(e.target.value)}><option value="all">Todo 2025</option>{Array.from({length:12},(_,i)=>{const v="2025-"+String(i+1).padStart(2,"0");return <option key={v} value={v}>{new Date(v+"-02").toLocaleDateString("es-AR",{month:"long"})}</option>})}</select></label><label className="search"><Search size={16}/><input placeholder="Buscar movimientos..." value={term} onChange={e=>setTerm(e.target.value)}/></label><span>{data.length} movimientos</span></div><div className="cards"><article><label>Ingresos <i className="green"><ArrowUpRight size={18}/></i></label><strong>{fmt(income)}</strong><small>Entradas registradas</small></article><article><label>Gastos <i className="red"><ArrowDownRight size={18}/></i></label><strong>{fmt(expense)}</strong><small>Salidas registradas</small></article><article><label>Balance neto <i className="blue"><Wallet size={18}/></i></label><strong className={income-expense>=0?"positive":"negative"}>{fmt(income-expense)}</strong><small>Ingresos menos gastos</small></article><article><label>Movimientos</label><strong>{data.length}</strong><small>Operaciones registradas</small></article></div><div className="charts"><article className="panel"><h2>Flujo de dinero</h2><p>Ingresos y gastos a lo largo del tiempo</p><div className="chart"><ResponsiveContainer><AreaChart data={monthly}><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#12a889" stopOpacity={.2}/><stop offset="100%" stopColor="#12a889" stopOpacity={0}/></linearGradient></defs><CartesianGrid stroke="#edf0f4" vertical={false}/><XAxis dataKey="mes" axisLine={false} tickLine={false}/><YAxis tickFormatter={v=>"$"+Math.round(v/1000)+"k"} axisLine={false} tickLine={false}/><Tooltip formatter={(v)=>fmt(Number(v))}/><Legend/><Area dataKey="Ingresos" stroke="#12a889" fill="url(#g)" strokeWidth={2.5}/><Area dataKey="Gastos" stroke="#316be8" fill="#316be8" fillOpacity={.08} strokeWidth={2.5}/></AreaChart></ResponsiveContainer></div></article><article className="panel"><h2>Gastos por categoría</h2><p>Distribución del período seleccionado</p><div className="chart"><ResponsiveContainer><PieChart><Pie data={byCat} dataKey="value" nameKey="name" innerRadius={62} outerRadius={94} paddingAngle={3}>{byCat.map((x,i)=><Cell key={x.name} fill={palette[i%palette.length]}/>)}</Pie><Tooltip formatter={v=>fmt(Number(v))}/><Legend layout="vertical" verticalAlign="middle" align="right"/></PieChart></ResponsiveContainer></div></article></div><article className="panel tablepanel"><div className="tablehead"><div><h2>Últimos movimientos</h2><p>Detalle de operaciones del período</p></div><span>{data.length} registros</span></div><div className="tablewrap"><table><thead><tr><th>Fecha</th><th>Descripción</th><th>Categoría</th><th>Medio</th><th>Tipo</th><th className="right">Importe</th></tr></thead><tbody>{[...data].sort((a,b)=>b.fecha.localeCompare(a.fecha)||b.id-a.id).slice(0,12).map(r=><tr key={r.id}><td>{new Date(r.fecha+"T12:00:00").toLocaleDateString("es-AR")}</td><td>{r.descripcion}</td><td>{r.categoria}</td><td>{r.medio_pago}</td><td><span className={r.tipo==="Ingreso"?"tag income":"tag expense"}>{r.tipo}</span></td><td className="right">{fmt(r.importe)}</td></tr>)}</tbody></table></div></article><footer>Datos sintéticos con fines educativos · IFTS 24 · 2025</footer></section></main>;
+
+import { useEffect, useMemo, useState } from "react";
+import {
+  Bar, BarChart, CartesianGrid, Cell, Legend, ResponsiveContainer,
+  Tooltip, XAxis, YAxis,
+} from "recharts";
+import { Download, Globe2, Info, Search, TrendingUp } from "lucide-react";
+
+type IndicatorRow = {
+  country_code: string;
+  country: string;
+  indicator_code: string;
+  indicator_name: string;
+  year: number;
+  value: number;
+  unit: string;
+  source: string;
+};
+
+const COLORS: Record<string, string> = {
+  ARG: "#3976db",
+  BRA: "#18a889",
+  CHL: "#e5a544",
+  URY: "#8875dc",
+};
+const fmt = (n: number, digits = 1) =>
+  new Intl.NumberFormat("es-AR", { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(n);
+const percent = (n: number) => `${fmt(n)}%`;
+const INDICATORS = {
+  internet: {
+    code: "IT.NET.USER.ZS",
+    title: "Acceso a Internet",
+    subtitle: "Población que utiliza Internet",
+    unit: "%",
+    source: "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+  },
+  spi: {
+    code: "IQ.SPI.OVRL",
+    title: "Desempeño estadístico",
+    subtitle: "Statistical Performance Indicators",
+    unit: "puntos",
+    source: "https://data.worldbank.org/indicator/IQ.SPI.OVRL",
+  },
+} as const;
+
+function parseCsv(text: string): IndicatorRow[] {
+  const lines = text.trim().split(/\r?\n/);
+  return lines.slice(1).map((line) => {
+    const values = line.split(",");
+    const [country_code, country, indicator_code, indicator_name, year, value, unit, source] = values;
+    return {
+      country_code, country, indicator_code, indicator_name,
+      year: Number(year), value: Number(value), unit, source,
+    };
+  }).filter((row) => row.country_code && Number.isFinite(row.value));
+}
+
+function MetricChart({
+  title, subtitle, rows, selectedCountry, unit,
+}: {
+  title: string;
+  subtitle: string;
+  rows: IndicatorRow[];
+  selectedCountry: string;
+  unit: string;
+}) {
+  const sorted = [...rows].sort((a, b) => b.value - a.value);
+  return (
+    <article className="panel chart-panel">
+      <div className="panel-heading">
+        <div><h2>{title}</h2><p>{subtitle}</p></div>
+        <span className="unit-pill">{unit}</span>
+      </div>
+      <div className="chart">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={sorted} margin={{ top: 8, right: 10, left: 0, bottom: 0 }}>
+            <CartesianGrid stroke="#edf1f5" vertical={false} />
+            <XAxis dataKey="country" axisLine={false} tickLine={false} tick={{ fill: "#718096", fontSize: 11 }} />
+            <YAxis domain={[0, 100]} axisLine={false} tickLine={false} tick={{ fill: "#9aa5b3", fontSize: 10 }} />
+            <Tooltip
+              cursor={{ fill: "#f5f7fa" }}
+              formatter={(value) => [`${fmt(Number(value))}${unit === "%" ? "%" : " pts"}`, title]}
+              contentStyle={{ border: "1px solid #e8edf2", borderRadius: 10, fontSize: 12 }}
+            />
+            <Bar dataKey="value" name={title} radius={[6, 6, 0, 0]} maxBarSize={54}>
+              {sorted.map((row) => (
+                <Cell key={row.country_code} fill={COLORS[row.country_code]} opacity={selectedCountry === "all" || selectedCountry === row.country_code ? 1 : 0.28} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="chart-foot"><span>Escala de 0 a 100</span><span>Fuente: Banco Mundial · 2024</span></div>
+    </article>
+  );
+}
+
+export default function Page() {
+  const [rows, setRows] = useState<IndicatorRow[]>([]);
+  const [country, setCountry] = useState("all");
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetch("/data/indicadores-banco-mundial.csv")
+      .then((response) => {
+        if (!response.ok) throw new Error("No se pudo cargar el dataset.");
+        return response.text();
+      })
+      .then((text) => setRows(parseCsv(text)))
+      .catch(() => setError("No fue posible cargar los datos del Banco Mundial."))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const internetRows = useMemo(() => rows.filter((r) => r.indicator_code === INDICATORS.internet.code), [rows]);
+  const spiRows = useMemo(() => rows.filter((r) => r.indicator_code === INDICATORS.spi.code), [rows]);
+  const countries = useMemo(() => [...new Map(rows.map((r) => [r.country_code, r.country])).entries()], [rows]);
+  const visibleRows = useMemo(
+    () => rows.filter((r) =>
+      (country === "all" || r.country_code === country) &&
+      (r.country + " " + r.indicator_name).toLocaleLowerCase("es").includes(query.toLocaleLowerCase("es"))
+    ),
+    [rows, country, query],
+  );
+
+  const avgInternet = internetRows.length ? internetRows.reduce((s, r) => s + r.value, 0) / internetRows.length : 0;
+  const avgSpi = spiRows.length ? spiRows.reduce((s, r) => s + r.value, 0) / spiRows.length : 0;
+  const leaderInternet = [...internetRows].sort((a, b) => b.value - a.value)[0];
+  const leaderSpi = [...spiRows].sort((a, b) => b.value - a.value)[0];
+
+  const exportCsv = () => {
+    const header = "country_code,country,indicator_code,indicator_name,year,value,unit,source";
+    const content = [header, ...visibleRows.map((r) => [
+      r.country_code, r.country, r.indicator_code, r.indicator_name, r.year, r.value, r.unit, r.source,
+    ].join(","))].join("\n");
+    const url = URL.createObjectURL(new Blob(["\ufeff" + content], { type: "text/csv;charset=utf-8" }));
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "indicadores-banco-mundial-filtrados.csv";
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <main className="layout">
+      <aside className="sidebar">
+        <div className="brand"><b><Globe2 size={20} /></b><span>latam<span className="brand-light">insights</span><small>DATA EXPLORER</small></span></div>
+        <p className="sidecap">ANÁLISIS</p>
+        <div className="nav active">▦　 Panorama regional</div>
+        <div className="side-note"><span className="live-dot" /> Dataset público<br /><small>World Bank Open Data</small></div>
+        <div className="profile"><b>IF</b><span>IFTS 24<small>Trabajo integrador · Individual</small></span></div>
+      </aside>
+
+      <section className="main">
+        <header className="hero">
+          <div>
+            <div className="overline">WORLD BANK OPEN DATA <span> / </span> AMÉRICA LATINA</div>
+            <h1>Indicadores de desarrollo</h1>
+            <p>Una comparación regional de conectividad y capacidad estadística.</p>
+          </div>
+          <div className="year-badge"><span>PERÍODO</span><strong>2024</strong></div>
+        </header>
+
+        <section className="story-intro">
+          <div className="story-icon"><TrendingUp size={19} /></div>
+          <div><strong>¿Cómo se posicionan Argentina, Brasil, Chile y Uruguay?</strong><p>Explorá dos dimensiones complementarias del desarrollo regional con datos comparables del mismo año.</p></div>
+        </section>
+
+        <div className="toolbar">
+          <label>País <select value={country} onChange={(e) => setCountry(e.target.value)}><option value="all">Todos los países</option>{countries.map(([code, name]) => <option key={code} value={code}>{name}</option>)}</select></label>
+          <label className="search"><Search size={15} /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar país o indicador..." /></label>
+          <button onClick={exportCsv} disabled={loading || !!error}><Download size={15} /> Exportar datos</button>
+        </div>
+
+        {loading ? <div className="state-panel">Cargando indicadores...</div> : error ? <div className="state-panel error">{error}</div> : (
+          <>
+            <div className="section-label">PANORAMA GENERAL <span>· 4 PAÍSES · 2 INDICADORES</span></div>
+            <div className="cards">
+              <article><label>Promedio de acceso a Internet</label><strong>{percent(avgInternet)}</strong><small>Promedio de los países seleccionados</small><div className="metric-mark teal" /></article>
+              <article><label>Promedio de desempeño estadístico</label><strong>{fmt(avgSpi)} <em>pts</em></strong><small>Escala de 0 a 100</small><div className="metric-mark blue" /></article>
+              <article><label>Líder en conectividad</label><strong>{leaderInternet?.country ?? "—"}</strong><small>{leaderInternet ? percent(leaderInternet.value) + " de la población" : "Sin datos"}</small><div className="metric-mark gold" /></article>
+              <article><label>Líder en desempeño estadístico</label><strong>{leaderSpi?.country ?? "—"}</strong><small>{leaderSpi ? fmt(leaderSpi.value) + " puntos" : "Sin datos"}</small><div className="metric-mark purple" /></article>
+            </div>
+
+            <div className="charts">
+              <MetricChart title="Acceso a Internet" subtitle="Personas que utilizan Internet (% de la población)" rows={internetRows} selectedCountry={country} unit="%" />
+              <MetricChart title="Desempeño estadístico" subtitle="Statistical Performance Indicators (SPI)" rows={spiRows} selectedCountry={country} unit="puntos" />
+            </div>
+
+            <article className="panel table-panel">
+              <div className="table-heading"><div><h2>Detalle de indicadores</h2><p>Valores por país e indicador · año 2024</p></div><span>{visibleRows.length} observaciones</span></div>
+              <div className="table-wrap"><table><thead><tr><th>País</th><th>Indicador</th><th>Código</th><th className="right">Valor</th><th>Unidad</th></tr></thead>
+                <tbody>{visibleRows.map((r) => <tr key={r.country_code + r.indicator_code}><td><span className="country-dot" style={{ background: COLORS[r.country_code] }} />{r.country}</td><td>{r.indicator_code === INDICATORS.internet.code ? "Acceso a Internet" : "Desempeño estadístico (SPI)"}</td><td><code>{r.indicator_code}</code></td><td className="right value-cell">{fmt(r.value, 3)}</td><td>{r.unit}</td></tr>)}</tbody>
+              </table></div>
+            </article>
+
+            <div className="insight"><Info size={17} /><p><strong>Lectura de los datos.</strong> Chile lidera ambos indicadores dentro del grupo comparado. Brasil presenta el menor porcentaje de uso de Internet, mientras que Argentina y Uruguay muestran puntajes SPI muy próximos. Son indicadores distintos: no deben sumarse ni interpretarse como evidencia de causalidad.</p></div>
+          </>
+        )}
+
+        <footer>
+          <span>IFTS 24 · Trabajo final de análisis de datos</span>
+          <span>Fuente: <a href={INDICATORS.internet.source} target="_blank" rel="noreferrer">World Bank — Internet</a> · <a href={INDICATORS.spi.source} target="_blank" rel="noreferrer">World Bank — SPI</a> · Licencia CC BY 4.0</span>
+        </footer>
+      </section>
+    </main>
+  );
 }
