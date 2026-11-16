@@ -164,10 +164,33 @@ doc.build(story,onFirstPage=footer,onLaterPages=footer)
 
 cover=PdfReader(str(COVER))
 body=PdfReader(str(tmp))
+# Fill the editable placeholder fields in the official first-page template.
+from reportlab.pdfgen import canvas
+cover_page=cover.pages[0]
+page_width=float(cover_page.mediabox.width)
+page_height=float(cover_page.mediabox.height)
+overlay_buffer=io.BytesIO()
+overlay_canvas=canvas.Canvas(overlay_buffer,pagesize=(page_width,page_height))
+overlay_canvas.setFillColor(colors.white)
+fields=[
+    (162,296,220,"Análisis y procesamiento de datos"),
+    (119,272,90,"2026"),
+    (205,248,260,"Pasztetnik Martín"),
+    (160,224,260,"Matías Napoli"),
+]
+for x,y,width,value in fields:
+    overlay_canvas.rect(x,y-3,width,19,fill=1,stroke=0)
+    overlay_canvas.setFillColor(colors.black)
+    overlay_canvas.setFont("Helvetica",14.2)
+    overlay_canvas.drawString(x,y,value)
+overlay_canvas.save()
+overlay_buffer.seek(0)
+overlay_page=PdfReader(overlay_buffer).pages[0]
+cover_page.merge_page(overlay_page)
 writer=PdfWriter()
-writer.add_page(cover.pages[0])
+writer.add_page(cover_page)
 for page in body.pages:
     writer.add_page(page)
 with OUT.open("wb") as f:
     writer.write(f)
-print(f"Created {OUT} with 1 official cover page + {len(body.pages)} report pages; rows={len(rows)}")
+print(f"Created {OUT} with official cover filled (Matías Napoli / 2026 / Análisis y procesamiento de datos / Pasztetnik Martín), plus {len(body.pages)} report pages; rows={len(rows)}")
