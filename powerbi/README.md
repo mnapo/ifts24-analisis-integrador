@@ -1,6 +1,6 @@
 # Proyecto Power BI
 
-El proyecto fuente está en formato **PBIP + TMDL**. Las medidas DAX ya están declaradas en el modelo semántico, dentro de `Finanzas.SemanticModel/definition/tables/Movimientos.tmdl`.
+El proyecto fuente está en formato **PBIP + TMDL**. Las medidas DAX ya están declaradas en el modelo semántico, dentro de `Finanzas.SemanticModel/definition/tables/Movimientos.tmdl`. El informe contiene una página inicial; las visualizaciones todavía deben configurarse en Power BI Desktop.
 
 ## Abrir
 
