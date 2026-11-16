@@ -16,7 +16,7 @@ Actualizado: 16 de noviembre de 2026.
 | Validación estática | Actualizada | `python scripts/validate_powerbi_project.py` |
 | Apertura/refresh Desktop | Pendiente de verificación | Requiere Power BI Desktop |
 | PBIX final | Pendiente | Guardar desde Power BI Desktop |
-| PDF académico | Generado | Carátula oficial IFTS 24 + informe y anexo de 240 registros; artefacto de GitHub Actions |
+| PDF académico | Generado | Carátula oficial IFTS 24 + informe y anexo resumido por país, indicador y año; artefacto de GitHub Actions |
 
 ## Próximos pasos
 
