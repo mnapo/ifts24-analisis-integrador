@@ -135,7 +135,7 @@ export default function Page() {
                 <Bar dataKey="value" radius={[5, 5, 0, 0]} maxBarSize={70}>{currentRows.map((r) => <Cell key={r.country_code} fill={COLORS[r.country_code]} />)}</Bar>
               </BarChart>
             </ResponsiveContainer></div>
-            <p className="caption">Promedio de {currentRows.reduce((sum, r) => sum + r.observations, 0).toLocaleString("es-AR")} observaciones sintéticas agrupadas por país.</p>
+            <p className="caption">Comparación de los cuatro registros correspondientes al año seleccionado.</p>
           </article>
 
           <article className="visual">
@@ -151,12 +151,12 @@ export default function Page() {
                 )}
               </LineChart>
             </ResponsiveContainer></div>
-            <p className="caption">Promedios anuales por país. El filtro de año se aplica a la comparación; la serie conserva el período completo.</p>
+            <p className="caption">Valores anuales por país. El filtro de año se aplica a la comparación; la serie conserva el período completo.</p>
           </article>
         </section>
       )}
 
-      <footer className="dashboard-footer"><span>Matías Napoli · IFTS 24</span><span>10.000 registros sintéticos · Uso académico</span></footer>
+      <footer className="dashboard-footer"><span>Matías Napoli · IFTS 24</span><span>240 registros sintéticos · Uso académico</span></footer>
     </main>
   );
 }
