@@ -1,241 +1,241 @@
 country_code,country,indicator_code,indicator_name,year,value,unit,source
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2010,10385.000,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2010,10.500,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2010,7.700,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2010,45.000,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2011,10966.502,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2011,26.133,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2011,8.005,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2011,49.482,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2012,10914.786,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2012,40.763,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2012,7.775,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2012,53.180,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2013,10991.852,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2013,54.875,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2013,7.158,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2013,55.787,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2014,11552.114,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2014,69.724,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2014,6.795,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2014,57.657,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2015,11736.773,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2015,85.470,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2015,7.003,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2015,59.590,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2016,11524.519,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2016,100.943,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2016,7.371,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2016,62.350,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2017,11857.577,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2017,115.376,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2017,7.285,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2017,66.197,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2018,12513.981,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2018,131.948,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2018,6.707,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2018,70.734,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2019,12629.348,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2019,149.424,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2019,6.230,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2019,75.143,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2020,12655.563,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2020,167.627,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2020,6.316,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2020,78.686,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2021,13239.308,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2021,185.303,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2021,6.709,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2021,81.148,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2022,13654.923,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2022,215.977,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2022,6.763,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2022,82.972,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2023,13455.982,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2023,246.664,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2023,6.263,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2023,84.986,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2024,13533.185,US$,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2024,278.359,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2024,5.701,%,Datos sintéticos autogenerados (no oficiales)
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,87.904,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2010,11507.016,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2010,5.589,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2010,6.990,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2010,40.863,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2011,11441.982,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2011,5.474,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2011,7.147,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2011,44.910,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2012,11014.226,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2012,4.592,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2012,6.762,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2012,47.906,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2013,11135.348,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2013,4.188,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2013,6.352,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2013,49.958,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2014,11326.502,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2014,4.798,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2014,6.468,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2014,51.750,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2015,10844.831,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2015,5.454,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2015,6.989,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2015,54.120,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2016,10470.806,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2016,5.118,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2016,7.278,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2016,57.557,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2017,10783.142,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2017,4.225,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2017,6.994,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2017,61.904,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2018,10878.161,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2018,4.038,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2018,6.526,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2018,66.449,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2019,10471.786,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2019,4.770,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2019,6.499,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2019,70.362,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2020,10509.786,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2020,5.271,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2020,6.974,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2020,73.197,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2021,10895.490,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2021,4.734,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2021,7.373,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2021,75.159,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2022,10639.081,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2022,3.892,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2022,7.214,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2022,76.986,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2023,10118.652,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2023,3.931,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2023,6.727,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2023,79.495,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2024,10229.674,US$,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2024,4.730,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2024,6.561,%,Datos sintéticos autogenerados (no oficiales)
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,83.091,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2010,13096.266,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2010,2.037,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2010,8.643,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2010,46.515,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2011,13036.458,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2011,1.490,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2011,8.453,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2011,50.366,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2012,13208.792,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2012,1.117,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2012,7.968,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2012,53.155,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2013,13940.120,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2013,1.779,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2013,7.833,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2013,55.381,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2014,14127.646,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2014,2.801,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2014,8.248,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2014,57.885,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2015,13813.345,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2015,2.973,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2015,8.712,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2015,61.342,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2016,14161.569,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2016,2.348,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2016,8.659,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2016,65.845,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2017,14855.556,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2017,2.161,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2017,8.185,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2017,70.856,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2018,14899.676,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2018,2.997,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2018,7.921,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2018,75.526,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2019,14935.561,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2019,3.923,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2019,8.232,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2019,79.215,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2020,15701.052,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2020,3.871,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2020,8.747,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2020,81.878,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2021,16228.951,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2021,3.227,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2021,8.838,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2021,84.090,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2022,16003.462,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2022,3.253,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2022,8.416,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2022,86.702,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2023,16118.604,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2023,4.218,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2023,8.046,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2023,90.322,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2024,16772.225,US$,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2024,4.998,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2024,8.228,%,Datos sintéticos autogenerados (no oficiales)
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,94.945,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2010,12027.146,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2010,6.999,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2010,7.588,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2010,47.795,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2011,12428.794,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2011,6.106,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2011,7.200,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2011,50.627,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2012,13447.482,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2012,6.169,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2012,6.903,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2012,52.645,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2013,14482.641,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2013,6.872,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2013,7.166,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2013,54.617,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2014,14770.421,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2014,6.948,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2014,7.746,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2014,57.340,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2015,15171.421,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2015,6.063,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2015,7.994,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2015,61.155,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2016,16246.310,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2016,5.306,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2016,7.685,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2016,65.741,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2017,17044.575,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2017,5.580,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2017,7.304,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2017,70.308,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2018,17370.480,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2018,6.254,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2018,7.429,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2018,74.079,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2019,18245.155,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2019,6.106,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2019,7.990,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2019,76.759,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2020,19489.984,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2020,5.133,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2020,8.364,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2020,78.715,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2021,20055.188,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2021,4.556,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2021,8.164,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2021,80.754,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2022,20373.469,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2022,5.010,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2022,7.737,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2022,83.631,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2023,21323.235,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2023,5.597,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2023,7.718,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2023,87.593,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,NY.GDP.PCAP.CD,PIB per cápita (US$ corrientes),2024,22220.196,US$,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,FP.CPI.TOTL.ZG,Inflación, precios al consumidor (% anual),2024,5.224,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,SL.UEM.TOTL.ZS,Desempleo total (% de la fuerza laboral),2024,8.223,%,Datos sintéticos autogenerados (no oficiales)
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,92.231,%,Datos sintéticos autogenerados (no oficiales)
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2010","10385.000","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2010","10.500","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2010","7.700","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2010","45.000","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2011","10966.502","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2011","26.133","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2011","8.005","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2011","49.482","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2012","10914.786","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2012","40.763","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2012","7.775","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2012","53.180","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2013","10991.852","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2013","54.875","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2013","7.158","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2013","55.787","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2014","11552.114","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2014","69.724","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2014","6.795","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2014","57.657","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2015","11736.773","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2015","85.470","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2015","7.003","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2015","59.590","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2016","11524.519","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2016","100.943","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2016","7.371","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2016","62.350","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2017","11857.577","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2017","115.376","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2017","7.285","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2017","66.197","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2018","12513.981","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2018","131.948","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2018","6.707","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2018","70.734","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2019","12629.348","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2019","149.424","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2019","6.230","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2019","75.143","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2020","12655.563","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2020","167.627","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2020","6.316","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2020","78.686","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2021","13239.308","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2021","185.303","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2021","6.709","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2021","81.148","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2022","13654.923","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2022","215.977","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2022","6.763","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2022","82.972","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2023","13455.982","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2023","246.664","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2023","6.263","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2023","84.986","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2024","13533.185","US$","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2024","278.359","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2024","5.701","%","Datos sintéticos autogenerados (no oficiales)"
+"ARG","Argentina","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2024","87.904","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2010","11507.016","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2010","5.589","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2010","6.990","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2010","40.863","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2011","11441.982","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2011","5.474","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2011","7.147","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2011","44.910","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2012","11014.226","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2012","4.592","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2012","6.762","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2012","47.906","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2013","11135.348","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2013","4.188","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2013","6.352","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2013","49.958","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2014","11326.502","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2014","4.798","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2014","6.468","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2014","51.750","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2015","10844.831","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2015","5.454","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2015","6.989","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2015","54.120","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2016","10470.806","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2016","5.118","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2016","7.278","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2016","57.557","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2017","10783.142","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2017","4.225","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2017","6.994","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2017","61.904","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2018","10878.161","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2018","4.038","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2018","6.526","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2018","66.449","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2019","10471.786","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2019","4.770","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2019","6.499","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2019","70.362","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2020","10509.786","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2020","5.271","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2020","6.974","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2020","73.197","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2021","10895.490","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2021","4.734","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2021","7.373","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2021","75.159","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2022","10639.081","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2022","3.892","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2022","7.214","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2022","76.986","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2023","10118.652","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2023","3.931","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2023","6.727","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2023","79.495","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2024","10229.674","US$","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2024","4.730","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2024","6.561","%","Datos sintéticos autogenerados (no oficiales)"
+"BRA","Brasil","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2024","83.091","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2010","13096.266","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2010","2.037","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2010","8.643","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2010","46.515","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2011","13036.458","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2011","1.490","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2011","8.453","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2011","50.366","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2012","13208.792","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2012","1.117","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2012","7.968","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2012","53.155","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2013","13940.120","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2013","1.779","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2013","7.833","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2013","55.381","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2014","14127.646","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2014","2.801","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2014","8.248","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2014","57.885","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2015","13813.345","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2015","2.973","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2015","8.712","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2015","61.342","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2016","14161.569","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2016","2.348","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2016","8.659","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2016","65.845","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2017","14855.556","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2017","2.161","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2017","8.185","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2017","70.856","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2018","14899.676","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2018","2.997","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2018","7.921","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2018","75.526","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2019","14935.561","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2019","3.923","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2019","8.232","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2019","79.215","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2020","15701.052","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2020","3.871","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2020","8.747","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2020","81.878","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2021","16228.951","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2021","3.227","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2021","8.838","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2021","84.090","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2022","16003.462","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2022","3.253","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2022","8.416","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2022","86.702","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2023","16118.604","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2023","4.218","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2023","8.046","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2023","90.322","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2024","16772.225","US$","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2024","4.998","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2024","8.228","%","Datos sintéticos autogenerados (no oficiales)"
+"CHL","Chile","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2024","94.945","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2010","12027.146","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2010","6.999","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2010","7.588","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2010","47.795","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2011","12428.794","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2011","6.106","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2011","7.200","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2011","50.627","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2012","13447.482","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2012","6.169","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2012","6.903","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2012","52.645","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2013","14482.641","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2013","6.872","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2013","7.166","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2013","54.617","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2014","14770.421","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2014","6.948","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2014","7.746","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2014","57.340","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2015","15171.421","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2015","6.063","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2015","7.994","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2015","61.155","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2016","16246.310","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2016","5.306","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2016","7.685","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2016","65.741","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2017","17044.575","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2017","5.580","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2017","7.304","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2017","70.308","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2018","17370.480","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2018","6.254","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2018","7.429","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2018","74.079","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2019","18245.155","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2019","6.106","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2019","7.990","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2019","76.759","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2020","19489.984","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2020","5.133","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2020","8.364","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2020","78.715","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2021","20055.188","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2021","4.556","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2021","8.164","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2021","80.754","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2022","20373.469","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2022","5.010","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2022","7.737","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2022","83.631","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2023","21323.235","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2023","5.597","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2023","7.718","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2023","87.593","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","NY.GDP.PCAP.CD","PIB per cápita (US$ corrientes)","2024","22220.196","US$","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","FP.CPI.TOTL.ZG","Inflación, precios al consumidor (% anual)","2024","5.224","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","SL.UEM.TOTL.ZS","Desempleo total (% de la fuerza laboral)","2024","8.223","%","Datos sintéticos autogenerados (no oficiales)"
+"URY","Uruguay","IT.NET.USER.ZS","Personas que utilizan Internet (% de la población)","2024","92.231","%","Datos sintéticos autogenerados (no oficiales)"
