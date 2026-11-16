@@ -44,8 +44,8 @@ def main():
     with CSV_PATH.open(encoding="utf-8-sig", newline="") as file:
         reader = csv.DictReader(file)
         rows = list(reader)
-        check(reader.fieldnames == ["country_code", "country", "indicator_code", "indicator_name", "year", "value", "unit", "source"], "CSV schema")
-    check(len(rows) == 240, "240 observations")
+        check(reader.fieldnames == ["observation_id", "country_code", "country", "indicator_code", "indicator_name", "year", "value", "unit", "source"], "CSV schema")
+    check(len(rows) == 10000, "10,000 synthetic observations")
     check({row["country_code"] for row in rows} == COUNTRIES, "four target countries")
     check({row["indicator_code"] for row in rows} == INDICATORS, "four target indicators")
     check({int(row["year"]) for row in rows} == set(range(2010, 2025)), "complete 2010-2024 year range")
@@ -56,7 +56,7 @@ def main():
     check(any(Decimal(row["value"]) > 100 for row in rows), "dataset supports values above 100")
     page1 = REPORT / "pages/portada/visuals"
     page2 = REPORT / "pages/resumen/visuals"
-    check(len(list(page1.glob("*/visual.json"))) >= 9, "overview page has KPI, slicers and charts")
+    check(len(list(page1.glob("*/visual.json"))) >= 9, "overview page has slicers and charts")
     check(len(list(page2.glob("*/visual.json"))) >= 4, "detail page has trend, slicers and table")
     print("Static validation passed. Open the PBIP in Power BI Desktop to refresh and verify rendered visuals.")
 
