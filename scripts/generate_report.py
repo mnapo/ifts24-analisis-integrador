@@ -181,6 +181,7 @@ fields=[
     (160,224,260,"Matías Napoli"),
 ]
 for x,y,width,value in fields:
+    overlay_canvas.setFillColor(colors.white)
     overlay_canvas.rect(x,y-3,width,19,fill=1,stroke=0)
     overlay_canvas.setFillColor(colors.black)
     overlay_canvas.setFont("Helvetica",14.2)
