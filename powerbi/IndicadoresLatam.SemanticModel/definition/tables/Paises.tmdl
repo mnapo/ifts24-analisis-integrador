@@ -16,7 +16,7 @@ table Paises
             let
                 Source = Csv.Document(
                     Web.Contents("https://raw.githubusercontent.com/mnapo/ifts24-analisis-integrador/main/public/data/indicadores-banco-mundial.csv"),
-                    [Delimiter = ",", Columns = 8, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+                    [Delimiter = ",", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
                 ),
                 Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
                 Selected = Table.SelectColumns(Headers, {"country_code", "country"}),
