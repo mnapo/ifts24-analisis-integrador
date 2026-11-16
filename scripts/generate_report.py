@@ -158,9 +158,13 @@ dt=Table(dict_rows,colWidths=[48*mm,133*mm],repeatRows=1)
 dt.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),NAVY),("TEXTCOLOR",(0,0),(-1,0),colors.white),("FONTNAME",(0,0),(-1,0),"Helvetica-Bold"),("FONTSIZE",(0,0),(-1,-1),8),("GRID",(0,0),(-1,-1),.35,colors.HexColor("#DCE3EA")),("ROWBACKGROUNDS",(0,1),(-1,-1),[colors.white,PALE]),("VALIGN",(0,0),(-1,-1),"MIDDLE"),("LEFTPADDING",(0,0),(-1,-1),7),("TOPPADDING",(0,0),(-1,-1),6),("BOTTOMPADDING",(0,0),(-1,-1),6)]))
 story += [dt,Spacer(1,5*mm),Paragraph("Anexo · Datos del conjunto",styles["H2x"])]
 # Complete 240-row appendix in compact tabular pages.
-appendix=[["País","Año","Indicador","Valor","Unidad"]]
-for r in sorted(rows,key=lambda x:(x["country"],x["year"],x["indicator_code"])):
-    appendix.append([r["country"],str(r["year"]),r["indicator_code"],f"{r['value']:.3f}",r["unit"]])
+appendix=[["País","Año","Indicador","Promedio","Unidad","N"]]
+aggregated={}
+for r in rows:
+    key=(r["country"],r["year"],r["indicator_code"],r["unit"])
+    aggregated.setdefault(key,[]).append(r["value"])
+for (country,year,indicator,unit),values in sorted(aggregated.items()):
+    appendix.append([country,str(year),indicator,f"{sum(values)/len(values):.3f}",unit,str(len(values))])
 for start in range(1,len(appendix),43):
     chunk=[appendix[0]]+appendix[start:start+43]
     tab=Table(chunk,colWidths=[28*mm,14*mm,61*mm,29*mm,17*mm,12*mm],repeatRows=1)
