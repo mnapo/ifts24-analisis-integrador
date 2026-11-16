@@ -83,7 +83,7 @@ def footer(canvas, doc):
     canvas.line(18*mm,15*mm,w-18*mm,15*mm)
     canvas.setFont("Helvetica",7)
     canvas.setFillColor(MUTED)
-    canvas.drawString(18*mm,10*mm,"IFTS N.º 24 · Análisis y procesamiento de datos · 2026")
+    canvas.drawString(18*mm,10*mm,"IFTS N.º 24 · Análisis y exploración de datos · 2026")
     canvas.drawRightString(w-18*mm,10*mm,str(doc.page))
     canvas.restoreState()
 
@@ -103,7 +103,7 @@ styles.add(ParagraphStyle(name="Centerx",parent=styles["BodyText"],fontSize=9,le
 
 story=[]
 story += [Paragraph("Indicadores de desarrollo en América Latina",styles["ReportTitle"]),
-          Paragraph("Trabajo Práctico Integrador · Análisis y procesamiento de datos · 2026",styles["Subtitle2"]),
+          Paragraph("Trabajo Práctico Integrador · Análisis y exploración de datos · 2026",styles["Subtitle2"]),
           Paragraph("<b>Alumno:</b> Matías Napoli &nbsp;&nbsp;&nbsp; <b>Profesor:</b> Pasztetnik Martín",styles["Bodyx"]),
           Spacer(1,5*mm),
           Paragraph("Resumen ejecutivo",styles["H1x"]),
