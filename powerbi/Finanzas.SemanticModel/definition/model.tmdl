@@ -1,0 +1,7 @@
+model Model
+    culture: es-AR
+    defaultPowerBIDataSourceVersion: powerBI_V3
+    sourceQueryCulture: es-AR
+
+ref table Calendario
+ref table Movimientos
