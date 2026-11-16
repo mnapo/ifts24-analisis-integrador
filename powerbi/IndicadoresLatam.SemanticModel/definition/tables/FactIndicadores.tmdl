@@ -40,6 +40,12 @@ table FactIndicadores
     measure 'Indicadores Analizados' = DISTINCTCOUNT(FactIndicadores[CodigoIndicador])
         formatString: #,##0
 
+    column IdObservacion
+        dataType: string
+        isKey
+        summarizeBy: none
+        sourceColumn: observation_id
+
     column CodigoPais
         dataType: string
         summarizeBy: none
@@ -79,7 +85,7 @@ table FactIndicadores
         mode: import
         source =
             let
-                Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/mnapo/ifts24-analisis-integrador/main/public/data/indicadores-banco-mundial.csv"), [Delimiter = ",", Columns = 8, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+                Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/mnapo/ifts24-analisis-integrador/main/public/data/indicadores-banco-mundial.csv"), [Delimiter = ",", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
                 Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
                 Types = Table.TransformColumnTypes(Headers, {{"country_code", type text}, {"country", type text}, {"indicator_code", type text}, {"indicator_name", type text}, {"year", Int64.Type}, {"value", type number}, {"unit", type text}, {"source", type text}}, "es-AR"),
                 CleanText = Table.TransformColumns(Types, {{"country_code", each if _ = null then null else Text.Trim(_), type text}, {"country", each if _ = null then null else Text.Trim(_), type text}, {"indicator_code", each if _ = null then null else Text.Trim(_), type text}, {"indicator_name", each if _ = null then null else Text.Trim(_), type text}, {"unit", each if _ = null then null else Text.Trim(_), type text}, {"source", each if _ = null then null else Text.Trim(_), type text}}),
