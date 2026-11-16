@@ -6,18 +6,18 @@ Actualizado: 16 de noviembre de 2026.
 
 | Componente | Estado | Observación |
 |---|---|---|
-| Proyecto Next.js | Preparado localmente | Generado en el trabajo previo; todavía no incorporado a este repositorio remoto |
-| Dataset CSV | Preparado localmente | 500 movimientos sintéticos |
-| Dashboard fintech | Preparado localmente | Responsive, con indicadores, gráficos y búsqueda |
+| Proyecto Next.js | Incorporado | Código en `app/`, configuración y dependencias; falta ejecutar build y probar despliegue |
+| Dataset CSV | Incorporado | `public/data/movimientos.csv`, 500 movimientos sintéticos |
+| Dashboard fintech | Implementado | KPIs, filtros, gráficos, búsqueda y exportación CSV; falta prueba de ejecución |
 | Guía y documentación | Publicada | README, modelo de datos y guía de Power BI |
-| Medidas DAX | Documentadas | Requieren validación con los nombres y valores exactos del CSV |
-| Informe Power BI (.pbix) | Pendiente | No fue generado ni validado |
+| Medidas DAX | Publicadas | `powerbi/medidas.dax`; pendientes de ejecutar en Power BI Desktop |
+| Informe Power BI (.pbix) | Pendiente | La validación lógica simulada está en `docs/VALIDACION-SIMULADA.md`; no equivale a un PBIX ejecutado |
 
 ## Historial del proyecto
 
 El proyecto descargable se generó inicialmente en un repositorio Git local, rama `main`, con commit `c476f05` y 15 archivos. Ese commit local no equivale a un push a GitHub.
 
-El repositorio remoto se encontraba vacío al iniciar esta tarea. En esta actualización se publicaron los documentos de proyecto y proceso de análisis. Por lo tanto, el contenido remoto todavía no incluye la aplicación Next.js ni el CSV.
+El repositorio remoto se encontraba inicialmente vacío. En esta actualización se incorporaron el dataset CSV, la aplicación Next.js, las medidas DAX y la documentación del proceso.
 
 ## Próximos pasos para completar la entrega
 
