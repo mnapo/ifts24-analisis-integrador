@@ -40,7 +40,7 @@ Importes expresados en pesos argentinos (ARS).
 | Total Gastos | $19.607.200 |
 | Balance Neto | $15.159.700 |
 | Cantidad de Movimientos | 500 |
-| Promedio por Movimiento | $52.874,20 |
+| Promedio por Movimiento | $108.748,20 |
 
 Comprobación aritmética: $34.766.900 - $19.607.200 = $15.159.700.
 
