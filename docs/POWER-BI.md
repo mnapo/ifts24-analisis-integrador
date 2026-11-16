@@ -1,12 +1,9 @@
 # Procesamiento y visualización en Power BI
 
-## 1. Origen
+## Origen y traducción
+Fuente: `public/data/indicadores-banco-mundial.csv`, datos 2024 de Argentina, Brasil, Chile y Uruguay.
 
-El modelo utiliza `public/data/indicadores-banco-mundial.csv`, con datos de Argentina, Brasil, Chile y Uruguay para 2024. Los indicadores son `IT.NET.USER.ZS` (uso de Internet, porcentaje de población) y `IQ.SPI.OVRL` (puntaje general SPI).
-
-## 2. Traducción del dataset
-
-| CSV | Modelo semántico |
+| CSV | Modelo |
 |---|---|
 | country_code | FactIndicadores[CodigoPais], Paises[CodigoPais] |
 | country | FactIndicadores[Pais], Paises[País] |
@@ -17,76 +14,21 @@ El modelo utiliza `public/data/indicadores-banco-mundial.csv`, con datos de Arge
 | unit | FactIndicadores[Unidad], Indicadores[Unidad] |
 | source | FactIndicadores[Fuente] |
 
-## 3. Power Query
+## Power Query
+Las tres consultas leen el CSV UTF-8 desde GitHub. FactIndicadores promueve encabezados, tipa columnas, recorta texto y excluye registros incompletos o valores fuera de 0–100. Las dimensiones seleccionan sus campos, recortan espacios y eliminan duplicados.
 
-Las tres consultas usan `Web.Contents` sobre el CSV de GitHub, codificación UTF-8 y delimitador coma. La consulta de hechos promueve encabezados, tipa los ocho campos, normaliza texto, y filtra filas sin claves o atributos obligatorios y valores fuera de 0–100. Las dimensiones derivan sus columnas del mismo CSV, aplican recorte de espacios, eliminan duplicados y ordenan por su clave.
+## Modelo semántico
+FactIndicadores es la tabla de hechos. Paises e Indicadores son dimensiones relacionadas 1:N con filtrado unidireccional. No se usa Calendario: todos los datos son de 2024.
 
-## 4. Modelo semántico y relaciones
+## Medidas DAX
+Ver `powerbi/medidas.dax`. Las ocho medidas evitan agregar indicadores heterogéneos: Valor del Indicador usa promedio y las medidas comparativas requieren un único indicador. Promedio Regional y Ranking País quitan el filtro de país, pero conservan el filtro de indicador. También se incluyen País Líder y Valor del Líder.
 
-- **FactIndicadores:** tabla de hechos con una observación por país, indicador y año.
-- **Paises:** dimensión con clave CodigoPais.
-- **Indicadores:** dimensión con clave CodigoIndicador y atributos NombreIndicador y Unidad.
+## Diseño sugerido
+- Página 1: portada, título, integrantes, institución y fuente.
+- Página 2: tarjetas KPI, dos gráficos de barras separados (Internet y SPI), tabla de observaciones y segmentadores de país e indicador.
+- Mantener ambos indicadores separados porque tienen interpretaciones distintas aunque sus escalas sean 0–100.
 
-Relaciones uno-a-muchos y unidireccionales desde Paises e Indicadores hacia FactIndicadores. No se requiere dimensión calendario porque todos los registros son de 2024.
+## Apertura y entrega
+Abrir `powerbi/IndicadoresLatam.pbip`, actualizar datos, validar relaciones y medidas, completar visuales y guardar `powerbi/informe-indicadores-regionales.pbix`. Exportar documentación y resumen ejecutivo a PDF.
 
-## 5. Medidas DAX
-
-```dax
-Valor del Indicador =
-SUM(FactIndicadores[Valor])
-
-Promedio Regional =
-AVERAGEX(ALL(Paises), [Valor del Indicador])
-
-Brecha vs. Promedio =
-[Valor del Indicador] - [Promedio Regional]
-
-Ranking País =
-RANKX(
-    ALL(Paises[País]),
-    [Valor del Indicador],
-    ,
-    DESC,
-    DENSE
-)
-
-Países Analizados =
-DISTINCTCOUNT(FactIndicadores[CodigoPais])
-
-Indicadores Analizados =
-DISTINCTCOUNT(FactIndicadores[CodigoIndicador])
-```
-
-## 6. Diseño del reporte
-
-### Página 1 — Portada
-
-Título, subtítulo, autor, institución IFTS 24 y fuente World Bank Open Data.
-
-### Página 2 — Comparación regional
-
-- Tarjetas de países e indicadores analizados.
-- Gráfico de barras de uso de Internet por país.
-- Gráfico de barras de puntaje SPI por país.
-- Tabla con país, indicador, año y valor.
-- Segmentadores por país e indicador.
-
-Los indicadores se muestran en visualizaciones separadas para no mezclar unidades.
-
-## 7. Narrativa
-
-Chile presenta el mayor valor dentro del grupo en ambos indicadores. Brasil registra el menor uso de Internet. Para SPI, Brasil supera levemente a Argentina y Uruguay, mientras Chile lidera. Los datos describen una comparación transversal de 2024; no prueban causalidad ni permiten inferir tendencias temporales.
-
-## 8. Abrir y completar
-
-1. Abrir `powerbi/Finanzas.pbip` con Power BI Desktop actualizado.
-2. Configurar el origen Web como anónimo si se solicita.
-3. Actualizar datos y comprobar las tres consultas.
-4. Revisar las dos relaciones y las seis medidas.
-5. Crear las visualizaciones en las dos páginas.
-6. Probar filtros, promedios y ranking por separado para ambos indicadores.
-7. Guardar como `powerbi/informe-indicadores-regionales.pbix`.
-
-## 9. PBIP/TMDL y entrega
-
-Las tablas, columnas, particiones Power Query, relaciones y medidas DAX se mantienen en archivos TMDL versionables. El PBIP es el proyecto fuente, no un PBIX final. El archivo PBIX debe guardarse desde Power BI Desktop; documentación y resumen ejecutivo deben exportarse a PDF.
+PBIP/TMDL es el proyecto fuente versionable; no equivale al PBIX final. La actualización del motor, visuales y guardado PBIX requieren Power BI Desktop.

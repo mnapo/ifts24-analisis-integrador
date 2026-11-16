@@ -1,0 +1,8 @@
+model ModeloIndicadoresLatam
+    culture: es-AR
+    defaultPowerBIDataSourceVersion: powerBI_V3
+    sourceQueryCulture: es-AR
+
+ref table FactIndicadores
+ref table Paises
+ref table Indicadores

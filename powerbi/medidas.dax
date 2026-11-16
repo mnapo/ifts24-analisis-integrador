@@ -1,29 +1,48 @@
--- Tabla de hechos: Movimientos
--- Columnas reales: importe, tipo, fecha, categoria
-Total Ingresos =
-CALCULATE(
-    SUM(Movimientos[importe]),
-    Movimientos[tipo] = "Ingreso"
+-- Modelo: IndicadoresLatam. No combinar escalas de indicadores distintos.
+Valor del Indicador =
+IF(
+    HASONEVALUE(Indicadores[CodigoIndicador]),
+    AVERAGE(FactIndicadores[Valor]),
+    BLANK()
 )
 
-Total Gastos =
-CALCULATE(
-    SUM(Movimientos[importe]),
-    Movimientos[tipo] = "Gasto"
+Promedio Regional =
+IF(
+    HASONEVALUE(Indicadores[CodigoIndicador]),
+    AVERAGEX(ALL(Paises), CALCULATE([Valor del Indicador])),
+    BLANK()
 )
 
-Balance Neto =
-[Total Ingresos] - [Total Gastos]
+Brecha vs. Promedio =
+IF(
+    HASONEVALUE(Paises[CodigoPais]) && HASONEVALUE(Indicadores[CodigoIndicador]),
+    [Valor del Indicador] - [Promedio Regional],
+    BLANK()
+)
 
-Cantidad de Movimientos =
-COUNTROWS(Movimientos)
+Ranking País =
+IF(
+    HASONEVALUE(Paises[CodigoPais]) && HASONEVALUE(Indicadores[CodigoIndicador]),
+    RANKX(ALL(Paises), CALCULATE([Valor del Indicador]), , DESC, DENSE),
+    BLANK()
+)
 
-Promedio por Movimiento =
-AVERAGE(Movimientos[importe])
+Países Analizados = DISTINCTCOUNT(FactIndicadores[CodigoPais])
 
--- Tabla calendario
-Calendario =
-CALENDAR(
-    MIN(Movimientos[fecha]),
-    MAX(Movimientos[fecha])
+Indicadores Analizados = DISTINCTCOUNT(FactIndicadores[CodigoIndicador])
+
+País Líder =
+IF(
+    HASONEVALUE(Indicadores[CodigoIndicador]),
+    VAR T = ADDCOLUMNS(ALL(Paises), "@Valor", CALCULATE([Valor del Indicador]))
+    VAR L = TOPN(1, FILTER(T, NOT ISBLANK([@Valor])), [@Valor], DESC, Paises[CodigoPais], ASC)
+    RETURN CONCATENATEX(L, Paises[País], ", "),
+    BLANK()
+)
+
+Valor del Líder =
+IF(
+    HASONEVALUE(Indicadores[CodigoIndicador]),
+    MAXX(ALL(Paises), CALCULATE([Valor del Indicador])),
+    BLANK()
 )
