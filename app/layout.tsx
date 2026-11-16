@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Latam Insights | IFTS 24",
-  description: "Comparación de indicadores de conectividad y desempeño estadístico en América Latina con datos de World Bank Open Data.",
+  title: "Indicadores de desarrollo en América Latina | IFTS 24",
+  description: "Trabajo Práctico Integrador 2026. Análisis comparativo de indicadores económicos y sociales de Argentina, Brasil, Chile y Uruguay (2010–2024). Dataset sintético con fines académicos.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
