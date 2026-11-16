@@ -6,7 +6,7 @@ Proyecto académico para el Trabajo Final de Análisis y procesamiento de datos.
 
 Archivo central: `public/data/indicadores-banco-mundial.csv`.
 
-- 4 países × 4 indicadores × 15 años = 240 registros.
+- 4 países × 4 indicadores × 15 años × 41/42 observaciones por combinación = 10.000 registros. El campo `observation_id` identifica cada observación sintética.
 - PIB per cápita (US$ corrientes): `NY.GDP.PCAP.CD`.
 - Inflación anual: `FP.CPI.TOTL.ZG`.
 - Desempleo total: `SL.UEM.TOTL.ZS`.
