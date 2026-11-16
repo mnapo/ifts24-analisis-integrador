@@ -2,7 +2,7 @@
 
 ## Origen
 
-`public/data/indicadores-banco-mundial.csv`: 240 observaciones sintéticas (4 países × 4 indicadores × 15 años, 2010–2024). Los valores son autogenerados con fines académicos y no representan datos oficiales del Banco Mundial. El campo `source` deja constancia de ello.
+`public/data/indicadores-banco-mundial.csv`: 10.000 observaciones sintéticas (4 países × 4 indicadores × 15 años, 2010–2024), identificadas por `observation_id`. Los valores son autogenerados con fines académicos y no representan datos oficiales del Banco Mundial. El campo `source` deja constancia de ello.
 
 ## Power Query
 
