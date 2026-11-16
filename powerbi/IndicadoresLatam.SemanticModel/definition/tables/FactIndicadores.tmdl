@@ -29,6 +29,17 @@ table FactIndicadores
         IF(HASONEVALUE(Indicadores[CodigoIndicador]), MAXX(ALL(Paises), CALCULATE([Valor del Indicador])), BLANK())
         formatString: #,##0.0
 
+    measure 'Observaciones' = COUNTROWS(FactIndicadores)
+        formatString: #,##0
+    measure 'Años Analizados' = DISTINCTCOUNT(FactIndicadores[Año])
+        formatString: #,##0
+    measure 'Periodo Analizado' =
+        FORMAT(MIN(FactIndicadores[Año]), "0") & " – " & FORMAT(MAX(FactIndicadores[Año]), "0")
+    measure 'Países Analizados' = DISTINCTCOUNT(FactIndicadores[CodigoPais])
+        formatString: #,##0
+    measure 'Indicadores Analizados' = DISTINCTCOUNT(FactIndicadores[CodigoIndicador])
+        formatString: #,##0
+
     column CodigoPais
         dataType: string
         summarizeBy: none
@@ -72,6 +83,6 @@ table FactIndicadores
                 Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
                 Types = Table.TransformColumnTypes(Headers, {{"country_code", type text}, {"country", type text}, {"indicator_code", type text}, {"indicator_name", type text}, {"year", Int64.Type}, {"value", type number}, {"unit", type text}, {"source", type text}}, "es-AR"),
                 CleanText = Table.TransformColumns(Types, {{"country_code", each if _ = null then null else Text.Trim(_), type text}, {"country", each if _ = null then null else Text.Trim(_), type text}, {"indicator_code", each if _ = null then null else Text.Trim(_), type text}, {"indicator_name", each if _ = null then null else Text.Trim(_), type text}, {"unit", each if _ = null then null else Text.Trim(_), type text}, {"source", each if _ = null then null else Text.Trim(_), type text}}),
-                ValidRows = Table.SelectRows(CleanText, each [country_code] <> null and [country_code] <> "" and [country] <> null and [country] <> "" and [indicator_code] <> null and [indicator_code] <> "" and [indicator_name] <> null and [indicator_name] <> "" and [year] <> null and [value] <> null and [value] >= 0 and [value] <= 100 and [unit] <> null and [unit] <> "" and [source] <> null and [source] <> "")
+                ValidRows = Table.SelectRows(CleanText, each [country_code] <> null and [country_code] <> "" and [country] <> null and [country] <> "" and [indicator_code] <> null and [indicator_code] <> "" and [indicator_name] <> null and [indicator_name] <> "" and [year] <> null and [value] <> null and [value] >= 0 and [unit] <> null and [unit] <> "" and [source] <> null and [source] <> "")
             in
                 ValidRows
