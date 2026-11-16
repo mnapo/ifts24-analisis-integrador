@@ -29,7 +29,7 @@ Dataset sintético de Argentina, Brasil, Chile y Uruguay para 2010–2024. Conti
 
 ## Modelo semántico
 
-- FactIndicadores: tabla de hechos con granularidad país–indicador–año.
+- FactIndicadores: tabla de hechos con granularidad observación sintética individual, identificada por observation_id; cada país–indicador–año contiene 41 o 42 valoraciones.
 - Paises: dimensión con CodigoPais como clave.
 - Indicadores: dimensión con CodigoIndicador como clave y nombre/unidad como atributos.
 - Relaciones 1:N desde Paises e Indicadores hacia FactIndicadores.
