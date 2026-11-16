@@ -57,35 +57,33 @@ El dashboard está implementado en `app/` y consume el CSV publicado en `public/
 2. Explorar los datos en el dashboard de Next.js.
 3. Importar el CSV en Power BI Desktop.
 4. Revisar tipos de datos, valores nulos, duplicados y consistencia de categorías.
-5. Crear las medidas DAX necesarias.
-6. Construir visualizaciones y validar que los totales coincidan con el dataset.
-7. Guardar el informe de Power BI (`.pbix`) y documentar los resultados.
+5. Abrir el proyecto `powerbi/Finanzas.pbip`: el modelo semántico, la relación calendario y las medidas DAX se generan desde archivos TMDL.
+6. Actualizar los datos y validar los totales con `python scripts/validate_powerbi_project.py`.
+7. Completar las visualizaciones en Power BI Desktop y guardar como `powerbi/informe-financiero.pbix`.
 
-Ver [Guía de Power BI](docs/POWER-BI.md), [Modelo de datos](docs/MODELO-DATOS.md), [medidas DAX](powerbi/medidas.dax), [validación simulada](docs/VALIDACION-SIMULADA.md) y [Estado de entrega](docs/ESTADO-ENTREGA.md).
+Ver [Guía de Power BI](docs/POWER-BI.md), [Modelo de datos](docs/MODELO-DATOS.md), [proyecto PBIP/TMDL](powerbi/README.md), [medidas DAX](powerbi/Finanzas.SemanticModel/definition/tables/Movimientos.tmdl), [validación simulada](docs/VALIDACION-SIMULADA.md) y [Estado de entrega](docs/ESTADO-ENTREGA.md).
 
-## Estructura prevista
+## Estructura principal
 
 ```text
 .
-├── docs/
-│   ├── MODELO-DATOS.md
-│   └── POWER-BI.md
-├── public/
-│   └── data/
-│       └── movimientos.csv
-├── src/                  # aplicación Next.js (si utiliza src/)
-├── package.json
-└── README.md
+├── app/                         # Dashboard Next.js
+├── docs/                        # Documentación y validación
+├── powerbi/
+│   ├── Finanzas.pbip             # Proyecto Power BI
+│   ├── Finanzas.Report/          # Definición del informe
+│   └── Finanzas.SemanticModel/   # Modelo TMDL y medidas DAX
+├── public/data/movimientos.csv
+└── scripts/validate_powerbi_project.py
 ```
-
-La estructura es orientativa: debe ajustarse a las rutas reales del código y del CSV al incorporar los archivos del proyecto.
 
 ## Estado de los entregables
 
 - [x] Aplicación Next.js y dashboard incorporados al repositorio remoto (pendiente ejecutar build y probar despliegue).
 - [x] Dataset CSV de 500 movimientos incorporado al repositorio remoto.
-- [ ] Informe de Power BI (`.pbix`) generado y validado (pendiente Power BI Desktop).
-- [x] Documentación, medidas DAX y validación lógica simulada publicadas.
+- [x] Proyecto fuente Power BI (`.pbip`) y medidas DAX automatizadas.
+- [ ] Informe binario de Power BI (`.pbix`) guardado desde Power BI Desktop.
+- [x] Documentación, medidas DAX y script de validación estática publicados.
 - [ ] Capturas o exportación del informe final.
 
 El estado detallado y los próximos pasos están en [docs/ESTADO-ENTREGA.md](docs/ESTADO-ENTREGA.md).
