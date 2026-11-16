@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import csv
-from collections import defaultdict
 from decimal import Decimal
 from pathlib import Path
 
@@ -14,14 +13,14 @@ MODEL = POWERBI / "Finanzas.SemanticModel/definition"
 REPORT = POWERBI / "Finanzas.Report/definition"
 
 EXPECTED = {
-    ("ARG", "IT.NET.USER.ZS"): Decimal("89.7"),
-    ("BRA", "IT.NET.USER.ZS"): Decimal("84.5"),
-    ("CHL", "IT.NET.USER.ZS"): Decimal("95.6"),
-    ("URY", "IT.NET.USER.ZS"): Decimal("92.0"),
-    ("ARG", "IQ.SPI.OVRL"): Decimal("80.4"),
-    ("BRA", "IQ.SPI.OVRL"): Decimal("82.3"),
-    ("CHL", "IQ.SPI.OVRL"): Decimal("89.4"),
-    ("URY", "IQ.SPI.OVRL"): Decimal("80.1"),
+    ("ARG", "IT.NET.USER.ZS"): Decimal("89.667"),
+    ("BRA", "IT.NET.USER.ZS"): Decimal("84.463"),
+    ("CHL", "IT.NET.USER.ZS"): Decimal("95.590"),
+    ("URY", "IT.NET.USER.ZS"): Decimal("91.991"),
+    ("ARG", "IQ.SPI.OVRL"): Decimal("80.391"),
+    ("BRA", "IQ.SPI.OVRL"): Decimal("82.308"),
+    ("CHL", "IQ.SPI.OVRL"): Decimal("89.379"),
+    ("URY", "IQ.SPI.OVRL"): Decimal("80.147"),
 }
 
 
@@ -70,7 +69,7 @@ def main() -> None:
         value = Decimal(row["value"])
         check(Decimal("0") <= value <= Decimal("100"), f"value range valid for {row['country_code']} / {row['indicator_code']}")
         observed[(row["country_code"], row["indicator_code"])] = value
-    check(observed == EXPECTED, "all values match the documented reference snapshot")
+    check(observed == EXPECTED, "all values match the documented World Bank 2024 snapshot")
 
     print("\nStatic validation passed.")
     print("Power BI Desktop refresh, visual behavior and PBIX generation remain manual validation steps.")

@@ -1,9 +1,9 @@
 country_code,country,indicator_code,indicator_name,year,value,unit,source
-ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,89.7,%,World Bank Open Data
-BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,84.5,%,World Bank Open Data
-CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,95.6,%,World Bank Open Data
-URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,92.0,%,World Bank Open Data
-ARG,Argentina,IQ.SPI.OVRL,Indicadores de desempeño estadístico - puntaje general,2024,80.4,puntos (0-100),World Bank Open Data
-BRA,Brasil,IQ.SPI.OVRL,Indicadores de desempeño estadístico - puntaje general,2024,82.3,puntos (0-100),World Bank Open Data
-CHL,Chile,IQ.SPI.OVRL,Indicadores de desempeño estadístico - puntaje general,2024,89.4,puntos (0-100),World Bank Open Data
-URY,Uruguay,IQ.SPI.OVRL,Indicadores de desempeño estadístico - puntaje general,2024,80.1,puntos (0-100),World Bank Open Data
+ARG,Argentina,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,89.667,%,World Bank Open Data
+BRA,Brasil,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,84.463,%,World Bank Open Data
+CHL,Chile,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,95.590,%,World Bank Open Data
+URY,Uruguay,IT.NET.USER.ZS,Personas que utilizan Internet (% de la población),2024,91.991,%,World Bank Open Data
+ARG,Argentina,IQ.SPI.OVRL,Indicadores de desempeño estadístico - puntaje general,2024,80.391,puntos (0-100),World Bank Open Data
+BRA,Brasil,IQ.SPI.OVRL,Indicadores de desempeño estadístico - puntaje general,2024,82.308,puntos (0-100),World Bank Open Data
+CHL,Chile,IQ.SPI.OVRL,Indicadores de desempeño estadístico - puntaje general,2024,89.379,puntos (0-100),World Bank Open Data
+URY,Uruguay,IQ.SPI.OVRL,Indicadores de desempeño estadístico - puntaje general,2024,80.147,puntos (0-100),World Bank Open Data
