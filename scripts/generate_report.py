@@ -40,12 +40,17 @@ def fmt(v, unit):
     return ("US$ " + f"{v:,.0f}" if unit == "US$" else f"{v:.1f}%").replace(",", "X").replace(".", ",").replace("X", ".")
 
 def chart_image(rows, code, unit, kind):
+    grouped = {}
+    for r in rows:
+        grouped.setdefault((r["country"], r["year"]), []).append(r["value"])
+    plot_rows = [{"country": country, "year": year, "value": sum(values) / len(values)}
+                 for (country, year), values in grouped.items()]
     fig, ax = plt.subplots(figsize=(8.8, 3.1), dpi=170)
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
     if kind == "bar":
-        latest = max(r["year"] for r in rows)
-        selected = [r for r in rows if r["year"] == latest]
+        latest = max(r["year"] for r in plot_rows)
+        selected = [r for r in plot_rows if r["year"] == latest]
         selected.sort(key=lambda r: r["value"], reverse=True)
         bars = ax.bar([r["country"] for r in selected], [r["value"] for r in selected],
                       color=[COUNTRY_COLORS[r["country"]] for r in selected], width=.56)
@@ -54,7 +59,7 @@ def chart_image(rows, code, unit, kind):
     else:
         ax.set_title("Evolución anual · 2010–2024", loc="left", fontsize=11, fontweight="bold", color="#30475f", pad=14)
         for country, color in COUNTRY_COLORS.items():
-            series = sorted([r for r in rows if r["country"] == country], key=lambda r:r["year"])
+            series = sorted([r for r in plot_rows if r["country"] == country], key=lambda r:r["year"])
             if series:
                 ax.plot([r["year"] for r in series],[r["value"] for r in series],label=country,color=color,linewidth=2.1,marker="o",markersize=2.8)
         ax.legend(frameon=False,ncol=4,loc="upper left",fontsize=8)
@@ -119,8 +124,13 @@ story += [t,Spacer(1,5*mm),Paragraph("Procedimiento de análisis",styles["H2x"])
 
 for code,label,unit,description in INDICATORS:
     subset=[r for r in rows if r["indicator_code"]==code]
-    latest=max(r["year"] for r in subset)
-    latest_rows=[r for r in subset if r["year"]==latest]
+    grouped={}
+    for r in subset:
+        grouped.setdefault((r["country"],r["year"]),[]).append(r["value"])
+    summary=[{"country":country,"year":year,"value":sum(values)/len(values)}
+             for (country,year),values in grouped.items()]
+    latest=max(r["year"] for r in summary)
+    latest_rows=[r for r in summary if r["year"]==latest]
     avg=sum(r["value"] for r in latest_rows)/len(latest_rows)
     high=max(latest_rows,key=lambda r:r["value"])
     low=min(latest_rows,key=lambda r:r["value"])
@@ -153,7 +163,7 @@ for r in sorted(rows,key=lambda x:(x["country"],x["year"],x["indicator_code"])):
     appendix.append([r["country"],str(r["year"]),r["indicator_code"],f"{r['value']:.3f}",r["unit"]])
 for start in range(1,len(appendix),43):
     chunk=[appendix[0]]+appendix[start:start+43]
-    tab=Table(chunk,colWidths=[31*mm,16*mm,69*mm,34*mm,20*mm],repeatRows=1)
+    tab=Table(chunk,colWidths=[28*mm,14*mm,61*mm,29*mm,17*mm,12*mm],repeatRows=1)
     tab.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),NAVY),("TEXTCOLOR",(0,0),(-1,0),colors.white),("FONTNAME",(0,0),(-1,0),"Helvetica-Bold"),("FONTSIZE",(0,0),(-1,-1),6.5),("GRID",(0,0),(-1,-1),.25,colors.HexColor("#DCE3EA")),("ROWBACKGROUNDS",(0,1),(-1,-1),[colors.white,PALE]),("VALIGN",(0,0),(-1,-1),"MIDDLE"),("LEFTPADDING",(0,0),(-1,-1),4),("TOPPADDING",(0,0),(-1,-1),3),("BOTTOMPADDING",(0,0),(-1,-1),3)]))
     story.append(tab)
     if start+43<len(appendix): story.append(PageBreak())
