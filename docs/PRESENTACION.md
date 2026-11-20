@@ -1,30 +1,22 @@
 # Presentación interactiva
 
-La entrega se desarrolla como una presentación web en Next.js. No requiere Power BI.
-
-## Navegación
-
-- Diapositivas a pantalla completa, con controles, puntos clicables y teclado.
-- Adaptación a escritorio y móviles.
-- Gráficos interactivos construidos con Recharts.
-- Selector de país para comparar cada trayectoria nacional con el promedio regional.
+La entrega se desarrolla en Next.js. No requiere Power BI.
 
 ## Visualizaciones
 
-1. Crecimiento anual del PIB (2015–2023).
-2. Índice de rigurosidad de las medidas (2020–2022).
-3. Gasto corriente en salud por habitante (2015–2023).
-4. Recuperación del crecimiento del PIB (2019–2023).
-5. Diagrama de dispersión entre rigurosidad y crecimiento del PIB (2020–2022).
+- Área: evolución regional del crecimiento del PIB.
+- Barras horizontales: contracción del PIB en 2020 y promedio de crecimiento 2021–2023 por país.
+- Líneas: inflación, desempleo, gasto corriente en salud, esperanza de vida e índice de Gini.
+- Líneas múltiples: índices OxCGRT de respuesta gubernamental.
+- Dispersión con tendencia lineal: rigurosidad y crecimiento del PIB.
+- Burbujas: población y crecimiento del PIB por país/año.
 
-Los CSV publicados en `public/data` se cargan desde el navegador. Los promedios regionales son simples, no ponderados, y cada gráfico informa la cobertura disponible. El diagrama de dispersión solo muestra asociación descriptiva; no permite inferir causalidad.
+## Fuentes y metodología
 
-## Fuentes y cobertura
+Los datos no son sintéticos. Se descargan de World Development Indicators (Banco Mundial) y del Oxford COVID-19 Government Response Tracker. Las fuentes y sus enlaces se incluyen en la presentación.
 
-- World Development Indicators: indicadores económicos, demográficos y sanitarios, 2015–2023.
-- Oxford COVID-19 Government Response Tracker: índices de respuesta gubernamental, 2020–2022.
-- Cobertura validada: 33 países con datos WDI y 28 con datos OxCGRT.
+Los gráficos regionales utilizan promedios aritméticos simples de los países con dato disponible en cada año. No se ponderan por población ni PIB. Los faltantes se conservan y no se interpolan.
 
-## Navegación
+Los cruces WDI–OxCGRT se realizan por ISO3 y año, solo cuando ambas variables están disponibles. La tendencia lineal del diagrama de dispersión es descriptiva y no implica causalidad. El gráfico de recuperación utiliza el promedio de las tasas anuales 2021–2023, no el crecimiento acumulado.
 
-Flechas inferiores, puntos, teclas izquierda/derecha, PageUp/PageDown, Home y End.
+La presentación no incorpora filtro de país: las comparaciones se muestran a escala regional o para el conjunto de países.
