@@ -1,0 +1,50 @@
+{
+  "generado_utc": "2026-11-20T19:39:32.722071+00:00",
+  "periodo_wdi": [
+    2015,
+    2023
+  ],
+  "periodo_oxcgrt": [
+    2020,
+    2022
+  ],
+  "paises_configurados": 33,
+  "paises_con_datos_wdi": 33,
+  "paises_con_datos_oxcgrt": 28,
+  "anios_wdi": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "indicadores_wdi": [
+    "FP.CPI.TOTL.ZG",
+    "NY.GDP.MKTP.KD.ZG",
+    "NY.GDP.PCAP.KD.ZG",
+    "SH.XPD.CHEX.PC.CD",
+    "SI.POV.GINI",
+    "SL.UEM.TOTL.ZS",
+    "SP.DYN.LE00.IN",
+    "SP.POP.TOTL"
+  ],
+  "indicadores_sin_datos": [],
+  "filas_wdi": 2139,
+  "filas_oxcgrt_diarias": 30688,
+  "filas_oxcgrt_anuales": 84,
+  "duplicados_wdi": 0,
+  "duplicados_oxcgrt": 0,
+  "controles": {
+    "sin_duplicados_wdi": true,
+    "sin_duplicados_oxcgrt": true,
+    "sin_anios_fuera_de_rango": true,
+    "indicadores_wdi_presentes": true,
+    "wdi_no_vacio": true,
+    "oxcgrt_no_vacio": true
+  },
+  "estado": "aprobado"
+}
