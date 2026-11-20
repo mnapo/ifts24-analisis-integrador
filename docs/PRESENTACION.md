@@ -1,13 +1,15 @@
 # Presentación interactiva
 
-La entrega se organiza en siete reportes navegables:
+La entrega se organiza en ocho reportes navegables:
 
 1. Panorama regional: evolución del PIB, PIB per cápita, inflación, desempleo, población y gasto sanitario.
 2. Restricciones sanitarias y economía: índices compuestos, medidas C1–C8, políticas económicas y duración diaria de C6.
 3. Impacto sanitario y social: esperanza de vida, gasto sanitario y cambios observados.
 4. Desigualdad y empleo: Gini, desempleo y asociaciones entre condiciones previas y shock económico.
 5. Capacidad sanitaria: gasto por habitante, esperanza de vida y cambios entre períodos.
-6. Comparación de países: caída y recuperación del PIB, políticas C6 y matriz multidimensional.\n7. Exploración multidimensional: filtros de fuente, medida, país y período; serie temporal y matriz país × año.
+6. Comparación de países: caída y recuperación del PIB, políticas C6 y matriz multidimensional.
+7. Medidas públicas y recuperación económica: relación descriptiva entre apoyo económico y rigurosidad de 2020 y crecimiento del PIB entre 2021 y 2023.
+8. Exploración multidimensional: filtros de fuente, medida, país y período; serie temporal y matriz país × año.
 
 ## Interacción
 
@@ -15,7 +17,9 @@ La entrega se organiza en siete reportes navegables:
 - Gráficos de series temporales, barras comparativas, áreas y dispersión.
 - Ejes rotulados y unidades explícitas.
 - Los puntos de dispersión se pueden seleccionar para consultar país, año y valores exactos.
-- Selector de año para comparar duración de C6.\n- Exploración con filtros combinables de fuente, medida, país y período; visualización temporal y matriz país × año.
+- Selector de año para comparar duración de C6.
+- Dispersión para contrastar los índices de apoyo económico y rigurosidad de 2020 con el crecimiento promedio del PIB entre 2021 y 2023.
+- Exploración con filtros combinables de fuente, medida, país y período; visualización temporal y matriz país × año.
 - Matriz comparativa con períodos y unidades explícitos; los faltantes se muestran como “Sin dato”.
 - No se incluye filtro de país.
 
@@ -41,7 +45,8 @@ La narración avanza desde el impacto regional hacia sus respuestas y consecuenc
 4. **Desigualdad y empleo — mostrar las brechas.** El índice de Gini va de 0 (igualdad perfecta) a 100 (desigualdad máxima en la escala habitual). Describe distribución del ingreso, no riqueza ni pobreza directamente. El desempleo refiere a personas sin trabajo, disponibles y que buscan empleo; no captura por completo la informalidad ni la calidad laboral.
 5. **Capacidad sanitaria — incorporar las condiciones previas.** El gasto corriente en salud por habitante aproxima recursos utilizados en servicios sanitarios. Está en dólares corrientes, sin ajuste por inflación ni poder adquisitivo. La asociación observada con esperanza de vida es descriptiva y no demuestra causalidad.
 6. **Comparación de países — integrar sin crear un ranking artificial.** Leer conjuntamente caída del PIB, recuperación, Gini, desempleo, esperanza de vida y C6. Cada indicador conserva su unidad y período. Una asociación lineal baja o nula no demuestra ausencia de efectos: hay factores no controlados y posible causalidad inversa.
-7. **Exploración multidimensional — dejar que el público investigue.** Cambiar fuente, indicador, país y período. Explicar dimensiones, medidas, segmentadores y matriz país × año. Cerrar recordando que la interfaz ilustra conceptos de BI, pero no ejecuta DAX ni sustituye el motor de Power BI.
+7. **Medidas públicas y recuperación económica — conectar respuestas con resultados posteriores.** Comparar el índice de apoyo económico y el índice de rigurosidad registrados en 2020 con el crecimiento promedio del PIB entre 2021 y 2023. Explicar que E1 y E2 describen categorías de apoyo a ingresos y alivio de deudas, no montos ejecutados ni cobertura efectiva. El índice de rigurosidad resume medidas de contención, no cumplimiento individual. Cada punto representa un país; los patrones permiten formular hipótesis, pero no probar que una política haya causado una recuperación mayor o menor. La caída inicial, la estructura productiva, la informalidad, el espacio fiscal y la situación sanitaria también pueden influir.
+8. **Exploración multidimensional — dejar que el público investigue.** Cambiar fuente, indicador, país y período. Explicar dimensiones, medidas, segmentadores y matriz país × año. Cerrar recordando que la interfaz ilustra conceptos de BI, pero no ejecuta DAX ni sustituye el motor de Power BI.
 
 **Conclusión para cerrar:** la pandemia fue un shock regional, pero no produjo una trayectoria uniforme. La recuperación económica es solo una parte de la historia: para comprender las diferencias hay que considerar políticas, condiciones sanitarias, empleo y distribución del ingreso. Los datos permiten describir patrones y asociaciones, no atribuir causas por sí solos.
 
