@@ -1,0 +1,14 @@
+{
+  "fuente": "World Development Indicators",
+  "periodo": [2015, 2023],
+  "indicadores": [
+    { "codigo": "NY.GDP.MKTP.KD.ZG", "nombre": "Crecimiento del PIB", "unidad": "% anual", "grupo": "economia" },
+    { "codigo": "NY.GDP.PCAP.KD.ZG", "nombre": "Crecimiento del PIB per cápita", "unidad": "% anual", "grupo": "economia" },
+    { "codigo": "SL.UEM.TOTL.ZS", "nombre": "Desempleo total", "unidad": "% de la fuerza laboral", "grupo": "trabajo" },
+    { "codigo": "FP.CPI.TOTL.ZG", "nombre": "Inflación (precios al consumidor)", "unidad": "% anual", "grupo": "economia" },
+    { "codigo": "SI.POV.GINI", "nombre": "Índice de Gini", "unidad": "índice", "grupo": "desigualdad" },
+    { "codigo": "SP.DYN.LE00.IN", "nombre": "Esperanza de vida al nacer", "unidad": "años", "grupo": "salud" },
+    { "codigo": "SH.XPD.CHEX.PC.CD", "nombre": "Gasto corriente en salud per cápita", "unidad": "US$ corrientes", "grupo": "salud" },
+    { "codigo": "SP.POP.TOTL", "nombre": "Población total", "unidad": "personas", "grupo": "demografia" }
+  ]
+}
