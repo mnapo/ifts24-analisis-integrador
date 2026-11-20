@@ -1,4 +1,6 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Link from "next/link";
 import {useEffect,useMemo,useState} from "react";
 import {Area,AreaChart,Bar,BarChart,CartesianGrid,Legend,Line,LineChart,ReferenceLine,ResponsiveContainer,Scatter,ScatterChart,Tooltip,XAxis,YAxis,ZAxis} from "recharts";
 
@@ -56,7 +58,7 @@ export default function Home(){
  const strict=d.dur.map(r=>({pais:r.pais,dias:r.estricto??0}));
  const streak=d.dur.map(r=>({pais:r.pais,dias:r.racha??0}));
  return <main className="observatory">
-  <header className="site-header"><a className="brand" href="/">OBSERVATORIO <span>LATAM</span></a><nav><button className={page==="panorama"?"active":""} onClick={()=>setPage("panorama")}>01 · Panorama regional</button><button className={page==="restricciones"?"active":""} onClick={()=>setPage("restricciones")}>02 · Restricciones y economía</button><button className={page==="impacto"?"active":""} onClick={()=>setPage("impacto")}>03 · Impacto sanitario y social</button></nav><small>2015—2023 · ALC</small></header>
+  <header className="site-header"><Link className="brand" href="/">OBSERVATORIO <span>LATAM</span></Link><nav><button className={page==="panorama"?"active":""} onClick={()=>setPage("panorama")}>01 · Panorama regional</button><button className={page==="restricciones"?"active":""} onClick={()=>setPage("restricciones")}>02 · Restricciones y economía</button><button className={page==="impacto"?"active":""} onClick={()=>setPage("impacto")}>03 · Impacto sanitario y social</button></nav><small>2015—2023 · ALC</small></header>
   {page==="panorama"&&<section className="content">
    <div className="intro"><div><label>OBSERVATORIO SOCIOECONÓMICO · 01</label><h1>La región antes, durante y después del shock.</h1><p>Trayectorias económicas, demográficas y sociales de América Latina y el Caribe. Cada país con datos aporta el mismo peso a los promedios regionales.</p></div><aside>ALC<small>COVID—19</small></aside></div>
    <div className="kpis"><Kpi label="PIB · 2020" value={String(fmt(shock?.gdp))+"%"} detail="Crecimiento anual promedio"/><Kpi label="PIB · 2021" value={String(fmt(rebound?.gdp))+"%"} detail="Rebote promedio"/><Kpi label="PIB · 2023" value={String(fmt(last?.gdp))+"%"} detail="Crecimiento promedio"/><Kpi label="Desempleo · 2023" value={String(fmt(last?.unemployment))+"%"} detail="Porcentaje de fuerza laboral"/></div>
