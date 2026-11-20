@@ -1,6 +1,12 @@
 name: Actualizar datasets
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - "config/**"
+      - ".github/workflows/actualizar-datos.yml"
   workflow_dispatch:
   schedule:
     - cron: "0 8 5 * *"
