@@ -50,7 +50,6 @@ const number = (value: string) => value === "" ? null : Number(value);
 const countryName = (rows: WdiRow[], iso: string) => rows.find((row) => row.iso3 === iso)?.pais ?? iso;
 
 function DataCharts({ chart, data, country }: { chart: string; data: DataState; country: string }) {
-  const countries = useMemo(() => [...new Map(data.wdi.map((r) => [r.iso3, r.pais])).entries()].sort((a,b) => a[1].localeCompare(b[1], "es")), [data.wdi]);
   const gdp = useMemo(() => {
     const rows = data.wdi.filter((r) => r.codigo_indicador === GDP);
     return Array.from({ length: 9 }, (_, i) => {
