@@ -77,3 +77,31 @@ h1 { font-size: clamp(42px, 6.7vw, 84px); line-height: 1.02; letter-spacing: -.0
  .data-toolbar span { width: 100%; margin-left: 0; }
  .chart-heading small { max-width: 48%; }
 }
+
+
+/* Referencias y metodología de las visualizaciones */
+.chart-reference { display: flex; align-items: center; gap: 14px; padding: 9px 4px 0; border-top: 1px solid #ffffff12; color: #73849d; font-size: 9px; letter-spacing: .08em; }
+.chart-reference span { margin-right: auto; }
+.chart-reference a { color: #70dbc8; text-decoration: none; border-bottom: 1px solid #70dbc855; }
+.chart-reference a:hover { color: #b5fff1; }
+.sources-panel { position: relative; z-index: 1; width: min(640px, 55%); margin-left: auto; display: flex; flex-direction: column; gap: 18px; padding: clamp(20px, 3vw, 34px); border: 1px solid #31435c; border-radius: 18px; background: #0d1727d9; color: #aab8ca; font-size: 13px; line-height: 1.7; }
+.sources-panel a { color: #70dbc8; text-decoration: none; width: fit-content; border-bottom: 1px solid #70dbc855; }
+.sources-panel p { margin: 0; }
+.slide.sources { display: flex; align-items: center; gap: 5vw; padding: 5vh 6vw 7vh; }
+.slide.sources .slide-copy { max-width: 440px; }
+.slide.sources h1 { font-size: clamp(36px, 4.3vw, 58px); }
+.slide.sources .body-copy { font-size: clamp(14px, 1.25vw, 17px); line-height: 1.65; }
+.slide.sources .slide-tag { line-height: 1.7; }
+@media (max-width: 900px) {
+ .slide.sources { display: grid; grid-template-columns: 1fr; align-content: start; gap: 18px; overflow-y: auto; padding: 4vh 24px 5vh; }
+ .slide.sources .slide-copy { max-width: 760px; }
+ .slide.sources .eyebrow { margin-bottom: 12px; }
+ .slide.sources h1 { font-size: clamp(30px, 6vw, 46px); margin-bottom: 12px; }
+ .slide.sources .body-copy { font-size: 14px; line-height: 1.5; }
+ .slide.sources .slide-tag { margin-top: 12px; font-size: 9px; }
+ .sources-panel { width: 100%; margin: 0; gap: 12px; padding: 16px; font-size: 12px; }
+}
+@media (max-width: 520px) {
+ .chart-reference { gap: 10px; font-size: 8px; }
+ .chart-reference span { letter-spacing: .03em; }
+}
