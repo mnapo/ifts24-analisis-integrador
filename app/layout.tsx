@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Observatorio Socioeconómico de América Latina",
+  title: "IFTS24 - Análisis y exploración de datos",
   description: "Análisis del impacto socioeconómico de la pandemia de COVID-19 en América Latina y el Caribe."
 };
 
