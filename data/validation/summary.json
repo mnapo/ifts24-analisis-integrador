@@ -1,5 +1,5 @@
 {
-  "generado_utc": "2026-11-20T19:39:32.722071+00:00",
+  "generado_utc": "2026-11-20T20:09:48.209422+00:00",
   "periodo_wdi": [
     2015,
     2023
@@ -11,6 +11,36 @@
   "paises_configurados": 33,
   "paises_con_datos_wdi": 33,
   "paises_con_datos_oxcgrt": 28,
+  "paises_oxcgrt_iso3": [
+    "ARG",
+    "BHS",
+    "BLZ",
+    "BOL",
+    "BRA",
+    "BRB",
+    "CHL",
+    "COL",
+    "CRI",
+    "CUB",
+    "DMA",
+    "DOM",
+    "ECU",
+    "GTM",
+    "GUY",
+    "HND",
+    "HTI",
+    "JAM",
+    "MEX",
+    "NIC",
+    "PAN",
+    "PER",
+    "PRY",
+    "SLV",
+    "SUR",
+    "TTO",
+    "URY",
+    "VEN"
+  ],
   "anios_wdi": [
     2015,
     2016,
@@ -32,6 +62,24 @@
     "SP.DYN.LE00.IN",
     "SP.POP.TOTL"
   ],
+  "medidas_oxcgrt": {
+    "C1": 30688,
+    "C2": 30688,
+    "C3": 30688,
+    "C4": 30688,
+    "C5": 30688,
+    "C6": 30688,
+    "C7": 30688,
+    "C8": 0,
+    "E1": 30688,
+    "E2": 0,
+    "H1": 0,
+    "H2": 30688,
+    "H3": 30688,
+    "H6": 0,
+    "H7": 30688,
+    "H8": 30688
+  },
   "indicadores_sin_datos": [],
   "filas_wdi": 2139,
   "filas_oxcgrt_diarias": 30688,
@@ -44,7 +92,8 @@
     "sin_anios_fuera_de_rango": true,
     "indicadores_wdi_presentes": true,
     "wdi_no_vacio": true,
-    "oxcgrt_no_vacio": true
+    "oxcgrt_no_vacio": true,
+    "c6_disponible": true
   },
   "estado": "aprobado"
 }
