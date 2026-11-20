@@ -1,128 +1,63 @@
 "use client";
-
 import { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Scatter,
-  ScatterChart, Tooltip, XAxis, YAxis
-} from "recharts";
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ReferenceLine, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis } from "recharts";
 
-type WdiRow = { iso3: string; pais: string; anio: number; codigo_indicador: string; indicador: string; valor: number };
-type OxRow = { iso3: string; anio: number; dias_observados: number; StringencyIndex_Average: number; GovernmentResponseIndex_Average: number; ContainmentHealthIndex_Average: number; EconomicSupportIndex: number };
-type DataState = { wdi: WdiRow[]; ox: OxRow[]; error: string; loading: boolean };
-
-const GDP = "NY.GDP.MKTP.KD.ZG";
-const HEALTH = "SH.XPD.CHEX.PC.CD";
+type Wdi = { iso3:string; pais:string; anio:number; codigo_indicador:string; indicador:string; valor:number };
+type Ox = { iso3:string; anio:number; StringencyIndex_Average:number; GovernmentResponseIndex_Average:number; ContainmentHealthIndex_Average:number; EconomicSupportIndex:number };
+type Data = { wdi:Wdi[]; ox:Ox[]; loading:boolean; error:string };
+const C = { gdp:"NY.GDP.MKTP.KD.ZG", gdpPc:"NY.GDP.PCAP.KD.ZG", unemployment:"SL.UEM.TOTL.ZS", inflation:"FP.CPI.TOTL.ZG", gini:"SI.POV.GINI", life:"SP.DYN.LE00.IN", health:"SH.XPD.CHEX.PC.CD", population:"SP.POP.TOTL" };
+const years = [2015,2016,2017,2018,2019,2020,2021,2022,2023];
 const slides = [
-  { eyebrow: "OBSERVATORIO SOCIOECONÓMICO DE AMÉRICA LATINA", title: "La pandemia bajo la lupa de los datos.", body: "Un análisis comparativo de las respuestas sanitarias y sus efectos económicos y sociales en América Latina y el Caribe.", tag: "2015—2023 · 33 PAÍSES · BANCO MUNDIAL + OXCGRT", kind: "cover" },
-  { eyebrow: "01 / CONTEXTO", title: "Una crisis, múltiples realidades.", body: "La pandemia encontró a los países de la región con estructuras productivas, condiciones sociales y capacidades sanitarias diferentes. La comparación temporal permite observar esas diferencias antes, durante y después de la emergencia.", tag: "PANORAMA REGIONAL", kind: "content" },
-  { eyebrow: "02 / ACTIVIDAD ECONÓMICA", title: "El crecimiento antes, durante y después del shock.", body: "La evolución del PIB permite dimensionar la contracción de 2020 y observar la recuperación posterior. El promedio regional es simple y no está ponderado por población o tamaño económico.", tag: "WORLD DEVELOPMENT INDICATORS · VARIACIÓN ANUAL DEL PIB", kind: "chart", chart: "gdp" },
-  { eyebrow: "03 / RESPUESTA PÚBLICA", title: "La intensidad de las medidas cambió con el tiempo.", body: "El índice de rigurosidad resume distintas políticas de contención. Se presenta como promedio anual: no equivale a una medida directa de cumplimiento ni de movilidad de la población.", tag: "OXFORD COVID-19 GOVERNMENT RESPONSE TRACKER", kind: "chart", chart: "stringency" },
-  { eyebrow: "04 / SALUD Y CAPACIDAD", title: "La capacidad sanitaria previa también es desigual.", body: "El gasto corriente en salud por habitante ayuda a contextualizar las capacidades disponibles antes de la pandemia. Los valores están expresados en dólares estadounidenses corrientes y pueden faltar para algunos países y años.", tag: "WORLD DEVELOPMENT INDICATORS · US$ CORRIENTES POR HABITANTE", kind: "chart", chart: "health" },
-  { eyebrow: "05 / RECUPERACIÓN", title: "Las trayectorias nacionales no fueron idénticas.", body: "La comparación entre 2020 y 2023 muestra diferencias en las caídas y los rebotes. Seleccioná un país para contrastar su evolución con el promedio regional.", tag: "CRECIMIENTO DEL PIB · 2019—2023", kind: "chart", chart: "recovery" },
-  { eyebrow: "06 / RELACIONES", title: "¿Más restricciones, menor crecimiento?", body: "El diagrama cruza el índice anual de rigurosidad con el crecimiento del PIB para los países y años con ambos datos. Una asociación visual no demuestra que las restricciones hayan causado el resultado económico.", tag: "OXCGRT + WDI · OBSERVACIONES PAÍS/AÑO", kind: "chart", chart: "scatter" },
-  { eyebrow: "07 / FUENTES Y COBERTURA", title: "Dos fuentes, una mirada regional.", body: "World Development Indicators aporta indicadores económicos, demográficos y sanitarios para 2015–2023. OxCGRT aporta índices de respuesta gubernamental para 2020–2022. La cobertura no es idéntica: WDI incluye 33 países y OxCGRT, 28.", tag: "FUENTES OFICIALES · COBERTURA VALIDADA", kind: "content" },
-  { eyebrow: "08 / METODOLOGÍA", title: "De los registros a la comparación.", body: "Los datos se normalizaron por código ISO3 y año. Las observaciones diarias de OxCGRT se agregaron mediante promedios anuales. Se controlaron duplicados, períodos e integridad de los archivos. Los promedios regionales son no ponderados y excluyen los valores faltantes.", tag: "EXTRACCIÓN · TRANSFORMACIÓN · VALIDACIÓN", kind: "content" },
-  { eyebrow: "09 / CONCLUSIONES", title: "Interpretar sin simplificar.", body: "Los datos permiten describir diferencias entre países y períodos, pero no identificar por sí solos efectos causales. La cobertura desigual, los indicadores agregados y las diferencias estructurales deben considerarse al interpretar los patrones.", tag: "RESULTADOS DESCRIPTIVOS Y LIMITACIONES", kind: "closing" }
+{ title:"La pandemia bajo la lupa de los datos.", eyebrow:"OBSERVATORIO SOCIOECONÓMICO DE AMÉRICA LATINA", body:"Un análisis comparativo de las respuestas sanitarias y sus efectos económicos y sociales en América Latina y el Caribe. Se utilizan series estadísticas reales; no se generaron observaciones sintéticas.", tag:"2015—2023 · AMÉRICA LATINA Y EL CARIBE", kind:"cover" },
+{ title:"El shock de 2020 y la trayectoria del PIB.", eyebrow:"01 / ACTIVIDAD ECONÓMICA", body:"La variación anual del PIB muestra el cambio de ritmo de la actividad. La referencia en cero separa crecimiento de contracción. El promedio regional es simple y no pondera por población ni tamaño económico.", tag:"WDI · NY.GDP.MKTP.KD.ZG · % ANUAL", kind:"chart", chart:"gdp" },
+{ title:"La contracción no tuvo la misma magnitud.", eyebrow:"02 / IMPACTO POR PAÍS", body:"Comparación de las tasas nacionales de crecimiento del PIB en 2020. Los valores negativos representan contracciones; la referencia vertical marca el cero. No se comparan tamaños absolutos de economías.", tag:"WDI · 2020 · % ANUAL", kind:"chart", chart:"contraction" },
+{ title:"El rebote posterior fue heterogéneo.", eyebrow:"03 / RECUPERACIÓN", body:"Se contrasta el crecimiento de 2020 con el promedio aritmético de las tasas anuales 2021–2023. El promedio de tasas no equivale a la variación acumulada del PIB entre extremos.", tag:"WDI · TASAS ANUALES · 2021—2023", kind:"chart", chart:"recovery" },
+{ title:"La inflación siguió trayectorias distintas.", eyebrow:"04 / PRECIOS", body:"La inflación corresponde a la variación anual del índice de precios al consumidor. La media regional no pondera por población y no representa la inflación de una economía regional agregada.", tag:"WDI · FP.CPI.TOTL.ZG · % ANUAL", kind:"chart", chart:"inflation" },
+{ title:"El desempleo aporta otra dimensión del impacto.", eyebrow:"05 / MERCADO LABORAL", body:"La tasa expresa la proporción de la fuerza laboral sin empleo que está disponible y busca trabajo, según la serie WDI. La cobertura puede variar por país y año.", tag:"WDI · SL.UEM.TOTL.ZS · % FUERZA LABORAL", kind:"chart", chart:"unemployment" },
+{ title:"Las medidas se modificaron durante la emergencia.", eyebrow:"06 / RESPUESTA PÚBLICA", body:"Se comparan cuatro índices OxCGRT en escala 0–100. Son promedios anuales de observaciones diarias disponibles; resumen políticas registradas, no cumplimiento individual, movilidad ni resultados sanitarios.", tag:"OXCGRT · PROMEDIOS ANUALES · ESCALA 0–100", kind:"chart", chart:"policy" },
+{ title:"¿Cómo se asocian rigurosidad y crecimiento?", eyebrow:"07 / RELACIÓN ENTRE VARIABLES", body:"Cada punto cruza el promedio anual de rigurosidad OxCGRT con el crecimiento del PIB WDI del mismo país y año. Solo se incluyen pares completos; la recta resume asociación lineal descriptiva, no causalidad.", tag:"CRUCE ISO3 + AÑO · 2020—2022", kind:"chart", chart:"scatter" },
+{ title:"El tamaño poblacional cambia la lectura.", eyebrow:"08 / ESCALA DEMOGRÁFICA", body:"El diagrama relaciona población y crecimiento del PIB para cada país/año. La posición horizontal indica población y la vertical, crecimiento; el tamaño del punto también representa población.", tag:"CRUCE WDI · POBLACIÓN + PIB", kind:"chart", chart:"population" },
+{ title:"El gasto en salud presenta grandes diferencias.", eyebrow:"09 / CAPACIDAD SANITARIA", body:"Gasto corriente en salud por habitante, expresado en dólares estadounidenses corrientes. No está ajustado por inflación ni paridad de poder adquisitivo y no equivale a volumen real de servicios.", tag:"WDI · SH.XPD.CHEX.PC.CD · US$ CORRIENTES POR HABITANTE", kind:"chart", chart:"health" },
+{ title:"La esperanza de vida también cambió.", eyebrow:"10 / RESULTADOS SANITARIOS", body:"La serie muestra la esperanza de vida al nacer, en años. Las variaciones son descriptivas y no aíslan el efecto de COVID-19 frente a otros factores demográficos, sociales o estadísticos.", tag:"WDI · SP.DYN.LE00.IN · AÑOS", kind:"chart", chart:"life" },
+{ title:"La desigualdad requiere cautela temporal.", eyebrow:"11 / DESIGUALDAD", body:"El índice de Gini se publica con menor frecuencia que otros indicadores. Los espacios sin observaciones indican datos ausentes: no se interpolan ni se reemplazan por estimaciones.", tag:"WDI · SI.POV.GINI · ESCALA 0–100", kind:"chart", chart:"gini" },
+{ title:"Datos observados, cruces transparentes.", eyebrow:"12 / FUENTES Y MÉTODO", body:"WDI aporta indicadores económicos, laborales, sanitarios y demográficos. OxCGRT aporta índices de políticas. Las series se unen por código ISO3 y año; se conservan los faltantes y se explicitan los promedios utilizados.", tag:"BANCO MUNDIAL · OXFORD COVID-19 GOVERNMENT RESPONSE TRACKER", kind:"sources" },
+{ title:"Describir patrones no es demostrar causas.", eyebrow:"13 / CONCLUSIONES", body:"Las visualizaciones permiten comparar trayectorias y formular preguntas. Para atribuir efectos se necesitaría un diseño causal que controle diferencias estructurales, rezagos, simultaneidad y otros factores no incluidos en estas fuentes.", tag:"RESULTADOS DESCRIPTIVOS · LIMITACIONES", kind:"closing" }
 ];
+function csv<T>(raw:string, map:(r:Record<string,string>)=>T|null):T[] {
+ const lines=raw.replace(/^\uFEFF/,"").trim().split(/\r?\n/); if(lines.length<2)return [];
+ const split=(line:string)=>{const a:string[]=[];let s="",q=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'&&line[i+1]==='"'&&q){s+='"';i++;}else if(c==='"')q=!q;else if(c===","&&!q){a.push(s);s="";}else s+=c;}a.push(s);return a;};
+ const h=split(lines[0]); return lines.slice(1).map(line=>map(Object.fromEntries(h.map((k,i)=>[k,split(line)[i]??""])))).filter((v):v is T=>v!==null);
+}
+const avg=(v:number[])=>v.length?v.reduce((a,b)=>a+b,0)/v.length:null;
+const fmt=(v:number,d=1)=>v.toLocaleString("es-AR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const country=(rows:Wdi[],iso:string)=>rows.find(r=>r.iso3===iso)?.pais??iso;
 
-function parseCsv<T>(text: string, map: (row: Record<string, string>) => T | null): T[] {
-  const lines = text.replace(/^\uFEFF/, "").trim().split(/\r?\n/);
-  if (lines.length < 2) return [];
-  const parseLine = (line: string) => {
-    const cells: string[] = []; let cell = ""; let quoted = false;
-    for (let i = 0; i < line.length; i++) {
-      const ch = line[i];
-      if (ch === '"' && line[i + 1] === '"' && quoted) { cell += '"'; i++; }
-      else if (ch === '"') quoted = !quoted;
-      else if (ch === "," && !quoted) { cells.push(cell); cell = ""; }
-      else cell += ch;
-    }
-    cells.push(cell); return cells;
-  };
-  const headers = parseLine(lines[0]);
-  return lines.slice(1).map((line) => {
-    const values = parseLine(line);
-    return map(Object.fromEntries(headers.map((header, i) => [header, values[i] ?? ""])));
-  }).filter((row): row is T => row !== null);
+function ChartView({kind,data}:{kind:string;data:Data}) {
+ const series=useMemo(()=>Object.fromEntries(Object.values(C).map(code=>[code,data.wdi.filter(r=>r.codigo_indicador===code)])) as Record<string,Wdi[]>,[data.wdi]);
+ const annual=useMemo(()=>years.map(year=>{const o:Record<string,number|null>={anio:year};for(const code of Object.values(C))o[code]=avg((series[code]??[]).filter(r=>r.anio===year).map(r=>r.valor));return o;}),[series]);
+ const policy=useMemo(()=>[2020,2021,2022].map(anio=>{const rows=data.ox.filter(r=>r.anio===anio);return {anio,rigurosidad:avg(rows.map(r=>r.StringencyIndex_Average).filter(Number.isFinite)),respuesta:avg(rows.map(r=>r.GovernmentResponseIndex_Average).filter(Number.isFinite)),contencion:avg(rows.map(r=>r.ContainmentHealthIndex_Average).filter(Number.isFinite)),apoyo:avg(rows.map(r=>r.EconomicSupportIndex).filter(Number.isFinite))};}),[data.ox]);
+ const byCountry=useMemo(()=>[...new Set(series[C.gdp].map(r=>r.iso3))].map(iso=>{const rows=series[C.gdp].filter(r=>r.iso3===iso);return {pais:country(data.wdi,iso),contraccion:rows.find(r=>r.anio===2020)?.valor??null,rebote:avg(rows.filter(r=>r.anio>=2021&&r.anio<=2023).map(r=>r.valor))};}).filter(r=>r.contraccion!==null),[series,data.wdi]);
+ const joined=useMemo(()=>{const ox=new Map(data.ox.map(r=>[r.iso3+"-"+r.anio,r]));return series[C.gdp].flatMap(r=>{const o=ox.get(r.iso3+"-"+r.anio);return o&&Number.isFinite(o.StringencyIndex_Average)?[{pais:r.pais,anio:r.anio,x:o.StringencyIndex_Average,y:r.valor}]:[];});},[series,data.ox]);
+ const regression=useMemo(()=>{if(joined.length<2)return [];const mx=avg(joined.map(r=>r.x))??0,my=avg(joined.map(r=>r.y))??0,den=joined.reduce((s,r)=>s+(r.x-mx)**2,0);if(!den)return [];const slope=joined.reduce((s,r)=>s+(r.x-mx)*(r.y-my),0)/den,inter=my-slope*mx;return [{x:0,y:inter},{x:100,y:inter+slope*100}];},[joined]);
+ const bubbles=useMemo(()=>[2020,2021,2022].map(year=>{const pops=new Map(series[C.population].filter(r=>r.anio===year).map(r=>[r.iso3,r.valor]));return {year:String(year),points:series[C.gdp].filter(r=>r.anio===year&&pops.has(r.iso3)).map(r=>({x:(pops.get(r.iso3)??0)/1e6,y:r.valor,z:(pops.get(r.iso3)??0)/1e6,pais:r.pais}))};}),[series]);
+ const tooltip={contentStyle:{background:"#101a2b",border:"1px solid #34445d",borderRadius:10,color:"#f3f6fc"},labelStyle:{color:"#aab8ca"}};
+ const axis={stroke:"#8292a9",tickLine:false,axisLine:false}; const grid=<CartesianGrid stroke="#26364d" strokeDasharray="3 5"/>;
+ const refs=<div className="chart-reference"><span>FUENTE: {kind==="policy"||kind==="scatter"?"OXCGRT + BANCO MUNDIAL":"BANCO MUNDIAL · WDI"}</span><a href="https://databank.worldbank.org/source/world-development-indicators" target="_blank" rel="noreferrer">WDI</a><a href="https://github.com/OxCGRT/covid-policy-dataset" target="_blank" rel="noreferrer">OxCGRT</a></div>;
+ if(kind==="gdp")return <div className="chart-frame"><div className="chart-heading"><span>CRECIMIENTO DEL PIB</span><small>Promedio simple · % anual</small></div><ResponsiveContainer width="100%" height="100%"><AreaChart data={annual}>{grid}<XAxis dataKey="anio" {...axis}/><YAxis {...axis} tickFormatter={v=>v+"%"}/><Tooltip {...tooltip} formatter={v=>[fmt(Number(v))+"%","Promedio regional"]}/><ReferenceLine y={0} stroke="#f3b66b" strokeDasharray="5 4" label={{value:"0 %",fill:"#f3b66b",fontSize:10}}/><Area dataKey={C.gdp} name="Promedio regional" stroke="#70dbc8" fill="#70dbc8" fillOpacity={0.2} connectNulls={false}/></AreaChart></ResponsiveContainer><p className="chart-note">Media aritmética entre países con dato en cada año; sin ponderación por población o PIB.</p>{refs}</div>;
+ if(kind==="contraction"||kind==="recovery"){const rows=[...byCountry].sort((a,b)=>kind==="contraction"?(a.contraccion??0)-(b.contraccion??0):(b.rebote??0)-(a.rebote??0));return <div className="chart-frame"><div className="chart-heading"><span>{kind==="contraction"?"CRECIMIENTO DEL PIB EN 2020":"PROMEDIO DE CRECIMIENTO 2021–2023"}</span><small>% anual · por país</small></div><ResponsiveContainer width="100%" height="100%"><BarChart data={rows} layout="vertical" margin={{left:10,right:22}}><CartesianGrid stroke="#26364d" strokeDasharray="3 5" horizontal={false}/><XAxis type="number" {...axis} tickFormatter={v=>v+"%"}/><YAxis type="category" dataKey="pais" {...axis} width={118} tick={{fontSize:10}}/><Tooltip {...tooltip} formatter={v=>[fmt(Number(v))+"%",kind==="contraction"?"Crecimiento 2020":"Promedio 2021–2023"]}/><ReferenceLine x={0} stroke="#f3b66b" strokeDasharray="5 4"/><Bar dataKey={kind==="contraction"?"contraccion":"rebote"} fill="#70dbc8" radius={[0,5,5,0]}/></BarChart></ResponsiveContainer><p className="chart-note">{kind==="contraction"?"Valores negativos indican contracción del PIB real.":"Promedio simple de las tasas 2021, 2022 y 2023; no es crecimiento acumulado."}</p>{refs}</div>;}
+ if(kind==="policy")return <div className="chart-frame"><div className="chart-heading"><span>ÍNDICES DE RESPUESTA GUBERNAMENTAL</span><small>Escala 0–100 · media anual</small></div><ResponsiveContainer width="100%" height="100%"><LineChart data={policy}>{grid}<XAxis dataKey="anio" {...axis}/><YAxis domain={[0,100]} {...axis}/><Tooltip {...tooltip}/><Legend/><Line dataKey="rigurosidad" name="Rigurosidad" stroke="#70dbc8" strokeWidth={2.5}/><Line dataKey="respuesta" name="Respuesta gubernamental" stroke="#f3b66b" strokeWidth={2}/><Line dataKey="contencion" name="Contención y salud" stroke="#9e9af7" strokeWidth={2}/><Line dataKey="apoyo" name="Apoyo económico" stroke="#e58fb5" strokeWidth={2}/></LineChart></ResponsiveContainer><p className="chart-note">Promedio de índices nacionales anuales; mayor valor indica mayor intensidad de políticas según cada índice.</p>{refs}</div>;
+ if(kind==="scatter")return <div className="chart-frame"><div className="chart-heading"><span>RIGUROSIDAD Y CRECIMIENTO DEL PIB</span><small>País/año · 2020–2022</small></div><ResponsiveContainer width="100%" height="100%"><ScatterChart margin={{bottom:18}}>{grid}<XAxis type="number" dataKey="x" name="Rigurosidad" domain={[0,100]} {...axis} label={{value:"Índice de rigurosidad (0–100)",position:"insideBottom",offset:-12,fill:"#8292a9",fontSize:10}}/><YAxis type="number" dataKey="y" name="Crecimiento del PIB" {...axis} tickFormatter={v=>v+"%"}/><Tooltip {...tooltip} formatter={(v,n)=>[n==="Crecimiento del PIB"?fmt(Number(v))+"%":fmt(Number(v)),n]} labelFormatter={(_,p)=>p?.[0]?.payload?p[0].payload.pais+" · "+p[0].payload.anio:""}/><ReferenceLine y={0} stroke="#f3b66b" strokeDasharray="5 4"/><Scatter data={joined} name="País/año" fill="#70dbc8" fillOpacity={0.68}/><Scatter data={regression} line={{stroke:"#f3b66b",strokeWidth:2,strokeDasharray:"5 4"}} shape="none" name="Tendencia lineal"/></ScatterChart></ResponsiveContainer><p className="chart-note">Cruce ISO3/año, solo pares completos. Recta de regresión descriptiva sin controles; no demuestra causalidad.</p>{refs}</div>;
+ if(kind==="population")return <div className="chart-frame"><div className="chart-heading"><span>POBLACIÓN Y CRECIMIENTO DEL PIB</span><small>Burbuja: población en millones</small></div><ResponsiveContainer width="100%" height="100%"><ScatterChart margin={{bottom:18}}>{grid}<XAxis type="number" dataKey="x" name="Población" {...axis} tickFormatter={v=>v+" M"} label={{value:"Población (millones)",position:"insideBottom",offset:-12,fill:"#8292a9",fontSize:10}}/><YAxis type="number" dataKey="y" name="Crecimiento del PIB" {...axis} tickFormatter={v=>v+"%"}/><ZAxis type="number" dataKey="z" range={[35,600]}/><Tooltip {...tooltip} formatter={(v,n)=>[n==="Población"?fmt(Number(v),0)+" millones":fmt(Number(v))+"%",n]} labelFormatter={(_,p)=>p?.[0]?.payload?.pais??""}/><ReferenceLine y={0} stroke="#f3b66b" strokeDasharray="5 4"/>{bubbles.map((b,i)=><Scatter key={b.year} name={b.year} data={b.points} fill={["#70dbc8","#f3b66b","#9e9af7"][i]} fillOpacity={0.7}/>)}<Legend/></ScatterChart></ResponsiveContainer><p className="chart-note">Cruce WDI por ISO3/año. Población define eje horizontal y tamaño de burbuja; no pondera el promedio regional.</p>{refs}</div>;
+ const configs:Record<string,{code:string;title:string;unit:string;color:string;zero?:boolean;digits?:number}>={inflation:{code:C.inflation,title:"INFLACIÓN",unit:"% anual",color:"#f3b66b",zero:true},unemployment:{code:C.unemployment,title:"DESEMPLEO",unit:"% de la fuerza laboral",color:"#9e9af7"},health:{code:C.health,title:"GASTO CORRIENTE EN SALUD",unit:"US$ corrientes por habitante",color:"#70dbc8",digits:0},life:{code:C.life,title:"ESPERANZA DE VIDA AL NACER",unit:"años",color:"#e58fb5"},gini:{code:C.gini,title:"ÍNDICE DE GINI",unit:"escala 0–100",color:"#f3b66b"}};
+ const c=configs[kind];const values=annual.map(r=>({anio:r.anio,valor:r[c.code]}));
+ return <div className="chart-frame"><div className="chart-heading"><span>{c.title}</span><small>{c.unit} · promedio simple</small></div><ResponsiveContainer width="100%" height="100%"><LineChart data={values}>{grid}<XAxis dataKey="anio" {...axis}/><YAxis {...axis} tickFormatter={v=>c.digits===0?Number(v).toLocaleString("es-AR"):fmt(Number(v))}/><Tooltip {...tooltip} formatter={v=>[c.digits===0?Number(v).toLocaleString("es-AR",{maximumFractionDigits:0}):fmt(Number(v)),c.title]}/><Line dataKey="valor" name="Promedio regional" stroke={c.color} strokeWidth={2.8} dot={{r:3}} connectNulls={false}/>{c.zero&&<ReferenceLine y={0} stroke="#f3b66b" strokeDasharray="5 4"/>}</LineChart></ResponsiveContainer><p className="chart-note">{kind==="health"?"Dólares corrientes: no ajusta por inflación ni paridad de poder adquisitivo.":kind==="gini"?"Faltantes conservados; no se interpolan observaciones ausentes.":"Media aritmética de países con dato disponible en cada año; sin ponderación."}</p>{refs}</div>;
 }
 
-const number = (value: string) => value === "" ? null : Number(value);
-const countryName = (rows: WdiRow[], iso: string) => rows.find((row) => row.iso3 === iso)?.pais ?? iso;
-
-function DataCharts({ chart, data, country }: { chart: string; data: DataState; country: string }) {
-  const gdp = useMemo(() => {
-    const rows = data.wdi.filter((r) => r.codigo_indicador === GDP);
-    return Array.from({ length: 9 }, (_, i) => {
-      const year = 2015 + i; const values = rows.filter((r) => r.anio === year);
-      const regional = values.length ? values.reduce((s,r) => s + r.valor, 0) / values.length : null;
-      return { anio: year, region: regional, pais: values.find((r) => r.iso3 === country)?.valor ?? null, cobertura: values.length };
-    });
-  }, [data.wdi, country]);
-  const ox = useMemo(() => Array.from({ length: 3 }, (_, i) => {
-    const year = 2020 + i; const rows = data.ox.filter((r) => r.anio === year);
-    const values = rows.map((r) => r.StringencyIndex_Average).filter(Number.isFinite);
-    return { anio: year, region: values.length ? values.reduce((s,v) => s + v, 0) / values.length : null, pais: data.ox.find((r) => r.iso3 === country && r.anio === year)?.StringencyIndex_Average ?? null, cobertura: values.length };
-  }), [data.ox, country]);
-  const health = useMemo(() => Array.from({ length: 9 }, (_, i) => {
-    const year = 2015 + i; const rows = data.wdi.filter((r) => r.codigo_indicador === HEALTH && r.anio === year);
-    const values = rows.map((r) => r.valor);
-    return { anio: year, region: values.length ? values.reduce((s,v) => s + v, 0) / values.length : null, pais: rows.find((r) => r.iso3 === country)?.valor ?? null, cobertura: values.length };
-  }), [data.wdi, country]);
-  const recovery = gdp.filter((r) => r.anio >= 2019);
-  const scatter = useMemo(() => data.ox.flatMap((r) => {
-    const match = data.wdi.find((w) => w.iso3 === r.iso3 && w.anio === r.anio && w.codigo_indicador === GDP);
-    return match ? [{ x: r.StringencyIndex_Average, y: match.valor, pais: countryName(data.wdi, r.iso3), anio: r.anio }] : [];
-  }), [data.ox, data.wdi]);
-  const tooltip = { contentStyle: { background: "#101a2b", border: "1px solid #34445d", borderRadius: 10, color: "#f3f6fc" }, labelStyle: { color: "#aab8ca" } };
-  const common = <><CartesianGrid stroke="#26364d" strokeDasharray="3 5" /><XAxis dataKey="anio" stroke="#8292a9" tickLine={false} axisLine={false} /><YAxis stroke="#8292a9" tickLine={false} axisLine={false} tickFormatter={(v) => chart === "stringency" ? String(v) : `${v}%`} /><Tooltip {...tooltip} /><Legend /></>;
-  if (chart === "scatter") return <div className="chart-frame"><div className="chart-heading"><span>RIGUROSIDAD Y CRECIMIENTO</span><small>{scatter.length} observaciones comparables</small></div><ResponsiveContainer width="100%" height="100%"><ScatterChart margin={{ top: 12, right: 20, bottom: 24, left: 0 }}><CartesianGrid stroke="#26364d" strokeDasharray="3 5" /><XAxis type="number" dataKey="x" name="Rigurosidad" domain={[0,100]} stroke="#8292a9" label={{ value: "Índice de rigurosidad (0–100)", position: "insideBottom", offset: -12, fill: "#8292a9" }} /><YAxis type="number" dataKey="y" name="Crecimiento del PIB" stroke="#8292a9" tickFormatter={(v) => `${v}%`} /><Tooltip cursor={{ strokeDasharray: "3 3" }} {...tooltip} /><Scatter data={scatter} fill="#70dbc8" fillOpacity={0.72} /></ScatterChart></ResponsiveContainer><p className="chart-note">Cada punto representa un país y un año (2020–2022). No implica causalidad.</p></div>;
-  const rows = chart === "stringency" ? ox : chart === "health" ? health : chart === "recovery" ? recovery : gdp;
-  const unit = chart === "health" ? "US$ corrientes por habitante" : "Variación / índice promedio anual";
-  return <div className="chart-frame"><div className="chart-heading"><span>{chart === "stringency" ? "ÍNDICE DE RIGUROSIDAD" : chart === "health" ? "GASTO CORRIENTE EN SALUD" : "CRECIMIENTO DEL PIB"}</span><small>{unit}</small></div><ResponsiveContainer width="100%" height="100%"><LineChart data={rows} margin={{ top: 12, right: 20, bottom: 8, left: 0 }}>{chart === "health" ? <><CartesianGrid stroke="#26364d" strokeDasharray="3 5" /><XAxis dataKey="anio" stroke="#8292a9" tickLine={false} axisLine={false} /><YAxis stroke="#8292a9" tickLine={false} axisLine={false} /><Tooltip {...tooltip} /><Legend /></> : common}<Line type="monotone" dataKey="region" name="Promedio regional" stroke="#70dbc8" strokeWidth={3} connectNulls={false} dot={{ r: 3, fill: "#70dbc8" }} activeDot={{ r: 5 }} /><Line type="monotone" dataKey="pais" name={countryName(data.wdi, country)} stroke="#f3b66b" strokeWidth={2} connectNulls={false} dot={{ r: 3 }} /></LineChart></ResponsiveContainer><p className="chart-note">Cobertura regional: {rows.map((r) => r.cobertura).join(" · ")} países con datos por año. Promedio simple, sin ponderar.</p></div>;
-}
-
-export default function Home() {
-  const [active, setActive] = useState(0);
-  const [country, setCountry] = useState("ARG");
-  const [data, setData] = useState<DataState>({ wdi: [], ox: [], error: "", loading: true });
-  const move = useCallback((direction: number) => setActive((current) => Math.max(0, Math.min(slides.length - 1, current + direction))), []);
-  useEffect(() => {
-    let cancelled = false;
-    Promise.all([
-      fetch("/data/wdi_indicadores.csv").then((r) => { if (!r.ok) throw new Error("No se pudo cargar WDI"); return r.text(); }),
-      fetch("/data/oxcgrt_anual.csv").then((r) => { if (!r.ok) throw new Error("No se pudo cargar OxCGRT"); return r.text(); })
-    ]).then(([wdiText, oxText]) => {
-      const wdi = parseCsv(wdiText, (r) => { const valor = number(r.valor); return valor === null || !Number.isFinite(valor) ? null : { iso3:r.iso3, pais:r.pais, anio:Number(r.anio), codigo_indicador:r.codigo_indicador, indicador:r.indicador, valor }; });
-      const ox = parseCsv(oxText, (r) => ({ iso3:r.iso3, anio:Number(r.anio), dias_observados:Number(r.dias_observados), StringencyIndex_Average:Number(r.StringencyIndex_Average), GovernmentResponseIndex_Average:Number(r.GovernmentResponseIndex_Average), ContainmentHealthIndex_Average:Number(r.ContainmentHealthIndex_Average), EconomicSupportIndex:Number(r.EconomicSupportIndex) }));
-      if (!cancelled) setData({ wdi, ox, error:"", loading:false });
-    }).catch((error: Error) => { if (!cancelled) setData((old) => ({ ...old, error:error.message, loading:false })); });
-    return () => { cancelled = true; };
-  }, []);
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (["ArrowRight", "PageDown", " "].includes(event.key)) { event.preventDefault(); move(1); }
-      if (["ArrowLeft", "PageUp"].includes(event.key)) { event.preventDefault(); move(-1); }
-      if (event.key === "Home") setActive(0);
-      if (event.key === "End") setActive(slides.length - 1);
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [move]);
-  const slide = slides[active];
-  const hasChart = slide.kind === "chart";
-  return <main className="presentation">
-    <header className="topbar"><a className="brand" href="#inicio" onClick={(event) => { event.preventDefault(); setActive(0); }}>OBSERVATORIO <span>LATAM</span></a><span className="counter">{String(active + 1).padStart(2, "0")} <i>/</i> {String(slides.length).padStart(2, "0")}</span></header>
-    <section className={`slide ${slide.kind}`} key={active} aria-live="polite">
-      <div className="slide-copy"><p className="eyebrow">{slide.eyebrow}</p><h1>{slide.title}</h1><p className="body-copy">{slide.body}</p><p className="slide-tag">{slide.tag}</p></div>
-      {hasChart && <div className="data-panel">
-        {data.loading ? <div className="data-status">Cargando datasets validados…</div> : data.error ? <div className="data-status error">{data.error}</div> : <>
-          <div className="data-toolbar"><label htmlFor="country-select">País de comparación</label><select id="country-select" value={country} onChange={(e) => setCountry(e.target.value)}>{[...new Map(data.wdi.map((r) => [r.iso3,r.pais])).entries()].sort((a,b) => a[1].localeCompare(b[1],"es")).map(([iso,name]) => <option key={iso} value={iso}>{name}</option>)}</select><span>{data.wdi.length.toLocaleString("es-AR")} registros WDI · {data.ox.length} registros OxCGRT</span></div>
-          <DataCharts chart={slide.chart!} data={data} country={country} />
-        </>}
-      </div>}
-      {!hasChart && <div className="visual-mark" aria-hidden="true"><span>LATAM</span><b>{String(active + 1).padStart(2, "0")}</b></div>}
-    </section>
-    <footer className="controls"><button onClick={() => move(-1)} disabled={active === 0} aria-label="Diapositiva anterior">←</button><nav className="dots" aria-label="Navegación de diapositivas">{slides.map((item,index) => <button key={item.eyebrow} onClick={() => setActive(index)} className={index === active ? "dot active" : "dot"} aria-label={`Ir a diapositiva ${index + 1}`} aria-current={index === active ? "step" : undefined} />)}</nav><button onClick={() => move(1)} disabled={active === slides.length - 1} aria-label="Diapositiva siguiente">→</button></footer>
-    <span className="keyboard-hint">USÁ ← → PARA NAVEGAR</span>
-  </main>;
+export default function Home(){
+ const [active,setActive]=useState(0);const [data,setData]=useState<Data>({wdi:[],ox:[],loading:true,error:""});
+ const move=useCallback((d:number)=>setActive(v=>Math.max(0,Math.min(slides.length-1,v+d))),[]);
+ useEffect(()=>{let cancelled=false;Promise.all([fetch("/data/wdi_indicadores.csv").then(r=>{if(!r.ok)throw Error("No se pudo cargar WDI");return r.text();}),fetch("/data/oxcgrt_anual.csv").then(r=>{if(!r.ok)throw Error("No se pudo cargar OxCGRT");return r.text();})]).then(([w,o])=>{const wdi=csv(w,r=>{const value=r.valor.trim()===""?null:Number(r.valor);return value===null||!Number.isFinite(value)?null:{iso3:r.iso3,pais:r.pais,anio:Number(r.anio),codigo_indicador:r.codigo_indicador,indicador:r.indicador,valor:value};});const ox=csv(o,r=>({iso3:r.iso3,anio:Number(r.anio),StringencyIndex_Average:Number(r.StringencyIndex_Average),GovernmentResponseIndex_Average:Number(r.GovernmentResponseIndex_Average),ContainmentHealthIndex_Average:Number(r.ContainmentHealthIndex_Average),EconomicSupportIndex:Number(r.EconomicSupportIndex)}));if(!cancelled)setData({wdi,ox,loading:false,error:""});}).catch(e=>{if(!cancelled)setData({wdi:[],ox:[],loading:false,error:e.message});});return()=>{cancelled=true;};},[]);
+ useEffect(()=>{const key=(e:KeyboardEvent)=>{if(["ArrowRight","PageDown"," "].includes(e.key)){e.preventDefault();move(1);}if(["ArrowLeft","PageUp"].includes(e.key)){e.preventDefault();move(-1);}if(e.key==="Home")setActive(0);if(e.key==="End")setActive(slides.length-1);};window.addEventListener("keydown",key);return()=>window.removeEventListener("keydown",key);},[move]);
+ const slide=slides[active];
+ return <main className="presentation"><header className="topbar"><a className="brand" href="#inicio" onClick={e=>{e.preventDefault();setActive(0);}}>OBSERVATORIO <span>LATAM</span></a><span className="counter">{String(active+1).padStart(2,"0")} <i>/</i> {String(slides.length).padStart(2,"0")}</span></header><section className={"slide "+slide.kind} key={active} aria-live="polite"><div className="slide-copy"><p className="eyebrow">{slide.eyebrow}</p><h1>{slide.title}</h1><p className="body-copy">{slide.body}</p><p className="slide-tag">{slide.tag}</p></div>{slide.kind==="chart"&&<div className="data-panel">{data.loading?<div className="data-status">Cargando datasets validados…</div>:data.error?<div className="data-status error">{data.error}</div>:<ChartView kind={slide.chart!} data={data}/>}</div>}{slide.kind==="sources"&&<div className="sources-panel"><a href="https://databank.worldbank.org/source/world-development-indicators" target="_blank" rel="noreferrer">World Development Indicators — Banco Mundial</a><a href="https://github.com/OxCGRT/covid-policy-dataset" target="_blank" rel="noreferrer">Oxford COVID-19 Government Response Tracker</a><p>WDI se consulta por indicador y se filtra a 2015–2023. OxCGRT se filtra a 2020–2022; las observaciones diarias se agregan por país/año mediante media aritmética de valores no nulos.</p><p>Los cruces se realizan por ISO3 y año. No se imputan faltantes ni se extrapolan series. Los promedios regionales son medias simples entre países con dato, sin ponderación por población o PIB.</p><p>El índice de rigurosidad no mide cumplimiento ni movilidad. Los cruces descriptivos y la regresión lineal no prueban causalidad.</p></div>}{slide.kind!=="chart"&&slide.kind!=="sources"&&<div className="visual-mark" aria-hidden="true"><span>LATAM</span><b>{String(active+1).padStart(2,"0")}</b></div>}</section><footer className="controls"><button onClick={()=>move(-1)} disabled={active===0} aria-label="Diapositiva anterior">←</button><nav className="dots" aria-label="Navegación de diapositivas">{slides.map((s,i)=><button key={s.eyebrow} onClick={()=>setActive(i)} className={i===active?"dot active":"dot"} aria-label={"Ir a diapositiva "+(i+1)} aria-current={i===active?"step":undefined}/>)}</nav><button onClick={()=>move(1)} disabled={active===slides.length-1} aria-label="Diapositiva siguiente">→</button></footer><span className="keyboard-hint">USÁ ← → PARA NAVEGAR</span></main>;
 }
