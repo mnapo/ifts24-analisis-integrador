@@ -1,10 +1,13 @@
 # Presentación interactiva
 
-La entrega se organiza en tres páginas navegables:
+La entrega se organiza en seis reportes navegables:
 
 1. Panorama regional: evolución del PIB, PIB per cápita, inflación, desempleo, población y gasto sanitario.
 2. Restricciones sanitarias y economía: índices compuestos, medidas C1–C8, políticas económicas y duración diaria de C6.
-3. Impacto sanitario y social: esperanza de vida, gasto sanitario, desigualdad, desempleo y asociaciones descriptivas.
+3. Impacto sanitario y social: esperanza de vida, gasto sanitario y cambios observados.
+4. Desigualdad y empleo: Gini, desempleo y asociaciones entre condiciones previas y shock económico.
+5. Capacidad sanitaria: gasto por habitante, esperanza de vida y cambios entre períodos.
+6. Comparación de países: caída y recuperación del PIB, políticas C6 y matriz multidimensional.
 
 ## Interacción
 
@@ -13,6 +16,7 @@ La entrega se organiza en tres páginas navegables:
 - Ejes rotulados y unidades explícitas.
 - Los puntos de dispersión se pueden seleccionar para consultar país, año y valores exactos.
 - Selector de año para comparar duración de C6.
+- Matriz comparativa con períodos y unidades explícitos; los faltantes se muestran como “Sin dato”.
 - No se incluye filtro de país.
 
 ## Fuentes y criterios
