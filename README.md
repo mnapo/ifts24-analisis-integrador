@@ -1,4 +1,4 @@
-# Observatorio Socioeconómico de América Latina
+# IFTS24 - Análisis y exploración de datos
 
 Presentación interactiva sobre el impacto socioeconómico de la pandemia de COVID-19 en América Latina y el Caribe.
 
