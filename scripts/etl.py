@@ -40,35 +40,34 @@ def write_csv(path: Path, rows: list[dict], fields: list[str]):
 
 
 def fetch_wdi(countries: list[str], indicators: list[dict]) -> list[dict]:
+    """Consulta cada indicador por separado; la API WDI no acepta una lista de códigos en esa ruta."""
     country_path = ";".join(countries)
-    indicator_path = ";".join(item["codigo"] for item in indicators)
     query = urllib.parse.urlencode({
         "date": f"{START_YEAR}:{END_YEAR}",
         "format": "json",
         "per_page": "20000"
     })
-    url = f"https://api.worldbank.org/v2/country/{country_path}/indicator/{indicator_path}?{query}"
-    raw_path = RAW / "wdi_indicadores.json"
-    download(url, raw_path)
-    payload = read_json(raw_path)
-    if not isinstance(payload, list) or len(payload) < 2 or not isinstance(payload[1], list):
-        raise RuntimeError(f"Respuesta WDI inesperada: {payload!r}")
-
-    names = {item["codigo"]: item["nombre"] for item in indicators}
     rows = []
-    for item in payload[1]:
-        if not item.get("countryiso3code") or item.get("value") is None:
-            continue
-        rows.append({
-            "iso3": item["countryiso3code"],
-            "pais": item["country"]["value"],
-            "anio": int(item["date"]),
-            "codigo_indicador": item["indicator"]["id"],
-            "indicador": names.get(item["indicator"]["id"], item["indicator"]["value"]),
-            "valor": item["value"]
-        })
+    for indicator in indicators:
+        code = indicator["codigo"]
+        raw_path = RAW / f"wdi_{code.replace('.', '_')}.json"
+        url = f"https://api.worldbank.org/v2/country/{country_path}/indicator/{code}?{query}"
+        download(url, raw_path)
+        payload = read_json(raw_path)
+        if not isinstance(payload, list) or len(payload) < 2 or not isinstance(payload[1], list):
+            raise RuntimeError(f"Respuesta WDI inesperada para {code}: {payload!r}")
+        for item in payload[1]:
+            if not item.get("countryiso3code") or item.get("value") is None:
+                continue
+            rows.append({
+                "iso3": item["countryiso3code"],
+                "pais": item["country"]["value"],
+                "anio": int(item["date"]),
+                "codigo_indicador": code,
+                "indicador": indicator["nombre"],
+                "valor": item["value"]
+            })
     return rows
-
 
 def fetch_oxcgrt(countries: set[str]) -> tuple[list[dict], list[str]]:
     url = "https://raw.githubusercontent.com/OxCGRT/covid-policy-dataset/main/data/OxCGRT_compact_national_v1.csv"
