@@ -54,7 +54,6 @@ export default function Home(){
   const giniGDP=gini2019.flatMap(r=>{const g=gdp.find(v=>v.iso3===r.iso3&&v.anio===2020);return g?[{pais:r.pais,anio:2020,x:r.valor,y:g.valor}]:[];});
   const unemploymentGDP=s(C.unemployment).filter(r=>r.anio===2019).flatMap(r=>{const u=s(C.unemployment).find(v=>v.iso3===r.iso3&&v.anio===2020),g=gdp.find(v=>v.iso3===r.iso3&&v.anio===2020);return u&&g?[{pais:r.pais,anio:2020,x:r.valor,y:g.valor,cambio:u.valor-r.valor}]:[];});
   const healthChange=[...new Set(healthPre.map(r=>r.iso3))].flatMap(iso=>{const a=s(C.health).find(r=>r.iso3===iso&&r.anio===2015),b=s(C.health).find(r=>r.iso3===iso&&r.anio===2019);return a&&b&&a.valor!==0?[{pais:b.pais,cambio:(b.valor/a.valor-1)*100}]:[];}).sort((a,b)=>b.cambio-a.cambio);
-  const comparison=countries.map(c=>{const p=dummyNever;return p;});
   const measures=monthly.map(r=>({mes:r.mes,C1:r.C1,C2:r.C2,C3:r.C3,C6:r.C6,C8:r.C8}));
   const comparison=countries.map(c=>{const g=gini2019.find(r=>r.iso3===c.iso3),u=unemployment2020.find(r=>r.iso3===c.iso3),l=lifeChange.find(r=>r.pais===c.pais),o=data.ox.find(r=>r.iso3===c.iso3&&r.anio===year);return{...c,gini:g?.valor??null,unemployment:u?.valor??null,lifeChange:l?.cambio??null,c6:num(o?.dias_C6_obligatorio)};});
   return{region,countries,recoveryScatter,oxRegion,monthly,measures,dur,policy,durationGDP,scatterGDP,healthGDP,healthLife,pop,lifeChange,support,gini2019,unemployment2020,giniGDP,unemploymentGDP,healthChange,comparison};
@@ -134,7 +133,7 @@ export default function Home(){
    <div className="charts">
     <Panel title="Desempleo a lo largo del período" sub="Porcentaje de la fuerza laboral · promedio simple"><Series data={d.region} lines={[{key:"unemployment",name:"Desempleo",color:COLORS[3]}]} unit="%"/></Panel>
     <Panel title="Desigualdad de ingresos" sub="Índice de Gini · promedio simple"><Series data={d.region} lines={[{key:"gini",name:"Gini",color:COLORS[1]}]} /></Panel>
-    <Panel title="Desempleo por país en 2020" sub="Porcentaje de la fuerza laboral"><Bars data={d.unemployment2020.map(r=>({pais:r.pais,valor:r.valor}))} keyName="valor" color={COLORS[3]}/Panel>
+    <Panel title="Desempleo por país en 2020" sub="Porcentaje de la fuerza laboral"><Bars data={d.unemployment2020.map(r=>({pais:r.pais,valor:r.valor}))} keyName="valor" color={COLORS[3]}/></Panel>
     <Panel title="Gini por país en 2019" sub="Último año previo al shock · escala 0–100" note="La disponibilidad del Gini varía por país; solo se muestran observaciones publicadas para 2019."><Bars data={d.gini2019.map(r=>({pais:r.pais,valor:r.valor}))} keyName="valor" color={COLORS[1]}/></Panel>
     <ScatterPanel title="Desigualdad previa y crecimiento del PIB en 2020" data={d.giniGDP} xLabel="Gini 2019" yLabel="Crecimiento del PIB 2020" yUnit="%" zero/>
     <ScatterPanel title="Desempleo previo y contracción del PIB" data={d.unemploymentGDP} xLabel="Desempleo 2019" yLabel="Crecimiento del PIB 2020" xUnit="%" yUnit="%" zero/>
