@@ -61,9 +61,9 @@ Desde la serie diaria se calculan por país/año:
 - Días en el nivel más estricto: C6 = 3.
 - Racha consecutiva máxima con obligación: días contiguos con C6 ≥ 2. Una fecha faltante o un día sin obligación interrumpe la racha.
 
-Estos indicadores describen duración de la política registrada, no días de cumplimiento individual, encierro efectivo ni una cuarentena total uniforme. Los toques de queda pueden codificarse como C6=2 aunque existan franjas horarias de circulación. C8 puede registrar cuarentena de viajeros internacionales, pero no se suma a C6 para construir duración del confinamiento nacional.
+Estos indicadores describen duración de la serie C6-M (política aplicable a la mayoría), no días de cumplimiento individual, encierro efectivo ni una cuarentena total uniforme. Como la mayoría puede cambiar entre población vacunada y no vacunada, la serie no sigue necesariamente al mismo grupo a lo largo del tiempo. Los toques de queda pueden codificarse como C6=2 aunque existan franjas horarias de circulación. C8 puede registrar cuarentena de viajeros internacionales, pero no se suma a C6 para construir duración del confinamiento nacional.
 
-El archivo nacional compacto representa la política aplicable a la mayoría de la jurisdicción; no sustituye la variación subnacional.
+El archivo nacional compacto representa la política aplicable a la mayoría de la jurisdicción; no sustituye la variación subnacional. Para C1–C7, H6 y H8, la versión M (majority) ofrece una serie continua, pero puede cambiar de la población no vacunada a la vacunada cuando cambia cuál grupo supera el 50% de la población. Por lo tanto, no siempre sigue a un grupo fijo ni significa que la política se aplique a todas las personas. Las versiones E, NV y V tienen vacíos cuando no corresponden. C8 no tiene versión M: C8EV refleja la política para viajeros vacunados o para todos cuando no hay diferenciación, y no recoge necesariamente las restricciones a viajeros no vacunados.
 
 ## Índices compuestos
 

@@ -21,6 +21,6 @@ World Development Indicators del Banco Mundial y Oxford COVID-19 Government Resp
 
 OxCGRT registra políticas oficiales: C1–C8 son medidas de contención y cierres; E1–E2, apoyo económico; H1–H8, medidas sanitarias. Las escalas ordinales son propias de cada indicador.
 
-La duración de permanencia en el hogar se calcula desde C6 diario: días con recomendación (C6 ≥ 1), días con obligación (C6 ≥ 2), días con la categoría más estricta (C6 = 3) y racha consecutiva máxima de obligación. No equivale a cumplimiento ni encierro efectivo.
+La duración de permanencia en el hogar se calcula desde C6-M diario: días con recomendación (C6 ≥ 1), días con obligación (C6 ≥ 2), días con la categoría más estricta (C6 = 3) y racha consecutiva máxima de obligación. La versión M representa la política aplicable a la mayoría, que puede cambiar entre población vacunada y no vacunada; no equivale a cumplimiento ni encierro efectivo. C8EV no mide la cuarentena de viajeros no vacunados.
 
 Los cruces se realizan por ISO3 y año, con pares completos. Las asociaciones son descriptivas y no demuestran causalidad. La cobertura de OxCGRT es menor que la de WDI.
