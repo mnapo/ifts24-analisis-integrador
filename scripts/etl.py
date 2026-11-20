@@ -103,9 +103,13 @@ def aggregate_oxcgrt(daily,metrics):
     if metric.startswith("C"): result[f"dias_{metric}_vigente"]=sum(v>0 for v in values) if values else None
   c6=[(r["fecha"],r.get("C6")) for r in rows]
   c6_known=[v for _,v in c6 if v is not None]
+  mandatory=[r for r in rows if r.get("C6") is not None and r["C6"]>=2]
   result["dias_C6_recomendacion"]=sum(v>=1 for v in c6_known) if c6_known else None
-  result["dias_C6_obligatorio"]=sum(v>=2 for v in c6_known) if c6_known else None
+  result["dias_C6_obligatorio"]=len(mandatory) if c6_known else None
   result["dias_C6_estricto"]=sum(v>=3 for v in c6_known) if c6_known else None
+  result["dias_C6_obligatorio_general"]=sum(r.get("C6_flag")==1 for r in mandatory) if c6_known else None
+  result["dias_C6_obligatorio_focalizado"]=sum(r.get("C6_flag")==0 for r in mandatory) if c6_known else None
+  result["dias_C6_obligatorio_sin_flag"]=sum(r.get("C6_flag") not in (0,1) for r in mandatory) if c6_known else None
   longest=current=0;previous=None
   for date_text,value in c6:
    date=datetime.strptime(date_text,"%Y-%m-%d").date()
@@ -134,7 +138,7 @@ def main():
  wdi=fetch_wdi(countries,indicators);daily,metrics,flags=fetch_oxcgrt(set(countries));yearly=aggregate_oxcgrt(daily,metrics)
  write_csv(OUT/"wdi_indicadores.csv",wdi,["iso3","pais","anio","codigo_indicador","indicador","valor"])
  write_csv(OUT/"oxcgrt_diario.csv",daily,["iso3","fecha","anio",*metrics,*flags])
- yearly_fields=["iso3","anio","dias_observados",*metrics,*[f"dias_con_dato_{k}" for k in POLICY_LABELS],*[f"dias_{k}_vigente" for k in POLICY_LABELS if k.startswith("C")],"dias_C6_recomendacion","dias_C6_obligatorio","dias_C6_estricto","racha_max_C6_obligatorio"]
+ yearly_fields=["iso3","anio","dias_observados",*metrics,*[f"dias_con_dato_{k}" for k in POLICY_LABELS],*[f"dias_{k}_vigente" for k in POLICY_LABELS if k.startswith("C")],"dias_C6_recomendacion","dias_C6_obligatorio","dias_C6_estricto","dias_C6_obligatorio_general","dias_C6_obligatorio_focalizado","dias_C6_obligatorio_sin_flag","racha_max_C6_obligatorio"]
  write_csv(OUT/"oxcgrt_anual.csv",yearly,yearly_fields)
  print(json.dumps(validate(wdi,daily,yearly,countries,indicators),ensure_ascii=False,indent=2))
 if __name__=="__main__": main()
