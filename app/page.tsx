@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Scatter,
-  ScatterChart, Tooltip, XAxis, YAxis, Bar, BarChart
+  ScatterChart, Tooltip, XAxis, YAxis
 } from "recharts";
 
 type WdiRow = { iso3: string; pais: string; anio: number; codigo_indicador: string; indicador: string; valor: number };
@@ -50,7 +50,7 @@ const number = (value: string) => value === "" ? null : Number(value);
 const fmt = (value: number) => `${value.toFixed(1).replace(".", ",")}`;
 const countryName = (rows: WdiRow[], iso: string) => rows.find((row) => row.iso3 === iso)?.pais ?? iso;
 
-function DataCharts({ chart, data, country, setCountry }: { chart: string; data: DataState; country: string; setCountry: (value: string) => void }) {
+function DataCharts({ chart, data, country }: { chart: string; data: DataState; country: string }) {
   const countries = useMemo(() => [...new Map(data.wdi.map((r) => [r.iso3, r.pais])).entries()].sort((a,b) => a[1].localeCompare(b[1], "es")), [data.wdi]);
   const gdp = useMemo(() => {
     const rows = data.wdi.filter((r) => r.codigo_indicador === GDP);
@@ -119,7 +119,7 @@ export default function Home() {
       {hasChart && <div className="data-panel">
         {data.loading ? <div className="data-status">Cargando datasets validados…</div> : data.error ? <div className="data-status error">{data.error}</div> : <>
           <div className="data-toolbar"><label htmlFor="country-select">País de comparación</label><select id="country-select" value={country} onChange={(e) => setCountry(e.target.value)}>{[...new Map(data.wdi.map((r) => [r.iso3,r.pais])).entries()].sort((a,b) => a[1].localeCompare(b[1],"es")).map(([iso,name]) => <option key={iso} value={iso}>{name}</option>)}</select><span>{data.wdi.length.toLocaleString("es-AR")} registros WDI · {data.ox.length} registros OxCGRT</span></div>
-          <DataCharts chart={slide.chart!} data={data} country={country} setCountry={setCountry} />
+          <DataCharts chart={slide.chart!} data={data} country={country} />
         </>}
       </div>}
       {!hasChart && <div className="visual-mark" aria-hidden="true"><span>LATAM</span><b>{String(active + 1).padStart(2, "0")}</b></div>}
