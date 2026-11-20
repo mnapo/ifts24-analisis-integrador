@@ -40,6 +40,7 @@ export default function Home(){
   const monthly=[...months].sort(([a],[b])=>a.localeCompare(b)).map(([mes,rows])=>{const r:any={mes};for(const k of ["C1","C2","C3","C4","C5","C6","C7","C8","E1","E2","H1","H2","H3","H6","H7","H8"])r[k]=avg(rows.map(v=>v[k]));r.rigurosidad=avg(rows.map(v=>v.StringencyIndex_Average));return r;});
   const dur=data.ox.filter(r=>r.anio===year).map(r=>({pais:data.wdi.find(v=>v.iso3===r.iso3)?.pais??r.iso3,dias:num(r.dias_C6_obligatorio),recomendacion:num(r.dias_C6_recomendacion),estricto:num(r.dias_C6_estricto),racha:num(r.racha_max_C6_obligatorio)})).filter(r=>r.dias!==null).sort((a,b)=>(b.dias??0)-(a.dias??0));
   const policy=data.ox.filter(r=>r.anio===year);
+  const durationGDP=policy.flatMap(o=>{const g=gdp.find(r=>r.iso3===o.iso3&&r.anio===o.anio),x=num(o.dias_C6_obligatorio);return g&&x!==null?[{pais:g.pais,anio:g.anio,x,y:g.valor}]:[];});
   const scatterGDP=data.ox.flatMap(o=>{const g=gdp.find(r=>r.iso3===o.iso3&&r.anio===o.anio),x=num(o.StringencyIndex_Average);return g&&x!==null?[{pais:g.pais,anio:g.anio,x,y:g.valor}]:[];});
   const healthPre=s(C.health).filter(r=>r.anio>=2015&&r.anio<=2019);
   const healthGDP=[...new Set(healthPre.map(r=>r.iso3))].flatMap(iso=>{const h=avg(healthPre.filter(r=>r.iso3===iso).map(r=>r.valor)),g=gdp.find(r=>r.iso3===iso&&r.anio===2020);return h!==null&&g?[{pais:g.pais,anio:2020,x:h,y:g.valor}]:[];});
@@ -48,7 +49,7 @@ export default function Home(){
   const lifeChange=s(C.life).filter(r=>r.anio===2021).flatMap(r=>{const b=s(C.life).find(v=>v.iso3===r.iso3&&v.anio===2019);return b?[{pais:r.pais,cambio:r.valor-b.valor}]:[];}).sort((a,b)=>a.cambio-b.cambio);
   const support=data.ox.flatMap(o=>{const u=s(C.unemployment).find(r=>r.iso3===o.iso3&&r.anio===o.anio),x=num(o.EconomicSupportIndex);return u&&x!==null?[{pais:u.pais,anio:u.anio,x,y:u.valor}]:[];});
   const measures=monthly.map(r=>({mes:r.mes,C1:r.C1,C2:r.C2,C3:r.C3,C6:r.C6,C8:r.C8}));
-  return{region,countries,recoveryScatter,oxRegion,monthly,measures,dur,policy,scatterGDP,healthGDP,healthLife,pop,lifeChange,support};
+  return{region,countries,recoveryScatter,oxRegion,monthly,measures,dur,policy,durationGDP,scatterGDP,healthGDP,healthLife,pop,lifeChange,support};
  },[data,year]);
  if(data.loading)return <main className="loading"><span/>Preparando series estadísticas…</main>;
  if(data.error)return <main className="loading">{data.error}</main>;
@@ -86,6 +87,7 @@ export default function Home(){
     <Panel title="Rigurosidad a lo largo del tiempo" sub="Promedio anual del índice"><Series data={d.oxRegion} lines={[{key:"StringencyIndex_Average",name:"Rigurosidad"}]}/></Panel>
     <ScatterPanel title="Rigurosidad y crecimiento del PIB" data={d.scatterGDP} xLabel="Índice de rigurosidad" yLabel="Crecimiento del PIB" yUnit="%" zero/>
     <ScatterPanel title="Apoyo económico y desempleo" data={d.support} xLabel="Índice de apoyo económico" yLabel="Desempleo" yUnit="%"/>
+    <ScatterPanel title="Duración de la obligación C6 y crecimiento del PIB" data={d.durationGDP} xLabel="Días con C6 obligatorio" yLabel="Crecimiento del PIB" xUnit=" días" yUnit="%" zero/>
    </div>
    <div className="section-title"><div><label>MEDIDAS CONCRETAS</label><h2>Qué políticas se registraron</h2></div><small>Promedios mensuales de escalas ordinales</small></div>
    <div className="charts">
