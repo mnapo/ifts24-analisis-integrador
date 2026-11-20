@@ -43,11 +43,17 @@ def fetch_wdi(countries,indicators):
     rows.append({"iso3":item["countryiso3code"],"pais":item["country"]["value"],"anio":int(item["date"]),"codigo_indicador":code,"indicador":indicator["nombre"],"valor":item["value"]})
  return rows
 def choose_field(fields,code,label):
- candidates=[f"{code}M_{label}",f"{code}_{label}",f"{code}E_{label}",f"{code}NV_{label}",f"{code}V_{label}"]
- return next((v for v in candidates if v in fields),None)
+ prefixes=[f"{code}M_",f"{code}EV_",f"{code}_",f"{code}E_",f"{code}NV_",f"{code}V_"]
+ words=[word.lower() for word in label.split()[:2]]
+ for prefix in prefixes:
+  candidates=[field for field in fields if field.startswith(prefix)]
+  for field in candidates:
+   lowered=field.lower()
+   if all(word in lowered for word in words): return field
+ return None
 def choose_flag(fields,code):
- candidates=[f"{code}M_Flag",f"{code}_Flag",f"{code}E_Flag"]
- return next((v for v in candidates if v in fields),None)
+ prefixes=[f"{code}M_",f"{code}EV_",f"{code}_",f"{code}E_",f"{code}NV_",f"{code}V_"]
+ return next((field for prefix in prefixes for field in fields if field==prefix+"Flag"),None)
 def fetch_oxcgrt(countries):
  url="https://raw.githubusercontent.com/OxCGRT/covid-policy-dataset/main/data/OxCGRT_compact_national_v1.csv"
  raw_path=RAW/"oxcgrt_compact_national_v1.csv";download(url,raw_path)
@@ -94,11 +100,12 @@ def aggregate_oxcgrt(daily,metrics):
    result[metric]=round(sum(values)/len(values),4) if values else None
    if metric in POLICY_LABELS:
     result[f"dias_con_dato_{metric}"]=len(values)
-    if metric.startswith("C"): result[f"dias_{metric}_vigente"]=sum(v>0 for v in values)
+    if metric.startswith("C"): result[f"dias_{metric}_vigente"]=sum(v>0 for v in values) if values else None
   c6=[(r["fecha"],r.get("C6")) for r in rows]
-  result["dias_C6_recomendacion"]=sum(v is not None and v>=1 for _,v in c6)
-  result["dias_C6_obligatorio"]=sum(v is not None and v>=2 for _,v in c6)
-  result["dias_C6_estricto"]=sum(v is not None and v>=3 for _,v in c6)
+  c6_known=[v for _,v in c6 if v is not None]
+  result["dias_C6_recomendacion"]=sum(v>=1 for v in c6_known) if c6_known else None
+  result["dias_C6_obligatorio"]=sum(v>=2 for v in c6_known) if c6_known else None
+  result["dias_C6_estricto"]=sum(v>=3 for v in c6_known) if c6_known else None
   longest=current=0;previous=None
   for date_text,value in c6:
    date=datetime.strptime(date_text,"%Y-%m-%d").date()
@@ -106,7 +113,7 @@ def aggregate_oxcgrt(daily,metrics):
     current=current+1 if previous and date==previous+timedelta(days=1) else 1;longest=max(longest,current)
    else: current=0
    previous=date if value is not None else None
-  result["racha_max_C6_obligatorio"]=longest;output.append(result)
+  result["racha_max_C6_obligatorio"]=longest if c6_known else None;output.append(result)
  return output
 def validate(wdi,ox_daily,ox_yearly,countries,indicators):
  expected=set(range(START_YEAR,END_YEAR+1))
