@@ -1,65 +1,104 @@
 # Metodología
 
-## Naturaleza de los datos
+## Fuentes y naturaleza de los datos
 
-Los valores publicados no son sintéticos ni fueron generados para completar gráficos. Son observaciones descargadas de fuentes estadísticas externas:
+- World Development Indicators (WDI), Banco Mundial: indicadores económicos, laborales, demográficos y sanitarios anuales.
+- Oxford COVID-19 Government Response Tracker (OxCGRT): registro histórico de políticas públicas relacionadas con COVID-19.
 
-- **World Development Indicators (WDI), Banco Mundial:** API v2, indicadores nacionales anuales.
-- **Oxford COVID-19 Government Response Tracker (OxCGRT):** archivo compacto nacional del conjunto de datos de políticas COVID-19.
-
-Los datos son reales en el sentido de que proceden de series observadas y publicadas por esas fuentes. Como toda estadística oficial, pueden estar sujetos a revisiones, estimaciones, diferencias de cobertura y cambios metodológicos de origen. El ETL no inventa ni imputa valores.
-
-Fuentes: [WDI](https://databank.worldbank.org/source/world-development-indicators) · [API del Banco Mundial](https://api.worldbank.org/) · [OxCGRT](https://github.com/OxCGRT/covid-policy-dataset).
-
-## Pregunta e hipótesis
-
-¿Cómo se relacionaron las respuestas gubernamentales frente a la pandemia de COVID-19 con la evolución económica y social de los países de América Latina y el Caribe?
-
-1. La rigurosidad de las medidas podría asociarse con la contracción económica en el corto plazo.
-2. La caída de 2020 podría relacionarse con distintas trayectorias de recuperación entre 2021 y 2023.
-3. Las condiciones sanitarias previas podrían relacionarse con diferencias en los resultados observados.
-
-Son hipótesis descriptivas; no presuponen causalidad.
+Los datos proceden de las fuentes originales; no son sintéticos ni se generan observaciones para completar vacíos. Las fuentes pueden revisar estimaciones y series. Los faltantes se preservan.
 
 ## Cobertura
 
 - WDI: 2015–2023.
 - OxCGRT: 2020–2022.
-- Unidad de análisis: país/año.
-- Países configurados: 33 de América Latina y el Caribe.
-- La cobertura efectiva varía según fuente, indicador, país y año.
+- Unidad principal: país/año; las medidas OxCGRT también se conservan a nivel diario.
+- Región: América Latina y el Caribe, según selección ISO3 del proyecto.
+- La cobertura efectiva varía por indicador, país y fecha. OxCGRT tiene menor cobertura que WDI.
 
-## Tratamiento y agregación
+## Indicadores WDI
 
-**WDI.** Se consulta cada indicador por separado. Se conservan el código del indicador, país ISO3, año y valor original publicado. Los faltantes no se imputan.
+Crecimiento del PIB real (NY.GDP.MKTP.KD.ZG), crecimiento del PIB per cápita (NY.GDP.PCAP.KD.ZG), desempleo (SL.UEM.TOTL.ZS), inflación (FP.CPI.TOTL.ZG), Gini (SI.POV.GINI), esperanza de vida al nacer (SP.DYN.LE00.IN), gasto corriente en salud por habitante (SH.XPD.CHEX.PC.CD) y población (SP.POP.TOTL).
 
-**OxCGRT.** Se descarga el archivo compacto nacional. Las observaciones diarias se filtran por país y período y se agregan mediante promedio aritmético anual de los valores no nulos para cada índice. Un promedio anual resume la intensidad registrada durante el año y puede ocultar cambios dentro de ese período.
+El gasto sanitario está expresado en dólares corrientes: no está ajustado por inflación ni paridad de poder adquisitivo.
 
-**Promedios regionales.** Se calculan como media aritmética simple entre países con dato disponible en cada año. No se ponderan por población ni por PIB; por ello no equivalen a un agregado económico regional.
+## OxCGRT: qué miden las políticas
 
-**Cruces WDI–OxCGRT.** Se emparejan registros mediante la clave compuesta ISO3 + año. Por ejemplo, el diagrama de rigurosidad y crecimiento compara el índice anual OxCGRT de un país con la tasa de crecimiento del PIB WDI del mismo país y año. Solo se incluyen pares donde ambas variables están disponibles. No se interpolan ni se rellenan faltantes.
+OxCGRT registra políticas oficiales, no el comportamiento efectivo de la población. Las variables son ordinales, categóricas o numéricas según el indicador; sus escalas no son intercambiables.
 
-**Regresión descriptiva.** La recta del diagrama de dispersión se obtiene mediante mínimos cuadrados ordinarios sobre los pares observados. Es una tendencia lineal bivariada sin controles; no identifica un efecto causal.
+### Contención y cierres (C1–C8)
 
-**Población y PIB.** El diagrama de burbujas empareja población y crecimiento del PIB para el mismo ISO3 y año. La población se utiliza como eje y tamaño de burbuja, no como ponderador del promedio.
+- C1: cierre de escuelas y universidades.
+- C2: cierre de lugares de trabajo o recomendación/obligación de trabajo remoto.
+- C3: cancelación de eventos públicos.
+- C4: límites al tamaño de reuniones.
+- C5: cierre o reducción del transporte público.
+- C6: requisitos de permanencia en el hogar.
+- C7: restricciones a desplazamientos dentro del país.
+- C8: controles a viajes internacionales, incluidas cuarentenas de llegada.
 
-## Indicadores representados
+### Políticas económicas (E1–E2)
 
-- Crecimiento del PIB y PIB per cápita.
-- Inflación y desempleo.
-- Gasto corriente en salud por habitante.
-- Esperanza de vida e índice de Gini.
-- Índices OxCGRT de rigurosidad, respuesta gubernamental, contención/salud y apoyo económico.
+E1 registra apoyo a los ingresos de trabajadores. E2 registra alivio de deuda y contratos de hogares. No equivalen al gasto fiscal total ni garantizan que cada hogar haya recibido asistencia.
+
+### Políticas sanitarias (H1–H8)
+
+Incluyen campañas de información, política de pruebas, rastreo de contactos, inversión sanitaria, mascarillas, política de vacunación y protección de personas mayores, entre otras. Se incorporan las variables ordinales disponibles en el archivo nacional compacto.
+
+## ¿Cómo se mide la duración de la cuarentena?
+
+OxCGRT no contiene una variable única denominada duración de la cuarentena. Se utiliza C6 (Stay at home requirements), que registra la política oficial de permanencia en el hogar:
+
+| Código | Interpretación |
+| --- | --- |
+| 0 | Sin medida |
+| 1 | Recomendación de no salir del hogar |
+| 2 | Obligación de permanecer en casa, con excepciones para necesidades esenciales |
+| 3 | Obligación con excepciones mínimas |
+
+Desde la serie diaria se calculan por país/año:
+- Días con recomendación: C6 ≥ 1.
+- Días con obligación: C6 ≥ 2.
+- Días en el nivel más estricto: C6 = 3.
+- Racha consecutiva máxima con obligación: días contiguos con C6 ≥ 2. Una fecha faltante o un día sin obligación interrumpe la racha.
+
+Estos indicadores describen duración de la política registrada, no días de cumplimiento individual, encierro efectivo ni una cuarentena total uniforme. Los toques de queda pueden codificarse como C6=2 aunque existan franjas horarias de circulación. C8 puede registrar cuarentena de viajeros internacionales, pero no se suma a C6 para construir duración del confinamiento nacional.
+
+El archivo nacional compacto representa la política aplicable a la mayoría de la jurisdicción; no sustituye la variación subnacional.
+
+## Índices compuestos
+
+- Stringency Index: resume un conjunto de medidas de contención y cierre.
+- Government Response Index: combina políticas sanitarias, de contención y económicas.
+- Containment and Health Index: resume medidas de contención y políticas de salud.
+- Economic Support Index: resume medidas de apoyo económico.
+
+Se expresan en escala 0–100. No son porcentajes de personas confinadas, no miden cumplimiento ni prueban efectividad sanitaria.
+
+## Transformación y agregación
+
+1. WDI se descarga por indicador y se filtra a 2015–2023.
+2. OxCGRT se descarga en formato nacional diario y se filtra a 2020–2022.
+3. Los registros diarios se normalizan por ISO3 y fecha.
+4. Los índices y medidas ordinales se agregan por país/año mediante media aritmética de valores no nulos.
+5. La duración C6 se calcula contando días según umbrales explícitos; la racha se interrumpe ante fecha faltante o ausencia de obligación.
+6. Los promedios regionales son medias simples de países con dato; no se ponderan por población ni PIB.
+7. Los cruces WDI–OxCGRT se realizan por ISO3 + año, solo para pares completos.
+
+## Criterios para los gráficos
+
+- Gráficos temporales: medias simples por año o mes.
+- Barras nacionales: valores observados para el período indicado.
+- Dispersión: una observación país/año por punto. Al seleccionar un punto se presentan país, año y coordenadas.
+- Referencias en cero: distinguen crecimiento de contracción.
+- No se interpolan valores ausentes.
+- Los promedios de tasas 2021–2023 no se interpretan como crecimiento acumulado.
 
 ## Limitaciones
 
-- La disponibilidad de WDI varía por indicador, país y año; el Gini tiene menor frecuencia.
-- OxCGRT cubre menos países que la selección WDI.
-- El gasto sanitario en dólares corrientes no está ajustado por inflación ni paridad de poder adquisitivo.
-- El promedio anual de políticas puede ocultar variaciones diarias.
-- El índice de rigurosidad no mide cumplimiento, movilidad ni resultados sanitarios.
-- Los cruces descriptivos no controlan diferencias estructurales, simultaneidad, rezagos ni factores externos; no permiten atribuir causalidad.
+Las políticas se adoptaron en respuesta a la evolución epidemiológica; existe simultaneidad y posible causalidad inversa. Las medias anuales pueden ocultar cambios intranuales. Las escalas ordinales no miden cumplimiento. Las diferencias estructurales, demográficas, laborales y sanitarias no están controladas. Las asociaciones son descriptivas, no causales.
+
+La base actual no contiene una serie comparable y completa de mortalidad COVID-19 o exceso de mortalidad para todos los países seleccionados; no se inventan ni estiman esos valores.
 
 ## Reproducibilidad
 
-Ejecutar `python scripts/etl.py`. El proceso descarga las fuentes originales en `data/raw/`, genera CSV procesados en `public/data/` y registra controles en `data/validation/summary.json`.
+Ejecutar python scripts/etl.py. Los archivos originales se guardan en data/raw/, los CSV transformados en public/data/ y los controles en data/validation/summary.json.

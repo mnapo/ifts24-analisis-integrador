@@ -1,22 +1,26 @@
 # Presentación interactiva
 
-La entrega se desarrolla en Next.js. No requiere Power BI.
+La entrega se organiza en tres páginas navegables:
 
-## Visualizaciones
+1. Panorama regional: evolución del PIB, PIB per cápita, inflación, desempleo, población y gasto sanitario.
+2. Restricciones sanitarias y economía: índices compuestos, medidas C1–C8, políticas económicas y duración diaria de C6.
+3. Impacto sanitario y social: esperanza de vida, gasto sanitario, desigualdad, desempleo y asociaciones descriptivas.
 
-- Área: evolución regional del crecimiento del PIB.
-- Barras horizontales: contracción del PIB en 2020 y promedio de crecimiento 2021–2023 por país.
-- Líneas: inflación, desempleo, gasto corriente en salud, esperanza de vida e índice de Gini.
-- Líneas múltiples: índices OxCGRT de respuesta gubernamental.
-- Dispersión con tendencia lineal: rigurosidad y crecimiento del PIB.
-- Burbujas: población y crecimiento del PIB por país/año.
+## Interacción
 
-## Fuentes y metodología
+- Navegación entre las tres páginas.
+- Gráficos de series temporales, barras comparativas, áreas y dispersión.
+- Ejes rotulados y unidades explícitas.
+- Los puntos de dispersión se pueden seleccionar para consultar país, año y valores exactos.
+- Selector de año para comparar duración de C6.
+- No se incluye filtro de país.
 
-Los datos no son sintéticos. Se descargan de World Development Indicators (Banco Mundial) y del Oxford COVID-19 Government Response Tracker. Las fuentes y sus enlaces se incluyen en la presentación.
+## Fuentes y criterios
 
-Los gráficos regionales utilizan promedios aritméticos simples de los países con dato disponible en cada año. No se ponderan por población ni PIB. Los faltantes se conservan y no se interpolan.
+World Development Indicators del Banco Mundial y Oxford COVID-19 Government Response Tracker. Los datos proceden de las fuentes originales; no se generan observaciones sintéticas. Los faltantes se conservan. Los promedios regionales son simples y no ponderados.
 
-Los cruces WDI–OxCGRT se realizan por ISO3 y año, solo cuando ambas variables están disponibles. La tendencia lineal del diagrama de dispersión es descriptiva y no implica causalidad. El gráfico de recuperación utiliza el promedio de las tasas anuales 2021–2023, no el crecimiento acumulado.
+OxCGRT registra políticas oficiales: C1–C8 son medidas de contención y cierres; E1–E2, apoyo económico; H1–H8, medidas sanitarias. Las escalas ordinales son propias de cada indicador.
 
-La presentación no incorpora filtro de país: las comparaciones se muestran a escala regional o para el conjunto de países.
+La duración de permanencia en el hogar se calcula desde C6 diario: días con recomendación (C6 ≥ 1), días con obligación (C6 ≥ 2), días con la categoría más estricta (C6 = 3) y racha consecutiva máxima de obligación. No equivale a cumplimiento ni encierro efectivo.
+
+Los cruces se realizan por ISO3 y año, con pares completos. Las asociaciones son descriptivas y no demuestran causalidad. La cobertura de OxCGRT es menor que la de WDI.
