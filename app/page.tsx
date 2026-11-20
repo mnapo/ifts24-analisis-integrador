@@ -28,7 +28,7 @@ function ReachBars({data}:{data:any[]}){return <ResponsiveContainer width="100%"
 function Kpi({label,value,detail}:{label:string;value:string;detail:string}){return <div className="kpi"><span>{label}</span><strong>{value}</strong><small>{detail}</small></div>;}
 
 export default function Home(){
- const [page,setPage]=useState<"panorama"|"restricciones"|"impacto">("panorama"),[year,setYear]=useState(2020);
+ const [page,setPage]=useState<"panorama"|"restricciones"|"impacto"|"desigualdad"|"salud"|"comparacion">("panorama"),[year,setYear]=useState(2020);
  const [data,setData]=useState<Data>({wdi:[],ox:[],daily:[],loading:true,error:""});
  useEffect(()=>{let live=true;Promise.all(["wdi_indicadores.csv","oxcgrt_anual.csv","oxcgrt_diario.csv"].map(f=>fetch("/data/"+f).then(r=>{if(!r.ok)throw Error("No se pudo cargar "+f);return r.text();}))).then(([w,o,d])=>{const wdi=parseCSV(w).flatMap(r=>{const v=num(r.valor);return v===null?[]:[{iso3:r.iso3,pais:r.pais,anio:+r.anio,codigo_indicador:r.codigo_indicador,valor:v}];});const ox=parseCSV(o).map(r=>Object.fromEntries(Object.entries(r).map(([k,v])=>[k,k==="iso3"?v:num(v)])));const daily=parseCSV(d).map(r=>Object.fromEntries(Object.entries(r).map(([k,v])=>[k,["iso3","fecha"].includes(k)?v:num(v)])));if(live)setData({wdi,ox,daily,loading:false,error:""});}).catch(e=>{if(live)setData({wdi:[],ox:[],daily:[],loading:false,error:e.message});});return()=>{live=false;};},[]);
  const d=useMemo(()=>{
@@ -49,8 +49,15 @@ export default function Home(){
   const pop=s(C.population).filter(r=>r.anio===2020).flatMap(p=>{const g=gdp.find(r=>r.iso3===p.iso3&&r.anio===2020);return g?[{pais:p.pais,anio:2020,x:p.valor/1e6,y:g.valor}]:[];});
   const lifeChange=s(C.life).filter(r=>r.anio===2021).flatMap(r=>{const b=s(C.life).find(v=>v.iso3===r.iso3&&v.anio===2019);return b?[{pais:r.pais,cambio:r.valor-b.valor}]:[];}).sort((a,b)=>a.cambio-b.cambio);
   const support=data.ox.flatMap(o=>{const u=s(C.unemployment).find(r=>r.iso3===o.iso3&&r.anio===o.anio),x=num(o.EconomicSupportIndex);return u&&x!==null?[{pais:u.pais,anio:u.anio,x,y:u.valor}]:[];});
+  const gini2019=s(C.gini).filter(r=>r.anio===2019).map(r=>({iso3:r.iso3,pais:r.pais,valor:r.valor})).sort((a,b)=>b.valor-a.valor);
+  const unemployment2020=s(C.unemployment).filter(r=>r.anio===2020).map(r=>({iso3:r.iso3,pais:r.pais,valor:r.valor})).sort((a,b)=>b.valor-a.valor);
+  const giniGDP=gini2019.flatMap(r=>{const g=gdp.find(v=>v.iso3===r.iso3&&v.anio===2020);return g?[{pais:r.pais,anio:2020,x:r.valor,y:g.valor}]:[];});
+  const unemploymentGDP=s(C.unemployment).filter(r=>r.anio===2019).flatMap(r=>{const u=s(C.unemployment).find(v=>v.iso3===r.iso3&&v.anio===2020),g=gdp.find(v=>v.iso3===r.iso3&&v.anio===2020);return u&&g?[{pais:r.pais,anio:2020,x:r.valor,y:g.valor,cambio:u.valor-r.valor}]:[];});
+  const healthChange=[...new Set(healthPre.map(r=>r.iso3))].flatMap(iso=>{const a=s(C.health).find(r=>r.iso3===iso&&r.anio===2015),b=s(C.health).find(r=>r.iso3===iso&&r.anio===2019);return a&&b&&a.valor!==0?[{pais:b.pais,cambio:(b.valor/a.valor-1)*100}]:[];}).sort((a,b)=>b.cambio-a.cambio);
+  const comparison=countries.map(c=>{const p=dummyNever;return p;});
   const measures=monthly.map(r=>({mes:r.mes,C1:r.C1,C2:r.C2,C3:r.C3,C6:r.C6,C8:r.C8}));
-  return{region,countries,recoveryScatter,oxRegion,monthly,measures,dur,policy,durationGDP,scatterGDP,healthGDP,healthLife,pop,lifeChange,support};
+  const comparison=countries.map(c=>{const g=gini2019.find(r=>r.iso3===c.iso3),u=unemployment2020.find(r=>r.iso3===c.iso3),l=lifeChange.find(r=>r.pais===c.pais),o=data.ox.find(r=>r.iso3===c.iso3&&r.anio===year);return{...c,gini:g?.valor??null,unemployment:u?.valor??null,lifeChange:l?.cambio??null,c6:num(o?.dias_C6_obligatorio)};});
+  return{region,countries,recoveryScatter,oxRegion,monthly,measures,dur,policy,durationGDP,scatterGDP,healthGDP,healthLife,pop,lifeChange,support,gini2019,unemployment2020,giniGDP,unemploymentGDP,healthChange,comparison};
  },[data,year]);
  if(data.loading)return <main className="loading"><span/>Preparando series estadísticas…</main>;
  if(data.error)return <main className="loading">{data.error}</main>;
@@ -62,7 +69,7 @@ export default function Home(){
  const strict=d.dur.map(r=>({pais:r.pais,dias:r.estricto??0}));
  const streak=d.dur.map(r=>({pais:r.pais,dias:r.racha??0}));
  return <main className="observatory">
-  <header className="site-header"><Link className="brand" href="/">OBSERVATORIO <span>LATAM</span></Link><nav><button className={page==="panorama"?"active":""} onClick={()=>setPage("panorama")}>01 · Panorama regional</button><button className={page==="restricciones"?"active":""} onClick={()=>setPage("restricciones")}>02 · Restricciones y economía</button><button className={page==="impacto"?"active":""} onClick={()=>setPage("impacto")}>03 · Impacto sanitario y social</button></nav><small>2015—2023 · ALC</small></header>
+  <header className="site-header"><Link className="brand" href="/">OBSERVATORIO <span>LATAM</span></Link><nav><button className={page==="panorama"?"active":""} onClick={()=>setPage("panorama")}>01 · Panorama regional</button><button className={page==="restricciones"?"active":""} onClick={()=>setPage("restricciones")}>02 · Restricciones y economía</button><button className={page==="impacto"?"active":""} onClick={()=>setPage("impacto")}>03 · Impacto sanitario y social</button><button className={page==="desigualdad"?"active":""} onClick={()=>setPage("desigualdad")}>04 · Desigualdad y empleo</button><button className={page==="salud"?"active":""} onClick={()=>setPage("salud")}>05 · Capacidad sanitaria</button><button className={page==="comparacion"?"active":""} onClick={()=>setPage("comparacion")}>06 · Comparación de países</button></nav><small>2015—2023 · ALC</small></header>
   {page==="panorama"&&<section className="content">
    <div className="intro"><div><label>OBSERVATORIO SOCIOECONÓMICO · 01</label><h1>La región antes, durante y después del shock.</h1><p>Trayectorias económicas, demográficas y sociales de América Latina y el Caribe. Cada país con datos aporta el mismo peso a los promedios regionales.</p></div><aside>ALC<small>COVID—19</small></aside></div>
    <div className="kpis"><Kpi label="PIB · 2020" value={String(fmt(shock?.gdp))+"%"} detail="Crecimiento anual promedio"/><Kpi label="PIB · 2021" value={String(fmt(rebound?.gdp))+"%"} detail="Rebote promedio"/><Kpi label="PIB · 2023" value={String(fmt(last?.gdp))+"%"} detail="Crecimiento promedio"/><Kpi label="Desempleo · 2023" value={String(fmt(last?.unemployment))+"%"} detail="Porcentaje de fuerza laboral"/></div>
@@ -120,6 +127,46 @@ export default function Home(){
     <ScatterPanel title="Gasto sanitario previo y esperanza de vida" data={d.healthLife} xLabel="Gasto medio 2015–2019" yLabel="Esperanza de vida 2019" xUnit=" US$" yUnit=" años"/>
    </div>
    <div className="method"><b>Resultados y límites de interpretación</b><p>El gasto sanitario corriente medio de 2015–2019 presenta una asociación positiva con la esperanza de vida de 2019 (r ≈ 0,52), pero esta relación refleja diferencias estructurales y no mide el efecto de una política. Su asociación con el crecimiento del PIB de 2020 es débil (r ≈ −0,21). La base actual no incorpora una serie comparable de exceso de mortalidad o mortalidad COVID-19 para todos los países seleccionados; no se presenta un ranking de muertes ni se reemplaza esa ausencia con estimaciones. Para evaluar efectos causales harían falta datos adicionales, rezagos y controles por demografía, capacidad hospitalaria y calidad de registro.</p></div>
+  </section>}
+  {page==="desigualdad"&&<section className="content">
+   <div className="intro"><div><label>DISTRIBUCIÓN Y MERCADO LABORAL · 04</label><h1>La crisis también se expresa en el empleo y la desigualdad.</h1><p>El promedio regional oculta diferencias en las condiciones laborales y en la distribución del ingreso. Los indicadores disponibles permiten describir esas brechas, aunque no medir por sí solos la informalidad ni el impacto distributivo completo de la pandemia.</p></div><aside>TRABAJO<small>Y EQUIDAD</small></aside></div>
+   <div className="section-title"><div><label>CONDICIONES SOCIOECONÓMICAS</label><h2>Trayectorias regionales y diferencias nacionales</h2></div><small>WDI · 2015–2023</small></div>
+   <div className="charts">
+    <Panel title="Desempleo a lo largo del período" sub="Porcentaje de la fuerza laboral · promedio simple"><Series data={d.region} lines={[{key:"unemployment",name:"Desempleo",color:COLORS[3]}]} unit="%"/></Panel>
+    <Panel title="Desigualdad de ingresos" sub="Índice de Gini · promedio simple"><Series data={d.region} lines={[{key:"gini",name:"Gini",color:COLORS[1]}]} /></Panel>
+    <Panel title="Desempleo por país en 2020" sub="Porcentaje de la fuerza laboral"><Bars data={d.unemployment2020.map(r=>({pais:r.pais,valor:r.valor}))} keyName="valor" color={COLORS[3]}/Panel>
+    <Panel title="Gini por país en 2019" sub="Último año previo al shock · escala 0–100" note="La disponibilidad del Gini varía por país; solo se muestran observaciones publicadas para 2019."><Bars data={d.gini2019.map(r=>({pais:r.pais,valor:r.valor}))} keyName="valor" color={COLORS[1]}/></Panel>
+    <ScatterPanel title="Desigualdad previa y crecimiento del PIB en 2020" data={d.giniGDP} xLabel="Gini 2019" yLabel="Crecimiento del PIB 2020" yUnit="%" zero/>
+    <ScatterPanel title="Desempleo previo y contracción del PIB" data={d.unemploymentGDP} xLabel="Desempleo 2019" yLabel="Crecimiento del PIB 2020" xUnit="%" yUnit="%" zero/>
+   </div>
+   <div className="method"><b>Lectura e interpretación</b><p>El Gini se publica con menor frecuencia que los indicadores macroeconómicos. Por eso no se completa ni interpola la serie: cada comparación utiliza únicamente países con observación. El desempleo tampoco describe por sí solo informalidad, subempleo, horas trabajadas o salida de la fuerza laboral. Las dispersiones muestran asociaciones entre condiciones previas y crecimiento de 2020; no identifican efectos causales.</p></div>
+  </section>}
+  {page==="salud"&&<section className="content">
+   <div className="intro"><div><label>CAPACIDAD SANITARIA Y RESULTADOS · 05</label><h1>Las condiciones sanitarias previas importan para contextualizar la crisis.</h1><p>El gasto corriente en salud y la esperanza de vida permiten aproximar dimensiones de capacidad y resultados sanitarios. No sustituyen indicadores de camas, personal, vacunación efectiva ni mortalidad específica por COVID-19.</p></div><aside>SALUD<small>Y CAPACIDAD</small></aside></div>
+   <div className="section-title"><div><label>RECURSOS Y RESULTADOS</label><h2>Una mirada de mediano plazo</h2></div><small>WDI · 2015–2023</small></div>
+   <div className="charts">
+    <Panel title="Esperanza de vida al nacer" sub="Años · promedio regional"><Series data={d.region} lines={[{key:"life",name:"Esperanza de vida",color:COLORS[3]}]}/></Panel>
+    <Panel title="Gasto corriente en salud por habitante" sub="US$ corrientes · promedio simple" note="No está ajustado por inflación ni paridad de poder adquisitivo."><Series data={d.region} lines={[{key:"health",name:"Gasto sanitario"}]}/></Panel>
+    <Panel title="Cambio de esperanza de vida 2019–2021" sub="Diferencia en años por país" note="Cambio descriptivo; no se atribuye exclusivamente a COVID-19."><Bars data={d.lifeChange.map(r=>({pais:r.pais,cambio:r.cambio}))} keyName="cambio" unit=" años" color={COLORS[3]}/></Panel>
+    <Panel title="Variación del gasto sanitario 2015–2019" sub="Cambio porcentual por país · dólares corrientes" note="La variación nominal puede reflejar inflación y tipo de cambio, además de cambios reales en recursos."><Bars data={d.healthChange.map(r=>({pais:r.pais,cambio:r.cambio}))} keyName="cambio" unit="%" color={COLORS[2]}/></Panel>
+    <ScatterPanel title="Gasto sanitario previo y esperanza de vida" data={d.healthLife} xLabel="Gasto medio 2015–2019" yLabel="Esperanza de vida 2019" xUnit=" US$" yUnit=" años"/>
+    <ScatterPanel title="Gasto sanitario previo y crecimiento del PIB 2020" data={d.healthGDP} xLabel="Gasto medio 2015–2019" yLabel="Crecimiento del PIB 2020" xUnit=" US$" yUnit="%" zero/>
+    <ScatterPanel title="Población y crecimiento del PIB en 2020" data={d.pop} xLabel="Población" yLabel="Crecimiento del PIB" xUnit=" millones" yUnit="%" zero/>
+   </div>
+   <div className="method"><b>Alcance de los indicadores</b><p>El gasto sanitario se expresa en dólares corrientes y no está ajustado por inflación ni paridad de poder adquisitivo. La esperanza de vida resume condiciones generales de mortalidad y salud; no permite atribuir variaciones a una única causa. La base no dispone de una serie comparable de exceso de mortalidad o mortalidad COVID-19 para todos los países seleccionados, por lo que no se construyen rankings con datos incompletos.</p></div>
+  </section>}
+  {page==="comparacion"&&<section className="content">
+   <div className="intro"><div><label>ANÁLISIS MULTIDIMENSIONAL · 06</label><h1>Comparar países exige mirar más de una dimensión.</h1><p>Esta vista reúne el shock económico, la recuperación posterior y la duración registrada de las medidas de permanencia en el hogar. La comparación conserva los faltantes y permite cambiar el año de referencia de las políticas.</p></div><aside>PAÍSES<small>COMPARADOS</small></aside></div>
+   <div className="section-title"><div><label>ECONOMÍA COMPARADA</label><h2>Caída y recuperación por país</h2></div><small>WDI · 2020–2023</small></div>
+   <div className="charts">
+    <Panel title="Contracción del PIB en 2020" sub="Crecimiento anual por país"><Bars data={d.countries.filter(r=>r.contraction!==null).map(r=>({pais:r.pais,valor:r.contraction}))} keyName="valor" color={COLORS[1]}/></Panel>
+    <Panel title="Crecimiento promedio 2021–2023" sub="Promedio de tasas anuales por país" note="No equivale al crecimiento acumulado del PIB en el período."><Bars data={d.countries.filter(r=>r.recovery!==null).map(r=>({pais:r.pais,valor:r.recovery}))} keyName="valor" color={COLORS[2]}/></Panel>
+    <ScatterPanel title="Índice de rigurosidad y crecimiento del PIB" data={d.scatterGDP} xLabel="Rigurosidad promedio" yLabel="Crecimiento del PIB" yUnit="%" zero/>
+    <ScatterPanel title="Días obligatorios C6 y crecimiento del PIB" data={d.durationGDP} xLabel="Días C6 ≥ 2" yLabel="Crecimiento del PIB" xUnit=" días" yUnit="%" zero/>
+    <Panel title="Duración de la obligación de permanecer en el hogar" sub="Días C6 ≥ 2 por país y año seleccionado" ox><div className="year-control">Año <select value={year} onChange={e=>setYear(+e.target.value)}><option>2020</option><option>2021</option><option>2022</option></select></div><Bars data={d.dur.map(r=>({pais:r.pais,dias:r.dias??0}))} keyName="dias" unit=" días" color={COLORS[3]}/></Panel>
+    <Panel title="Matriz comparativa de países" sub="Indicadores observados y año de política seleccionado"><div className="year-control">Año de políticas <select value={year} onChange={e=>setYear(+e.target.value)}><option>2020</option><option>2021</option><option>2022</option></select></div><div className="matrix-wrap"><table className="matrix"><thead><tr><th>País</th><th>PIB 2020</th><th>PIB prom. 21–23</th><th>Gini 2019</th><th>Desempleo 2020</th><th>Vida 19–21</th><th>Días C6 ({year})</th></tr></thead><tbody>{d.comparison.map((r:any)=><tr key={r.iso3}><td>{r.pais}</td><td>{fmt(r.contraction,1)}%</td><td>{fmt(r.recovery,1)}%</td><td>{fmt(r.gini,1)}</td><td>{fmt(r.unemployment,1)}%</td><td>{fmt(r.lifeChange,2)}</td><td>{fmt(r.c6,0)}</td></tr>)}</tbody></table></div></Panel>
+   </div>
+   <div className="method"><b>Cómo leer la matriz</b><p>Cada columna conserva su período y unidad: Gini corresponde a 2019; desempleo y crecimiento del PIB a 2020; recuperación al promedio de tasas anuales 2021–2023; cambio de esperanza de vida a 2019–2021; días C6 al año seleccionado. Los valores ausentes se muestran como “Sin dato”. No se construye un puntaje compuesto ni un ranking general porque las dimensiones no son equivalentes.</p></div>
   </section>}
   <footer className="site-footer"><span>OBSERVATORIO SOCIOECONÓMICO DE AMÉRICA LATINA Y EL CARIBE</span><span>WDI 2015–2023 · OxCGRT 2020–2022</span><a href={WDI} target="_blank" rel="noreferrer">Fuentes y definiciones</a></footer>
  </main>;
